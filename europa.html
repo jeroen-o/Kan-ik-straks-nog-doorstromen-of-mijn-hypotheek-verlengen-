@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypotheekregels in Europa — Hypotheek straks</title>
+<meta name="description" content="Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1d5fae">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Hypotheek straks">
+<meta property="og:title" content="Hypotheekregels in Europa — Hypotheek straks">
+<meta property="og:description" content="Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.">
+<meta property="og:url" content="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html">
+<meta property="og:image" content="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/og-afbeelding.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="language" content="nl-NL">
+<style>
+/* Hypotheek straks — stijl */
+
+:root{
+  --primary:#003057; --primary-l:#0a4a7d; --accent:#E5A138; --accent-s:#f6e3c4;
+  --bg:#F4F7F9; --surface:#fff; --text:#333; --text-l:#4A4A4A; --muted:#78848f; --line:#dde5ec;
+  --focus:#0a4a7d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+/* De navigatie blijft bovenaan staan; een anker moet daar onderuit komen. */
+:target{scroll-margin-top:86px}
+section[id],div[id].card,div[id].dcard{scroll-margin-top:86px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);background:var(--surface);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:var(--primary-l)}
+img{max-width:100%}
+
+/* zichtbare focus voor toetsenbordgebruik */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
+summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--primary);padding:12px 18px;
+  z-index:300;font-weight:700;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* demobalk */
+.demobar{background:#B3261E;color:#fff;font-size:13.5px;line-height:1.5;padding:11px 22px;text-align:center}
+.demobar b{color:#fff}
+@media print{.demobar{display:none}}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{font-family:Georgia,'DM Serif Display',serif;font-size:21px;color:var(--primary);text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{color:var(--text-l);text-decoration:none;font-size:14.5px;font-weight:600}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--accent)}
+.nav-links a.btn[aria-current="page"]{box-shadow:none}
+.btn{display:inline-block;background:var(--primary);color:#fff!important;text-decoration:none;padding:11px 22px;
+  border-radius:8px;font-size:14.5px;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--primary-l)}
+.btn.ghost{background:transparent;color:var(--primary)!important;border:1.5px solid var(--primary)}
+.btn.ghost:hover{background:#eef4f8}
+.btn[disabled]{opacity:.55;cursor:default}
+#burger{display:none;background:none;border:none;font-size:24px;color:var(--primary);cursor:pointer;line-height:1}
+
+/* taalkiezer */
+.taalkiezer{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center;
+  max-width:1080px;margin:0 auto;padding:9px 22px}
+.taalkiezer a,.taalkiezer span{font-size:12.5px;font-weight:700;letter-spacing:.04em;
+  padding:5px 9px;border-radius:6px;text-decoration:none;color:var(--muted);line-height:1}
+.taalkiezer a:hover{background:var(--bg);color:var(--primary)}
+.taalkiezer span[aria-current]{background:var(--primary);color:#fff}
+
+/* hero */
+header.hero{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff;padding:78px 0 86px}
+header.hero h1{font-family:Georgia,serif;font-weight:400;font-size:44px;line-height:1.14;margin-bottom:18px;max-width:18ch}
+header.hero p{color:#c6d8e6;font-size:18px;max-width:58ch;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.hero-cta .btn{background:var(--accent);color:#2d1d02!important}
+.hero-cta .btn:hover{background:#f0b556}
+.hero-cta .btn.ghost{background:transparent;color:#fff!important;border-color:rgba(255,255,255,.45)}
+.hero-cta .btn.ghost:hover{background:rgba(255,255,255,.1)}
+
+/* paginakop (binnenpagina's) */
+header.pagehead{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff;padding:52px 0 56px}
+header.pagehead .eyebrow{color:var(--accent)}
+header.pagehead h1{font-family:Georgia,serif;font-weight:400;font-size:38px;line-height:1.16;margin-bottom:14px;max-width:20ch}
+header.pagehead p{color:#c6d8e6;font-size:17px;max-width:62ch}
+.crumbs{font-size:13px;color:#9fbdd3;padding:14px 0 0}
+.crumbs a{color:#c6d8e6;text-decoration:none}
+.crumbs a:hover{color:#fff;text-decoration:underline}
+
+/* secties */
+section{padding:72px 0}
+section.alt{background:var(--bg)}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+h2{font-family:Georgia,serif;font-weight:400;font-size:34px;color:var(--primary);margin-bottom:14px;line-height:1.2}
+h3{font-size:18px;color:var(--primary);margin-bottom:8px}
+.sub{font-size:17px;color:var(--text-l);max-width:62ch;margin-bottom:38px}
+.prose{max-width:68ch}
+.prose p{margin-bottom:14px;color:var(--text-l)}
+.prose ul,.prose ol{margin:0 0 16px 20px;color:var(--text-l)}
+.prose li{margin-bottom:7px}
+.prose h3{margin-top:26px}
+
+/* stappen */
+.chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(192px,1fr));gap:16px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;position:relative}
+section.alt .step{background:#fff}
+.step .num{width:32px;height:32px;border-radius:8px;background:var(--primary);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:14px}
+.step p{font-size:14.5px;color:var(--text-l)}
+
+/* kaarten */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;border-top:4px solid var(--accent)}
+.card ul{margin:12px 0 0 18px;font-size:14.5px;color:var(--text-l)}
+.card li{margin-bottom:5px}
+.card p{font-size:15px;color:var(--text-l)}
+
+/* rekentools */
+.toolspagina .wrap{max-width:1280px}
+.toolspagina header.pagehead .wrap,
+.toolspagina footer .wrap{max-width:1080px}
+.tool{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 20px;margin-bottom:24px}
+section.alt .tool{background:#fff}
+.tool h3{margin-bottom:6px;font-size:19px}
+.tool p{font-size:15px;color:var(--text-l);margin-bottom:16px;max-width:70ch}
+.tool iframe{display:block;width:100%;min-height:820px;border:0}
+@media (max-width:700px){
+  .tool{padding:18px 12px}
+  .tool iframe{min-height:900px}
+}
+
+/* logocarrousel aanbieders */
+.logo-carrousel{display:flex;flex-direction:column;gap:14px}
+.logo-rail{overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.logo-track{display:flex;width:max-content;animation:logoschuif 55s linear infinite}
+.logo-track.terug{animation-direction:reverse}
+.logo-set{display:flex;align-items:stretch;gap:14px;list-style:none;margin:0;padding:0 7px}
+.logo-set li{background:#fff;border:1px solid var(--line);border-radius:10px;height:72px;width:152px;
+  flex:0 0 152px;display:flex;align-items:center;justify-content:center;padding:14px}
+.logo-set img{max-height:40px;max-width:100%;width:auto;height:auto;object-fit:contain}
+@keyframes logoschuif{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.logo-rail:hover .logo-track,
+.logo-rail:focus-within .logo-track{animation-play-state:paused}
+.logo-carrousel.stil .logo-track{animation-play-state:paused}
+.logo-pauze{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#fff;
+  border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-family:inherit;font-size:14px;
+  font-weight:600;color:var(--primary);cursor:pointer}
+.logo-pauze:hover{background:#eef4f8}
+.logo-pauze .ic{font-size:11px;letter-spacing:1px;line-height:1}
+.logo-pauze[aria-pressed="true"] .ic{letter-spacing:0}
+@media (prefers-reduced-motion:reduce){
+  .logo-track{animation:none}
+  .logo-rail{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .logo-set[aria-hidden="true"]{display:none}
+}
+
+/* kosten */
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:26px}
+.p-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.p-box .amt{font-family:Georgia,serif;font-size:32px;color:var(--primary);margin:6px 0 10px}
+.p-box .amt small{font-size:14px;color:var(--muted);font-family:inherit}
+.p-box p{font-size:14.5px;color:var(--text-l)}
+.note{background:#fff;border-left:4px solid var(--primary);padding:18px 22px;border-radius:0 10px 10px 0;
+  font-size:15px;color:var(--text-l);max-width:800px}
+section.alt .note{background:#fff}
+
+/* tabel */
+.tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tbl caption{text-align:left;font-size:14px;color:var(--muted);padding:0 0 10px}
+.tbl th,.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.tbl th{background:#fafcfd;color:var(--primary);font-size:14px}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td.num{white-space:nowrap}
+
+/* tarieventabel met uitklapbare toelichting */
+.tarieven td.groep{background:var(--primary);color:#fff;font-weight:700;font-size:14px;
+  letter-spacing:.03em;text-transform:uppercase;padding:10px 14px}
+.i-knop{width:21px;height:21px;min-width:21px;border-radius:50%;border:1.5px solid var(--primary);
+  background:#fff;color:var(--primary);font-family:Georgia,serif;font-style:italic;font-weight:700;
+  font-size:13px;line-height:1;cursor:pointer;margin-right:9px;padding:0;vertical-align:1px}
+.i-knop:hover{background:var(--primary);color:#fff}
+.i-knop[aria-expanded="true"]{background:var(--accent);border-color:var(--accent);color:#2d1d02}
+.tarieven tr.toelichting td{background:#fafcfd;border-bottom:2px solid var(--line);padding:16px 18px 18px 44px}
+.tarieven tr.toelichting p{font-size:14.5px;color:var(--text-l);margin-bottom:8px;max-width:78ch}
+.tarieven tr.toelichting p:last-child{margin-bottom:0}
+.tarieven tr.toelichting b{color:var(--primary)}
+@media (max-width:620px){
+  .tarieven tr.toelichting td{padding-left:18px}
+  .tabelwrap .tbl{min-width:480px}
+  .tabelwrap .tbl th,.tabelwrap .tbl td{padding:10px 11px;font-size:14.5px}
+}
+
+/* accordeon */
+.acc{max-width:860px}
+.acc-item{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fff;overflow:hidden}
+.acc-head{width:100%;text-align:left;background:none;border:none;padding:17px 20px;font-family:inherit;font-size:16px;
+  font-weight:600;color:var(--primary);cursor:pointer;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.acc-head:hover{background:#f8fafc}
+.acc-head .ic{color:var(--accent);font-size:20px;line-height:1;transition:transform .2s}
+.acc-head[aria-expanded="true"] .ic{transform:rotate(45deg)}
+.acc-body{display:none;padding:0 20px 20px;font-size:15.3px;color:var(--text-l)}
+.acc-body.open{display:block}
+.acc-body ul{margin:10px 0 0 19px}
+.acc-body li{margin-bottom:6px}
+.acc-body p{margin-bottom:10px}
+.acc-body p:last-child{margin-bottom:0}
+.acc-body table{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0}
+.acc-body td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.acc-body td:first-child{font-weight:600;color:var(--text);width:38%}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:600;color:var(--primary);margin-bottom:6px}
+input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;font-family:inherit;
+  font-size:15px;color:var(--text);background:#fff}
+input:focus,textarea:focus,select:focus{border-color:var(--primary)}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:13px;color:var(--muted);margin-top:5px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--text-l);margin-bottom:18px}
+.consent input{width:18px;height:18px;min-width:18px;margin-top:2px}
+.infocard{background:var(--bg);border-radius:12px;padding:26px}
+section.alt .infocard{background:#fff;border:1px solid var(--line)}
+.infocard dl{font-size:15px}
+.infocard dt{font-weight:700;color:var(--primary);margin-top:14px;font-size:13.5px}
+.infocard dt:first-child{margin-top:0}
+.infocard dd{color:var(--text-l)}
+#formmsg{display:none;background:#eef7f2;border:1px solid #bfe0cd;color:#1f7a4d;padding:13px 16px;border-radius:8px;
+  font-size:14.5px;margin-top:14px}
+#formmsg.show{display:block}
+
+/* documenten */
+.dlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column}
+.dcard .kind{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:9px}
+.dcard h3{margin-bottom:8px}
+.dcard p{font-size:14.5px;color:var(--text-l);flex:1;margin-bottom:16px}
+.dcard button{align-self:flex-start}
+
+/* document-overlay */
+#ov{display:none;position:fixed;inset:0;background:rgba(0,30,55,.55);z-index:200;overflow-y:auto;padding:28px 16px}
+#ov.open{display:block}
+.ovbox{max-width:860px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,30,55,.3)}
+.ovbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);border-radius:14px 14px 0 0;
+  padding:16px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;z-index:2}
+.ovbar h2{margin:0;font-size:17px;font-family:inherit;font-weight:700}
+.ovbar .acts{display:flex;gap:8px}
+.ovbar button{background:#fff;border:1px solid var(--line);color:var(--primary);border-radius:7px;padding:8px 14px;
+  font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.ovbar button:hover{background:#eef4f8}
+.ovbody{padding:30px 40px 44px;font-size:15px}
+.ovbody h3{font-size:16px;color:var(--primary);margin:24px 0 9px}
+.ovbody h3:first-child{margin-top:0}
+.ovbody .n{font-size:11.5px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;
+  margin:22px 0 3px}
+.ovbody p{margin-bottom:10px;color:var(--text-l)}
+.ovbody ol,.ovbody ul{margin:0 0 12px 22px;color:var(--text-l)}
+.ovbody li{margin-bottom:6px}
+.ovbody table{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0 18px}
+.ovbody th{text-align:left;padding:9px 11px;border-bottom:2px solid var(--line);color:var(--primary);font-size:14px}
+.ovbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-l)}
+.ovbody table.kv td:first-child{font-weight:600;color:var(--text);width:36%;background:#fafcfd}
+.ovbody .meta{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:26px}
+.ovbody .box{background:#fafcfd;border-left:4px solid var(--primary);padding:15px 19px;border-radius:0 8px 8px 0;margin:14px 0}
+.ovbody .box p:last-child{margin-bottom:0}
+.ovbody .lead{color:var(--muted);font-size:13.5px}
+@media (max-width:680px){ .ovbody{padding:22px 20px 34px} }
+
+/* casus */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.case{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px}
+.case .tag{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:9px}
+.case dl{font-size:14.5px;color:var(--text-l);margin-top:12px}
+.case dt{font-weight:700;color:var(--primary);margin-top:12px;font-size:13.5px}
+.case dd{margin-top:2px}
+
+/* footer */
+footer{background:var(--primary);color:#b9cddc;padding:56px 0 30px;font-size:14.5px}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:34px;margin-bottom:34px}
+footer h2{color:#fff;font-size:14px;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase;font-family:inherit;font-weight:700}
+footer a{color:#b9cddc;text-decoration:none;display:block;margin-bottom:7px}
+footer a:hover{color:var(--accent);text-decoration:underline}
+footer p{color:#9fbdd3}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.social a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;border-radius:8px;
+  padding:9px 15px;font-size:14px;font-weight:600;margin:0}
+.social a:hover{background:var(--accent);border-color:var(--accent);color:#2d1d02;text-decoration:none}
+.social svg{width:17px;height:17px;flex:0 0 auto}
+.f-licenties{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:18px 26px;
+  border-top:1px solid rgba(255,255,255,.16);padding-top:24px;margin-bottom:26px;font-size:13px;color:#9fbdd3}
+.f-licenties b{color:#fff;display:block;font-size:14px;font-weight:700;margin-bottom:2px}
+.legal{border-top:1px solid rgba(255,255,255,.16);padding-top:22px;font-size:13px;color:#8aa7bd;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* cookiemelding */
+#cookie{position:fixed;bottom:16px;left:16px;right:16px;max-width:620px;margin:0 auto;background:#fff;
+  border:1px solid var(--line);box-shadow:0 10px 36px rgba(0,48,87,.18);border-radius:12px;padding:20px;z-index:100}
+#cookie[hidden]{display:none}
+#cookie p{font-size:14.3px;color:var(--text-l);margin-bottom:14px}
+#cookie .row{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:880px){
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:1060px){
+  .nav-links{gap:14px;font-size:14px}
+  nav .wrap{gap:14px}
+}
+/* Negen menu-items passen niet meer naast elkaar onder deze breedte; dan de hamburger. */
+@media (max-width:980px){
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;
+    align-items:stretch;padding:14px 22px 20px;border-bottom:1px solid var(--line);gap:4px;font-size:15px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 0;border-bottom:1px solid #f0f4f7}
+  .nav-links a[aria-current="page"]{box-shadow:none;border-left:3px solid var(--accent);padding-left:10px}
+  #burger{display:block}
+}
+@media (max-width:780px){
+  header.hero h1{font-size:33px}
+  header.pagehead h1{font-size:28px}
+  h2{font-size:27px}
+  section{padding:54px 0}
+}
+
+@media print{
+  nav,#cookie,.hero-cta,footer .f-grid{display:none}
+  body{font-size:11pt}
+  a{color:var(--text);text-decoration:none}
+}
+
+/* rekentool die nog niet geladen is */
+.tool-laden{background:#fafcfd;border:1px dashed var(--line);border-radius:10px;padding:20px}
+.tool-uitleg{font-size:14px;color:var(--text-l);margin-bottom:14px;max-width:70ch}
+
+/* ---- commerciële homepage ---- */
+.hero-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:46px;align-items:start}
+.hero-punten{list-style:none;margin:0 0 28px;padding:0}
+.hero-punten li{position:relative;padding-left:28px;margin-bottom:9px;color:#dbe8f2;font-size:15.5px}
+.hero-punten li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;
+  border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.hero-kaart{background:#fff;border-radius:14px;padding:28px;box-shadow:0 18px 44px rgba(0,25,45,.28)}
+.hero-kaart h2{font-size:21px;margin-bottom:8px}
+.hero-kaart p{color:var(--text-l);font-size:15px;margin-bottom:18px}
+.hero-kaart .btn{width:100%;text-align:center}
+.hero-kaart .hint{margin-top:12px;margin-bottom:0}
+
+.tegels{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}
+.tegel{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;
+  text-decoration:none;transition:border-color .15s,transform .15s}
+.tegel:hover{border-color:var(--primary);transform:translateY(-2px)}
+.tegel b{display:block;color:var(--primary);font-size:16.5px;margin-bottom:5px}
+.tegel span{display:block;color:var(--text-l);font-size:14.5px;line-height:1.45}
+.tegel::after{content:" →";color:var(--accent);font-weight:700}
+
+.reviewblok{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:26px;max-width:860px}
+.reviewblok p{color:var(--text-l);font-size:15px;margin-bottom:12px}
+.reviewblok p:last-child{margin-bottom:0}
+
+section.slot{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff}
+section.slot h2{color:#fff}
+section.slot p{color:#c6d8e6;font-size:17px;max-width:62ch;margin-bottom:26px}
+section.slot .btn{background:var(--accent);color:#2d1d02!important}
+section.slot .btn:hover{background:#f0b556}
+section.slot .btn.ghost{background:transparent;color:#fff!important;border-color:rgba(255,255,255,.45)}
+section.slot .btn.ghost:hover{background:rgba(255,255,255,.1)}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-kaart{padding:22px}
+}
+
+/* ---- topbalk met zoekveld ---- */
+.topbalk{background:var(--bg);border-bottom:1px solid var(--line)}
+.topbalk .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.topbalk .snel{display:flex;gap:16px;flex-wrap:wrap;font-size:13px}
+.topbalk .snel a{color:var(--text-l);text-decoration:none;font-weight:600}
+.topbalk .snel a:hover{color:var(--primary)}
+.zoekvorm{position:relative;display:flex;align-items:center;gap:7px;min-width:240px;flex:0 1 320px}
+.zoekvorm input{padding:7px 11px;font-size:13.5px;border-radius:7px}
+.zoekvorm button{background:none;border:none;cursor:pointer;color:var(--primary);padding:5px;line-height:0}
+.zoekvorm svg{width:17px;height:17px}
+#zoekuitvoer{position:absolute;top:calc(100% + 7px);right:0;left:0;background:#fff;border:1px solid var(--line);
+  border-radius:10px;box-shadow:0 16px 40px rgba(0,30,55,.18);z-index:120;max-height:70vh;overflow-y:auto;
+  min-width:330px;padding:7px}
+#zoekuitvoer[hidden]{display:none}
+#zoekuitvoer ul{list-style:none;margin:0;padding:0}
+#zoekuitvoer a{display:block;padding:9px 11px;border-radius:7px;text-decoration:none}
+#zoekuitvoer a:hover{background:var(--bg)}
+#zoekuitvoer b{display:block;color:var(--primary);font-size:14.5px;margin-bottom:2px}
+#zoekuitvoer span{display:block;color:var(--text-l);font-size:13px;line-height:1.4}
+#zoekuitvoer em{display:block;color:var(--muted);font-size:11.5px;font-style:normal;margin-top:3px;
+  text-transform:uppercase;letter-spacing:.05em}
+#zoekuitvoer .geen,#zoekuitvoer .meer{font-size:13.5px;color:var(--text-l);padding:10px 11px;margin:0}
+@media (max-width:700px){
+  .topbalk .snel{display:none}
+  .zoekvorm{flex:1 1 100%}
+  #zoekuitvoer{min-width:0}
+}
+
+/* ---- losse rekenhulppagina ---- */
+section.rekenhulp{padding-top:34px;padding-bottom:10px}
+section.rekenhulp .wrap{max-width:1180px}
+.rekenhulp iframe{display:block;width:100%;min-height:900px;border:0;background:#fff;
+  border:1px solid var(--line);border-radius:12px}
+.rekenhulp .hint{margin-top:14px;max-width:80ch}
+.buren{margin-top:26px;font-size:14px;color:var(--muted)}
+.buren a{color:var(--primary-l);text-decoration:none;font-weight:600}
+.buren a:hover{text-decoration:underline}
+@media (max-width:700px){ .rekenhulp iframe{min-height:1000px} }
+
+/* =====================================================================
+   Huisstijl 2026: strak en zakelijk. Witte koppen, zwarte vette titels,
+   blauw als enige accent, rechte hoeken en kaarten in een raster met
+   gedeelde lijnen. Deze laag staat bewust onderaan en overschrijft de
+   oudere regels hierboven.
+   ===================================================================== */
+:root{
+  --primary:#1d5fae; --primary-l:#164c8f; --ink:#111418; --accent:#1d5fae; --accent-s:#e8f0fa;
+  --bg:#f5f8fc; --tint:#e8f0fa; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#6b737d;
+  --line:#d3d9e1; --rule:#22262c; --focus:#1d5fae; --navy:#0d2c57;
+}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-size:16px;color:var(--text)}
+h1,h2,h3,.logo,.p-box .amt{font-family:inherit;color:var(--ink);letter-spacing:-.02em}
+h2{font-weight:800;font-size:28px;line-height:1.2}
+h3{font-weight:700;font-size:17px;color:var(--ink)}
+.eyebrow{color:var(--primary);font-size:11.5px;letter-spacing:.1em;font-weight:700}
+.sub{font-size:15.5px}
+a{color:var(--primary)}
+
+/* knoppen: compact en recht */
+.btn{border-radius:2px;padding:10px 18px;font-size:14px;font-weight:600;background:var(--primary)}
+.btn:hover{background:var(--primary-l)}
+.btn.ghost{background:#fff;color:var(--ink)!important;border:1px solid var(--rule)}
+.btn.ghost:hover{background:var(--bg)}
+
+/* topbalk, navigatie en taalkiezer */
+.topbalk{background:#fff}
+.zoekvorm input{border-radius:2px}
+nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:19px}
+.logo span{color:var(--primary)}
+.nav-links a{color:var(--text);font-weight:500;font-size:14px}
+.nav-links a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
+.taalkiezer a,.taalkiezer span{border-radius:2px}
+.taalkiezer span[aria-current]{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+
+/* hero en paginakop: wit, met een lijn eronder */
+header.hero,header.pagehead{background:#fff;color:var(--text);border-bottom:1px solid var(--rule)}
+header.hero{padding:56px 0 60px}
+header.pagehead{padding:30px 0 44px}
+header.hero h1,header.pagehead h1{font-family:inherit;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+header.hero h1{font-size:48px;line-height:1.08;max-width:16ch}
+header.pagehead h1{font-size:40px;line-height:1.1;max-width:22ch}
+header.hero p,header.pagehead p{color:var(--text-l);font-size:16.5px}
+header.pagehead .eyebrow{color:var(--primary)}
+.crumbs{color:var(--muted);padding:0 0 22px;font-size:12.5px}
+.crumbs a{color:var(--primary)}
+.crumbs a:hover{color:var(--primary-l)}
+.hero-punten li{color:var(--text)}
+.hero-punten li::before{border-color:var(--primary)}
+.hero-cta .btn{background:var(--primary);color:#fff!important}
+.hero-cta .btn:hover{background:var(--primary-l)}
+.hero-cta .btn.ghost{background:#fff;color:var(--ink)!important;border:1px solid var(--rule)}
+.hero-cta .btn.ghost:hover{background:var(--bg)}
+.hero-kaart{border-radius:0;box-shadow:none;border:1px solid var(--line);background:var(--bg)}
+.hero-kaart h2{font-size:19px}
+
+/* secties: wit, gescheiden door een donkere lijn binnen de kolom */
+section{padding:60px 0}
+section.alt{background:#fff}
+main > section + section{padding-top:0}
+main > section + section > .wrap::before{content:"";display:block;border-top:1px solid var(--rule);margin-bottom:52px}
+section.rekenhulp + section > .wrap::before{margin-top:24px}
+
+/* rasterkaarten met gedeelde lijnen */
+.cards,.tegels,.chain,.price,.dlist,.cases{gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.card,.tegel,.step,.p-box,.dcard,.case{border:0;border-radius:0;border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);background:#fff}
+section.alt .step{background:#fff}
+.card{padding:24px}
+.card p,.card ul,.step p,.tegel span,.dcard p{font-size:14px}
+.tegel{padding:22px}
+.tegel:hover{transform:none;background:var(--bg);border-color:var(--rule)}
+.tegel b{color:var(--ink);font-size:16px}
+.tegel::after{color:var(--primary)}
+.step{padding:24px}
+.step .num{width:auto;height:auto;background:none;color:var(--primary);font-size:30px;font-weight:800;
+  letter-spacing:-.02em;justify-content:flex-start;margin-bottom:10px}
+.step .num::before{content:"0"}
+.dcard .kind,.case .tag{color:var(--primary)}
+.p-box .amt{font-weight:800}
+
+/* losse blokken */
+.tool,.acc-item,.infocard,.reviewblok,.tbl,.logo-set li,.logo-pauze,.ovbox,#cookie,#zoekuitvoer{border-radius:0}
+.tool{border-color:var(--rule)}
+.tool h3{color:var(--ink)}
+.note{background:var(--tint);border-left:3px solid var(--primary);border-radius:0;color:var(--text)}
+section.alt .note{background:var(--tint)}
+.tool-laden{background:var(--tint);border:0;border-left:3px solid var(--primary);border-radius:0}
+.rekenhulp iframe{border-radius:0;border-color:var(--rule)}
+.acc-item{border-color:var(--line)}
+.acc-head{color:var(--ink)}
+.acc-head .ic{color:var(--primary)}
+.i-knop[aria-expanded="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.tbl th{color:var(--ink)}
+.tarieven td.groep{background:var(--ink)}
+label{color:var(--ink)}
+input,textarea,select{border-radius:2px;border-color:#9aa3ae}
+.infocard{background:var(--tint)}
+.infocard dt,.case dt{color:var(--ink)}
+.buren a{color:var(--primary)}
+
+/* slotblok: vol blauw, gecentreerd */
+section.slot{background:var(--primary);text-align:center;padding:64px 0}
+main > section.slot > .wrap::before{display:none}
+main > section + section.slot{padding-top:64px}
+section.slot h2{color:#fff;font-size:36px;max-width:22ch;margin:0 auto 14px}
+section.slot p{color:#dce8f6;margin:0 auto 26px}
+section.slot .hero-cta,section.slot .row{justify-content:center}
+section.slot .btn{background:#fff;color:var(--primary)!important}
+section.slot .btn:hover{background:var(--tint)}
+section.slot .btn.ghost{background:transparent;color:#fff!important;border:1px solid rgba(255,255,255,.7)}
+
+/* footer */
+footer{background:var(--navy)}
+footer a:hover{color:#fff}
+.social a{border-radius:2px}
+.social a:hover{background:#fff;border-color:#fff;color:var(--navy)}
+
+@media (max-width:780px){
+  header.hero h1{font-size:34px}
+  header.pagehead h1{font-size:29px}
+  h2{font-size:24px}
+  section{padding:48px 0}
+  main > section + section > .wrap::before{margin-bottom:40px}
+  section.slot h2{font-size:28px}
+}
+@media (max-width:980px){
+  .nav-links a[aria-current="page"]{border-left-color:var(--primary)}
+}
+
+/* Op de rekentoolpagina's loopt alles in dezelfde brede kolom. */
+.toolspagina header.pagehead .wrap,.toolspagina footer .wrap{max-width:1280px}
+
+/* Rekentools als raster, net als de modulekaarten */
+.toolspagina section:has(> .wrap > .tool) > .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  align-content:start;padding-right:23px}
+.toolspagina section:has(> .wrap > .tool) > .wrap > :not(.tool){grid-column:1/-1}
+.toolspagina section:has(> .wrap > .tool) > .wrap::before{grid-column:1/-1}
+.toolspagina .tool{margin:0 -1px -1px 0;border:1px solid var(--rule);border-radius:0;padding:22px;
+  display:flex;flex-direction:column}
+.toolspagina .tool p{flex:1;font-size:14px}
+.toolspagina .tool .btn{align-self:flex-start}
+@media (max-width:900px){ .toolspagina section:has(> .wrap > .tool) > .wrap{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .toolspagina section:has(> .wrap > .tool) > .wrap{grid-template-columns:1fr} }
+
+/* Tabel regels nu en straks */
+.regels td.groep{background:var(--ink);color:#fff;font-weight:700;font-size:13px;letter-spacing:.04em;
+  text-transform:uppercase;padding:9px 14px}
+.regels tbody th{background:#fff;font-weight:600;color:var(--ink);font-size:15px;min-width:180px}
+@media (max-width:620px){
+  .tabelwrap .tbl.regels{min-width:0}
+  .regels thead{display:none}
+  .regels tr{display:block;border-bottom:1px solid var(--rule)}
+  .regels tbody th,.regels td{display:block;border:0;padding:4px 14px}
+  .regels tbody th{padding-top:14px;font-size:16px}
+  .regels td:last-child{padding-bottom:14px}
+  .regels td[data-label]::before{content:attr(data-label);display:block;font-size:11.5px;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .regels td.groep{padding:9px 14px}
+}
+
+/* Zekerheidslabels in het scenario */
+.zeker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:2px;white-space:nowrap}
+.zeker.b{background:var(--ink);color:#fff}
+.zeker.w{background:var(--primary);color:#fff}
+.zeker.m{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+
+/* Scenariokiezer */
+.sk-raster{display:grid;grid-template-columns:300px minmax(0,1fr);gap:36px;align-items:start}
+.sk-invoer{border:1px solid var(--rule);padding:22px;background:var(--bg);position:sticky;top:90px}
+.sk-invoer h2,.sk-titel{font-size:20px;margin-bottom:16px}
+.sk-invoer .field{margin-bottom:13px}
+.sk-invoer input,.sk-invoer select{padding:9px 11px;font-size:15px}
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.sk-kaart{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px;display:flex;flex-direction:column;background:#fff}
+.sk-kaart.gekozen{background:var(--tint);box-shadow:inset 0 3px 0 var(--primary)}
+.sk-kop{margin-bottom:10px}
+.sk-kop .zeker{font-size:14px;padding:5px 10px}
+.sk-uitleg{font-size:13px;color:var(--text-l);margin-bottom:14px;min-height:5.5em}
+.sk-cijfers{margin:0 0 14px}
+.sk-cijfers dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.sk-cijfers dd{font-size:16px;color:var(--ink);font-weight:600}
+.sk-cijfers dd.groot{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.sk-cijfers small{font-size:13px;font-weight:600;color:var(--text-l);margin-left:4px}
+.sk-signalen{margin:0 0 16px 18px;font-size:13.5px;color:var(--text);flex:1}
+.sk-signalen li{margin-bottom:6px}
+.sk-kaart .btn{align-self:flex-start}
+.sk-agenda{margin-top:36px;border:1px solid var(--rule);padding:24px}
+.sk-agenda h2{font-size:22px}
+.sk-agenda ol{margin:6px 0 0 20px}
+.sk-agenda li{margin-bottom:7px;font-size:15px}
+@media (max-width:1100px){ .sk-uitkomst{grid-template-columns:1fr} .sk-uitleg{min-height:0} }
+@media (max-width:860px){ .sk-raster{grid-template-columns:1fr} .sk-invoer{position:static} }
+@media print{ .sk-invoer,.sk-kaart .btn{display:none} }
+.sk-naar{display:none;margin-top:6px}
+@media (max-width:860px){ .sk-naar{display:block} }
+
+/* zelfstandige site: kop en voet */
+.site-kop{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
+.site-kop .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.site-kop .logo{font-weight:800;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.site-kop .logo span{color:var(--primary)}
+.site-nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+.site-nav a{color:var(--text);text-decoration:none;font-size:14.5px;font-weight:500;padding:4px 0}
+.site-nav a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
+.site-voet{background:var(--navy);color:#c9d6e6;padding:40px 0;font-size:14px}
+.site-voet a{color:#fff}
+.site-voet p{margin-bottom:10px;max-width:80ch}
+.toolspagina .wrap{max-width:1080px}
+@media (max-width:700px){ .site-nav{gap:2px 14px} .site-nav a{font-size:14px} }
+
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#website",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/",
+   "name": "Kan ik straks nog doorstromen of mijn hypotheek verlengen?",
+   "inLanguage": "nl",
+   "publisher": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site",
+   "name": "Hypotheek straks",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html#pagina",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html",
+   "name": "Hypotheekregels in Europa — Hypotheek straks",
+   "description": "Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.",
+   "inLanguage": "nl",
+   "datePublished": "2026-10-19",
+   "dateModified": "2026-10-19",
+   "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+   },
+   "publisher": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   },
+   "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Regels nu en straks",
+      "item": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/regels.html"
+     },
+     {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Europa",
+      "item": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html"
+     }
+    ]
+   }
+  },
+  {
+   "@type": "Article",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/europa.html#artikel",
+   "headline": "Hypotheekregels in Europa",
+   "inLanguage": "nl",
+   "datePublished": "2026-10-19",
+   "dateModified": "2026-10-19",
+   "author": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   },
+   "publisher": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   },
+   "image": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/og-afbeelding.png",
+   "about": [
+    "Hypotheekrenteaftrek",
+    "Aflosplicht",
+    "Leennormen",
+    "ECB",
+    "EBA",
+    "Europese hypotheekrichtlijn"
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de hoofdinhoud</a>
+<header class="site-kop">
+  <div class="wrap">
+    <a href="index.html" class="logo">Hypotheek <span>straks</span></a>
+    <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Mijn scenario</a><a href="regels.html">Regels nu en straks</a><a href="scenario-2035.html">Scenario 2035</a><a href="europa.html" aria-current="page">Europa</a></nav>
+  </div>
+</header>
+
+<main id="main">
+
+<header class="pagehead">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> &rsaquo; <a href="regels.html">Regels nu en straks</a> &rsaquo; Europa</p>
+    <div class="eyebrow">Europa &middot; stand 19 oktober 2026</div>
+    <h1>Hypotheekregels in Europa</h1>
+    <p>Wat in Nederland verandert, komt vaak uit Europa of is elders al gewoon. Hier leest u waar in Europa over
+       gesproken wordt, wat andere landen al doen en wat dat voor uw hypotheek kan betekenen.</p>
+  </div>
+</header>
+
+<section id="gesprek">
+  <div class="wrap">
+    <div class="eyebrow">Waar wordt over gesproken</div>
+    <h2>Zes Europese lijnen die uw hypotheek raken</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Kapitaaleisen voor banken</h3>
+        <p>De ECB houdt toezicht op de grootbanken en bepaalt hoeveel kapitaal zij aanhouden. Door de Europese regels
+           (CRR3) mag het kapitaal uit eigen rekenmodellen niet te ver onder de standaardmethode komen; die ondergrens
+           loopt op tot 2030. Een hypotheek met weinig overwaarde, lasten die na het pensioen niet te dragen zijn, een
+           schuld die bij overlijden blijft staan, of een woning met een slecht label of klimaatrisico, kost de bank
+           meer kapitaal en u dus meer rente.</p>
+      </div>
+      <div class="card">
+        <h3>Betaalbaar, ook na uw pensioen</h3>
+        <p>De Europese richtsnoeren voor kredietverlening (EBA) vragen banken om te beoordelen of u kunt blijven betalen
+           als de looptijd tot na uw pensioen loopt, en om niet te lenen op de waarde van de woning alleen. Daaruit
+           volgen de pensioentoets en de grenzen op 85 jaar.</p>
+      </div>
+      <div class="card">
+        <h3>Klimaat in de waardering</h3>
+        <p>De ECB verwacht dat banken ligging en energie-effici&euml;ntie meewegen in de waarde van het onderpand. Uit
+           ECB-onderzoek blijkt dat banken in Europa al een hogere rente vragen bij fysiek klimaatrisico.</p>
+      </div>
+      <div class="card">
+        <h3>Zuiniger woningen</h3>
+        <p>De Europese gebouwenrichtlijn (EPBD IV) vraagt dat het energieverbruik van de woningvoorraad daalt, met
+           renovatiepaspoorten en een herzien energielabel. Een slecht label wordt daardoor steeds meer een
+           financieel risico.</p>
+      </div>
+      <div class="card">
+        <h3>Betaalbaar wonen en groene hypotheken</h3>
+        <p>De Europese Commissie werkt aan een plan voor betaalbaar wonen. Daarin wordt ook een herziening van de
+           Europese hypotheekrichtlijn verwacht, onder meer om groene hypotheken te stimuleren. Een wetsvoorstel is er nog
+           niet.</p>
+      </div>
+      <div class="card">
+        <h3>Renteaftrek afbouwen</h3>
+        <p>Het IMF adviseerde Nederland in mei 2026 de renteaftrek geleidelijk af te bouwen en de maximale lening te
+           verlagen naar 90% van de woningwaarde. Ook de OESO adviseert afbouw. Het zijn adviezen; Den Haag beslist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="landen">
+  <div class="wrap">
+    <div class="eyebrow">Andere landen</div>
+    <h2>Wat elders al geldt</h2>
+    <p class="sub">Een selectie. Regels verschillen per land en veranderen; deze tabel is een momentopname en geen volledig
+       overzicht.</p>
+    <div class="tabelwrap">
+      <table class="tbl regels">
+        <caption>Renteaftrek, aflossing en leengrenzen in een aantal Europese landen. Bronnen onderaan de pagina.</caption>
+        <thead><tr><th scope="col">Land</th><th scope="col">Renteaftrek eigen woning</th><th scope="col">Aflossing en leengrenzen</th><th scope="col">Wat Nederland ervan kan leren</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; banken: aflossingsvrij tot 30%</td><td data-label="Wat Nederland ervan kan leren">&ndash;</td></tr>
+          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing, vaak v&oacute;&oacute;r ongeveer 75 jaar</td><td data-label="Wat Nederland ervan kan leren">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
+          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% sinds 1 april 2026; de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat Nederland ervan kan leren">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
+          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Nee, afgebouwd</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat Nederland ervan kan leren">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
+          <tr><th scope="row">Belgi&euml;</th><td data-label="Renteaftrek eigen woning">Vlaanderen: geen woonbonus meer voor nieuwe leningen sinds 2020</td><td data-label="Aflossing en leengrenzen">De centrale bank stelt verwachtingen aan leningen met een hoge waarde; banken hanteren eigen leeftijdsbeleid</td><td data-label="Wat Nederland ervan kan leren">Afschaffen kan voor nieuwe leningen, met behoud voor bestaande</td></tr>
+          <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Renteaftrek eigen woning">Nee, afgeschaft in 2000</td><td data-label="Aflossing en leengrenzen">Grote banken: meestal afgelost tussen 75 en 80 jaar; gespecialiseerde aanbieders gaan verder</td><td data-label="Wat Nederland ervan kan leren">Leeftijdsgrenzen zijn bankbeleid, maar wel marktstandaard</td></tr>
+          <tr><th scope="row">Denemarken</th><td data-label="Renteaftrek eigen woning">Ja, tegen een lager tarief dan in Nederland</td><td data-label="Aflossing en leengrenzen">Uitgebreid systeem van hypotheekobligaties; aflossingsvrij is mogelijk maar aan voorwaarden gebonden</td><td data-label="Wat Nederland ervan kan leren">Aftrek kan blijven, maar met minder fiscaal voordeel</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="betekenis">
+  <div class="wrap">
+    <div class="eyebrow">Voor u</div>
+    <h2>Wat dit voor uw situatie kan betekenen</h2>
+    <div class="prose">
+      <p>Nederland is in Europa een uitzondering: ruime renteaftrek, lenen tot de volle woningwaarde en een groot deel
+         aflossingsvrij. De richting elders is duidelijk: minder fiscaal voordeel, meer aflossen en grenzen op inkomen,
+         waarde en leeftijd. Hoe snel en hoe streng Nederland volgt, is onzeker. Daarom werkt deze site met drie scenario&#39;s.</p>
+    </div>
+    <p style="margin-top:22px"><a href="index.html" class="btn">Bekijk uw situatie in drie scenario&#39;s</a></p>
+  </div>
+</section>
+
+<section class="alt" id="bronnen">
+  <div class="wrap">
+    <div class="eyebrow">Verantwoording</div>
+    <h2>Bronnen</h2>
+    <div class="prose">
+      <ul>
+        <li><a href="https://www.riksdagen.se/en/news/articles/2026/mar/4/new-mortgage-rules-to-reduce-thresholds-in-the_cmsfca551a0-b04d-4677-aa67-0aab4f002e56en/" target="_blank" rel="noopener">Riksdag: new mortgage rules (Zweden, 1 april 2026)</a></li>
+        <li><a href="https://www.notar.se/en/blog/2026/new-mortgage-rules" target="_blank" rel="noopener">Notar: new mortgage rules from April 1, 2026</a></li>
+        <li><a href="https://www.centralbank.ie/financial-system/financial-stability/macro-prudential-policy/mortgage-measures" target="_blank" rel="noopener">Central Bank of Ireland: mortgage measures</a></li>
+        <li><a href="https://www.congress.gov/crs-product/R46429" target="_blank" rel="noopener">Congressional Research Service: mortgage interest deduction, internationale vergelijking</a></li>
+        <li><a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2021/12/mortgage-finance-across-oecd-countries_3ea2ed89/f97d7fe0-en.pdf" target="_blank" rel="noopener">OESO: Mortgage finance across OECD countries</a></li>
+        <li><a href="https://www.oecd.org/content/dam/oecd/en/data/datasets/affordable-housing-database/ph2-2-tax-relief-for-home-ownership.pdf" target="_blank" rel="noopener">OESO: Tax relief for home ownership</a></li>
+        <li><a href="https://housingnotprofit.org/statement-the-european-unions-affordable-housing-plan/" target="_blank" rel="noopener">European Action Coalition: over het Europese plan voor betaalbaar wonen</a></li>
+        <li><a href="https://www.finance-watch.org/policy-portal/retail-inclusion/a-revised-mortgage-credit-directive/" target="_blank" rel="noopener">Finance Watch: een herziene hypotheekrichtlijn</a></li>
+        <li><a href="https://nltimes.nl/2026/05/16/imf-urges-netherlands-overhaul-rent-rules-ease-housing-crisis" target="_blank" rel="noopener">NL Times: IMF-advies over de Nederlandse woningmarkt</a></li>
+        <li><a href="https://www.biallo.de/baufinanzierung/ratgeber/senioren/" target="_blank" rel="noopener">Biallo: Baufinanzierung f&uuml;r Senioren (Duitsland)</a></li>
+        <li><a href="https://www.brightboxfs.co.uk/insights/maximum-age-mortgage-uk/" target="_blank" rel="noopener">Brightbox: maximum age for a mortgage in the UK</a></li>
+        <li>ECB, EBA en CRR3: zie de bronnen bij <a href="regels.html#bronnen">regels nu en straks</a>.</li>
+      </ul>
+    </div>
+    <div class="note" style="margin-top:24px">
+      <b>Let op.</b> Deze pagina is een momentopname en geen volledig of juridisch overzicht. Regels in andere landen
+      veranderen en worden hier vereenvoudigd weergegeven. Het is geen advies.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-voet">
+  <div class="wrap">
+    <p><b>Kan ik straks nog doorstromen of mijn hypotheek verlengen?</b> Een onafhankelijke gesprekshulp over de
+       hypotheekregels van nu en straks, in Nederland en Europa.</p>
+    <p>Alles op deze site is een indicatie of een scenario, opgesteld in oktober 2026. Het is geen advies en geen
+       voorspelling, en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een erkend hypotheekadviseur.</p>
+    <p>Deze site gebruikt geen cookies en slaat niets op. Wat u invult, blijft in uw browser.</p>
+  </div>
+</footer>
+
+</body>
+</html>
