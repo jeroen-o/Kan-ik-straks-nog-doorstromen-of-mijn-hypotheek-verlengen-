@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verhuisscenario: van aflossingsvrij naar annuïtair — Hypotheek straks</title>
+<meta name="description" content="Rekentool met tien scenario's bij verhuizen met een aflossingsvrije hypotheek: lastensprong, toets op leeftijd, draagkracht en jaaroverzicht.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1d5fae">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Hypotheek straks">
+<meta property="og:title" content="Verhuisscenario: van aflossingsvrij naar annuïtair — Hypotheek straks">
+<meta property="og:description" content="Rekentool met tien scenario's bij verhuizen met een aflossingsvrije hypotheek: lastensprong, toets op leeftijd, draagkracht en jaaroverzicht.">
+<meta property="og:url" content="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html">
+<meta property="og:image" content="https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/og-afbeelding.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="language" content="nl-NL">
+<style>
+/* Hypotheek straks — stijl */
+
+:root{
+  --primary:#003057; --primary-l:#0a4a7d; --accent:#E5A138; --accent-s:#f6e3c4;
+  --bg:#F4F7F9; --surface:#fff; --text:#333; --text-l:#4A4A4A; --muted:#78848f; --line:#dde5ec;
+  --focus:#0a4a7d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+/* De navigatie blijft bovenaan staan; een anker moet daar onderuit komen. */
+:target{scroll-margin-top:86px}
+section[id],div[id].card,div[id].dcard{scroll-margin-top:86px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);background:var(--surface);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:var(--primary-l)}
+img{max-width:100%}
+
+/* zichtbare focus voor toetsenbordgebruik */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
+summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--primary);padding:12px 18px;
+  z-index:300;font-weight:700;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* demobalk */
+.demobar{background:#B3261E;color:#fff;font-size:13.5px;line-height:1.5;padding:11px 22px;text-align:center}
+.demobar b{color:#fff}
+@media print{.demobar{display:none}}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{font-family:Georgia,'DM Serif Display',serif;font-size:21px;color:var(--primary);text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{color:var(--text-l);text-decoration:none;font-size:14.5px;font-weight:600}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--accent)}
+.nav-links a.btn[aria-current="page"]{box-shadow:none}
+.btn{display:inline-block;background:var(--primary);color:#fff!important;text-decoration:none;padding:11px 22px;
+  border-radius:8px;font-size:14.5px;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--primary-l)}
+.btn.ghost{background:transparent;color:var(--primary)!important;border:1.5px solid var(--primary)}
+.btn.ghost:hover{background:#eef4f8}
+.btn[disabled]{opacity:.55;cursor:default}
+#burger{display:none;background:none;border:none;font-size:24px;color:var(--primary);cursor:pointer;line-height:1}
+
+/* taalkiezer */
+.taalkiezer{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center;
+  max-width:1080px;margin:0 auto;padding:9px 22px}
+.taalkiezer a,.taalkiezer span{font-size:12.5px;font-weight:700;letter-spacing:.04em;
+  padding:5px 9px;border-radius:6px;text-decoration:none;color:var(--muted);line-height:1}
+.taalkiezer a:hover{background:var(--bg);color:var(--primary)}
+.taalkiezer span[aria-current]{background:var(--primary);color:#fff}
+
+/* hero */
+header.hero{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff;padding:78px 0 86px}
+header.hero h1{font-family:Georgia,serif;font-weight:400;font-size:44px;line-height:1.14;margin-bottom:18px;max-width:18ch}
+header.hero p{color:#c6d8e6;font-size:18px;max-width:58ch;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.hero-cta .btn{background:var(--accent);color:#2d1d02!important}
+.hero-cta .btn:hover{background:#f0b556}
+.hero-cta .btn.ghost{background:transparent;color:#fff!important;border-color:rgba(255,255,255,.45)}
+.hero-cta .btn.ghost:hover{background:rgba(255,255,255,.1)}
+
+/* paginakop (binnenpagina's) */
+header.pagehead{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff;padding:52px 0 56px}
+header.pagehead .eyebrow{color:var(--accent)}
+header.pagehead h1{font-family:Georgia,serif;font-weight:400;font-size:38px;line-height:1.16;margin-bottom:14px;max-width:20ch}
+header.pagehead p{color:#c6d8e6;font-size:17px;max-width:62ch}
+.crumbs{font-size:13px;color:#9fbdd3;padding:14px 0 0}
+.crumbs a{color:#c6d8e6;text-decoration:none}
+.crumbs a:hover{color:#fff;text-decoration:underline}
+
+/* secties */
+section{padding:72px 0}
+section.alt{background:var(--bg)}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+h2{font-family:Georgia,serif;font-weight:400;font-size:34px;color:var(--primary);margin-bottom:14px;line-height:1.2}
+h3{font-size:18px;color:var(--primary);margin-bottom:8px}
+.sub{font-size:17px;color:var(--text-l);max-width:62ch;margin-bottom:38px}
+.prose{max-width:68ch}
+.prose p{margin-bottom:14px;color:var(--text-l)}
+.prose ul,.prose ol{margin:0 0 16px 20px;color:var(--text-l)}
+.prose li{margin-bottom:7px}
+.prose h3{margin-top:26px}
+
+/* stappen */
+.chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(192px,1fr));gap:16px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;position:relative}
+section.alt .step{background:#fff}
+.step .num{width:32px;height:32px;border-radius:8px;background:var(--primary);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:14px}
+.step p{font-size:14.5px;color:var(--text-l)}
+
+/* kaarten */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;border-top:4px solid var(--accent)}
+.card ul{margin:12px 0 0 18px;font-size:14.5px;color:var(--text-l)}
+.card li{margin-bottom:5px}
+.card p{font-size:15px;color:var(--text-l)}
+
+/* rekentools */
+.toolspagina .wrap{max-width:1280px}
+.toolspagina header.pagehead .wrap,
+.toolspagina footer .wrap{max-width:1080px}
+.tool{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 20px;margin-bottom:24px}
+section.alt .tool{background:#fff}
+.tool h3{margin-bottom:6px;font-size:19px}
+.tool p{font-size:15px;color:var(--text-l);margin-bottom:16px;max-width:70ch}
+.tool iframe{display:block;width:100%;min-height:820px;border:0}
+@media (max-width:700px){
+  .tool{padding:18px 12px}
+  .tool iframe{min-height:900px}
+}
+
+/* logocarrousel aanbieders */
+.logo-carrousel{display:flex;flex-direction:column;gap:14px}
+.logo-rail{overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.logo-track{display:flex;width:max-content;animation:logoschuif 55s linear infinite}
+.logo-track.terug{animation-direction:reverse}
+.logo-set{display:flex;align-items:stretch;gap:14px;list-style:none;margin:0;padding:0 7px}
+.logo-set li{background:#fff;border:1px solid var(--line);border-radius:10px;height:72px;width:152px;
+  flex:0 0 152px;display:flex;align-items:center;justify-content:center;padding:14px}
+.logo-set img{max-height:40px;max-width:100%;width:auto;height:auto;object-fit:contain}
+@keyframes logoschuif{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.logo-rail:hover .logo-track,
+.logo-rail:focus-within .logo-track{animation-play-state:paused}
+.logo-carrousel.stil .logo-track{animation-play-state:paused}
+.logo-pauze{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#fff;
+  border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-family:inherit;font-size:14px;
+  font-weight:600;color:var(--primary);cursor:pointer}
+.logo-pauze:hover{background:#eef4f8}
+.logo-pauze .ic{font-size:11px;letter-spacing:1px;line-height:1}
+.logo-pauze[aria-pressed="true"] .ic{letter-spacing:0}
+@media (prefers-reduced-motion:reduce){
+  .logo-track{animation:none}
+  .logo-rail{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .logo-set[aria-hidden="true"]{display:none}
+}
+
+/* kosten */
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:26px}
+.p-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.p-box .amt{font-family:Georgia,serif;font-size:32px;color:var(--primary);margin:6px 0 10px}
+.p-box .amt small{font-size:14px;color:var(--muted);font-family:inherit}
+.p-box p{font-size:14.5px;color:var(--text-l)}
+.note{background:#fff;border-left:4px solid var(--primary);padding:18px 22px;border-radius:0 10px 10px 0;
+  font-size:15px;color:var(--text-l);max-width:800px}
+section.alt .note{background:#fff}
+
+/* tabel */
+.tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tbl caption{text-align:left;font-size:14px;color:var(--muted);padding:0 0 10px}
+.tbl th,.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.tbl th{background:#fafcfd;color:var(--primary);font-size:14px}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td.num{white-space:nowrap}
+
+/* tarieventabel met uitklapbare toelichting */
+.tarieven td.groep{background:var(--primary);color:#fff;font-weight:700;font-size:14px;
+  letter-spacing:.03em;text-transform:uppercase;padding:10px 14px}
+.i-knop{width:21px;height:21px;min-width:21px;border-radius:50%;border:1.5px solid var(--primary);
+  background:#fff;color:var(--primary);font-family:Georgia,serif;font-style:italic;font-weight:700;
+  font-size:13px;line-height:1;cursor:pointer;margin-right:9px;padding:0;vertical-align:1px}
+.i-knop:hover{background:var(--primary);color:#fff}
+.i-knop[aria-expanded="true"]{background:var(--accent);border-color:var(--accent);color:#2d1d02}
+.tarieven tr.toelichting td{background:#fafcfd;border-bottom:2px solid var(--line);padding:16px 18px 18px 44px}
+.tarieven tr.toelichting p{font-size:14.5px;color:var(--text-l);margin-bottom:8px;max-width:78ch}
+.tarieven tr.toelichting p:last-child{margin-bottom:0}
+.tarieven tr.toelichting b{color:var(--primary)}
+@media (max-width:620px){
+  .tarieven tr.toelichting td{padding-left:18px}
+  .tabelwrap .tbl{min-width:480px}
+  .tabelwrap .tbl th,.tabelwrap .tbl td{padding:10px 11px;font-size:14.5px}
+}
+
+/* accordeon */
+.acc{max-width:860px}
+.acc-item{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fff;overflow:hidden}
+.acc-head{width:100%;text-align:left;background:none;border:none;padding:17px 20px;font-family:inherit;font-size:16px;
+  font-weight:600;color:var(--primary);cursor:pointer;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.acc-head:hover{background:#f8fafc}
+.acc-head .ic{color:var(--accent);font-size:20px;line-height:1;transition:transform .2s}
+.acc-head[aria-expanded="true"] .ic{transform:rotate(45deg)}
+.acc-body{display:none;padding:0 20px 20px;font-size:15.3px;color:var(--text-l)}
+.acc-body.open{display:block}
+.acc-body ul{margin:10px 0 0 19px}
+.acc-body li{margin-bottom:6px}
+.acc-body p{margin-bottom:10px}
+.acc-body p:last-child{margin-bottom:0}
+.acc-body table{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0}
+.acc-body td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.acc-body td:first-child{font-weight:600;color:var(--text);width:38%}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:600;color:var(--primary);margin-bottom:6px}
+input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;font-family:inherit;
+  font-size:15px;color:var(--text);background:#fff}
+input:focus,textarea:focus,select:focus{border-color:var(--primary)}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:13px;color:var(--muted);margin-top:5px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--text-l);margin-bottom:18px}
+.consent input{width:18px;height:18px;min-width:18px;margin-top:2px}
+.infocard{background:var(--bg);border-radius:12px;padding:26px}
+section.alt .infocard{background:#fff;border:1px solid var(--line)}
+.infocard dl{font-size:15px}
+.infocard dt{font-weight:700;color:var(--primary);margin-top:14px;font-size:13.5px}
+.infocard dt:first-child{margin-top:0}
+.infocard dd{color:var(--text-l)}
+#formmsg{display:none;background:#eef7f2;border:1px solid #bfe0cd;color:#1f7a4d;padding:13px 16px;border-radius:8px;
+  font-size:14.5px;margin-top:14px}
+#formmsg.show{display:block}
+
+/* documenten */
+.dlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column}
+.dcard .kind{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:9px}
+.dcard h3{margin-bottom:8px}
+.dcard p{font-size:14.5px;color:var(--text-l);flex:1;margin-bottom:16px}
+.dcard button{align-self:flex-start}
+
+/* document-overlay */
+#ov{display:none;position:fixed;inset:0;background:rgba(0,30,55,.55);z-index:200;overflow-y:auto;padding:28px 16px}
+#ov.open{display:block}
+.ovbox{max-width:860px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,30,55,.3)}
+.ovbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);border-radius:14px 14px 0 0;
+  padding:16px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;z-index:2}
+.ovbar h2{margin:0;font-size:17px;font-family:inherit;font-weight:700}
+.ovbar .acts{display:flex;gap:8px}
+.ovbar button{background:#fff;border:1px solid var(--line);color:var(--primary);border-radius:7px;padding:8px 14px;
+  font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.ovbar button:hover{background:#eef4f8}
+.ovbody{padding:30px 40px 44px;font-size:15px}
+.ovbody h3{font-size:16px;color:var(--primary);margin:24px 0 9px}
+.ovbody h3:first-child{margin-top:0}
+.ovbody .n{font-size:11.5px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;
+  margin:22px 0 3px}
+.ovbody p{margin-bottom:10px;color:var(--text-l)}
+.ovbody ol,.ovbody ul{margin:0 0 12px 22px;color:var(--text-l)}
+.ovbody li{margin-bottom:6px}
+.ovbody table{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0 18px}
+.ovbody th{text-align:left;padding:9px 11px;border-bottom:2px solid var(--line);color:var(--primary);font-size:14px}
+.ovbody td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-l)}
+.ovbody table.kv td:first-child{font-weight:600;color:var(--text);width:36%;background:#fafcfd}
+.ovbody .meta{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:26px}
+.ovbody .box{background:#fafcfd;border-left:4px solid var(--primary);padding:15px 19px;border-radius:0 8px 8px 0;margin:14px 0}
+.ovbody .box p:last-child{margin-bottom:0}
+.ovbody .lead{color:var(--muted);font-size:13.5px}
+@media (max-width:680px){ .ovbody{padding:22px 20px 34px} }
+
+/* casus */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.case{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px}
+.case .tag{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:9px}
+.case dl{font-size:14.5px;color:var(--text-l);margin-top:12px}
+.case dt{font-weight:700;color:var(--primary);margin-top:12px;font-size:13.5px}
+.case dd{margin-top:2px}
+
+/* footer */
+footer{background:var(--primary);color:#b9cddc;padding:56px 0 30px;font-size:14.5px}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:34px;margin-bottom:34px}
+footer h2{color:#fff;font-size:14px;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase;font-family:inherit;font-weight:700}
+footer a{color:#b9cddc;text-decoration:none;display:block;margin-bottom:7px}
+footer a:hover{color:var(--accent);text-decoration:underline}
+footer p{color:#9fbdd3}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.social a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;border-radius:8px;
+  padding:9px 15px;font-size:14px;font-weight:600;margin:0}
+.social a:hover{background:var(--accent);border-color:var(--accent);color:#2d1d02;text-decoration:none}
+.social svg{width:17px;height:17px;flex:0 0 auto}
+.f-licenties{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:18px 26px;
+  border-top:1px solid rgba(255,255,255,.16);padding-top:24px;margin-bottom:26px;font-size:13px;color:#9fbdd3}
+.f-licenties b{color:#fff;display:block;font-size:14px;font-weight:700;margin-bottom:2px}
+.legal{border-top:1px solid rgba(255,255,255,.16);padding-top:22px;font-size:13px;color:#8aa7bd;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* cookiemelding */
+#cookie{position:fixed;bottom:16px;left:16px;right:16px;max-width:620px;margin:0 auto;background:#fff;
+  border:1px solid var(--line);box-shadow:0 10px 36px rgba(0,48,87,.18);border-radius:12px;padding:20px;z-index:100}
+#cookie[hidden]{display:none}
+#cookie p{font-size:14.3px;color:var(--text-l);margin-bottom:14px}
+#cookie .row{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:880px){
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:1060px){
+  .nav-links{gap:14px;font-size:14px}
+  nav .wrap{gap:14px}
+}
+/* Negen menu-items passen niet meer naast elkaar onder deze breedte; dan de hamburger. */
+@media (max-width:980px){
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;
+    align-items:stretch;padding:14px 22px 20px;border-bottom:1px solid var(--line);gap:4px;font-size:15px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 0;border-bottom:1px solid #f0f4f7}
+  .nav-links a[aria-current="page"]{box-shadow:none;border-left:3px solid var(--accent);padding-left:10px}
+  #burger{display:block}
+}
+@media (max-width:780px){
+  header.hero h1{font-size:33px}
+  header.pagehead h1{font-size:28px}
+  h2{font-size:27px}
+  section{padding:54px 0}
+}
+
+@media print{
+  nav,#cookie,.hero-cta,footer .f-grid{display:none}
+  body{font-size:11pt}
+  a{color:var(--text);text-decoration:none}
+}
+
+/* rekentool die nog niet geladen is */
+.tool-laden{background:#fafcfd;border:1px dashed var(--line);border-radius:10px;padding:20px}
+.tool-uitleg{font-size:14px;color:var(--text-l);margin-bottom:14px;max-width:70ch}
+
+/* ---- commerciële homepage ---- */
+.hero-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:46px;align-items:start}
+.hero-punten{list-style:none;margin:0 0 28px;padding:0}
+.hero-punten li{position:relative;padding-left:28px;margin-bottom:9px;color:#dbe8f2;font-size:15.5px}
+.hero-punten li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;
+  border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.hero-kaart{background:#fff;border-radius:14px;padding:28px;box-shadow:0 18px 44px rgba(0,25,45,.28)}
+.hero-kaart h2{font-size:21px;margin-bottom:8px}
+.hero-kaart p{color:var(--text-l);font-size:15px;margin-bottom:18px}
+.hero-kaart .btn{width:100%;text-align:center}
+.hero-kaart .hint{margin-top:12px;margin-bottom:0}
+
+.tegels{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}
+.tegel{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;
+  text-decoration:none;transition:border-color .15s,transform .15s}
+.tegel:hover{border-color:var(--primary);transform:translateY(-2px)}
+.tegel b{display:block;color:var(--primary);font-size:16.5px;margin-bottom:5px}
+.tegel span{display:block;color:var(--text-l);font-size:14.5px;line-height:1.45}
+.tegel::after{content:" →";color:var(--accent);font-weight:700}
+
+.reviewblok{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:26px;max-width:860px}
+.reviewblok p{color:var(--text-l);font-size:15px;margin-bottom:12px}
+.reviewblok p:last-child{margin-bottom:0}
+
+section.slot{background:linear-gradient(160deg,#003057 0%,#024876 100%);color:#fff}
+section.slot h2{color:#fff}
+section.slot p{color:#c6d8e6;font-size:17px;max-width:62ch;margin-bottom:26px}
+section.slot .btn{background:var(--accent);color:#2d1d02!important}
+section.slot .btn:hover{background:#f0b556}
+section.slot .btn.ghost{background:transparent;color:#fff!important;border-color:rgba(255,255,255,.45)}
+section.slot .btn.ghost:hover{background:rgba(255,255,255,.1)}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-kaart{padding:22px}
+}
+
+/* ---- topbalk met zoekveld ---- */
+.topbalk{background:var(--bg);border-bottom:1px solid var(--line)}
+.topbalk .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.topbalk .snel{display:flex;gap:16px;flex-wrap:wrap;font-size:13px}
+.topbalk .snel a{color:var(--text-l);text-decoration:none;font-weight:600}
+.topbalk .snel a:hover{color:var(--primary)}
+.zoekvorm{position:relative;display:flex;align-items:center;gap:7px;min-width:240px;flex:0 1 320px}
+.zoekvorm input{padding:7px 11px;font-size:13.5px;border-radius:7px}
+.zoekvorm button{background:none;border:none;cursor:pointer;color:var(--primary);padding:5px;line-height:0}
+.zoekvorm svg{width:17px;height:17px}
+#zoekuitvoer{position:absolute;top:calc(100% + 7px);right:0;left:0;background:#fff;border:1px solid var(--line);
+  border-radius:10px;box-shadow:0 16px 40px rgba(0,30,55,.18);z-index:120;max-height:70vh;overflow-y:auto;
+  min-width:330px;padding:7px}
+#zoekuitvoer[hidden]{display:none}
+#zoekuitvoer ul{list-style:none;margin:0;padding:0}
+#zoekuitvoer a{display:block;padding:9px 11px;border-radius:7px;text-decoration:none}
+#zoekuitvoer a:hover{background:var(--bg)}
+#zoekuitvoer b{display:block;color:var(--primary);font-size:14.5px;margin-bottom:2px}
+#zoekuitvoer span{display:block;color:var(--text-l);font-size:13px;line-height:1.4}
+#zoekuitvoer em{display:block;color:var(--muted);font-size:11.5px;font-style:normal;margin-top:3px;
+  text-transform:uppercase;letter-spacing:.05em}
+#zoekuitvoer .geen,#zoekuitvoer .meer{font-size:13.5px;color:var(--text-l);padding:10px 11px;margin:0}
+@media (max-width:700px){
+  .topbalk .snel{display:none}
+  .zoekvorm{flex:1 1 100%}
+  #zoekuitvoer{min-width:0}
+}
+
+/* ---- losse rekenhulppagina ---- */
+section.rekenhulp{padding-top:34px;padding-bottom:10px}
+section.rekenhulp .wrap{max-width:1180px}
+.rekenhulp iframe{display:block;width:100%;min-height:900px;border:0;background:#fff;
+  border:1px solid var(--line);border-radius:12px}
+.rekenhulp .hint{margin-top:14px;max-width:80ch}
+.buren{margin-top:26px;font-size:14px;color:var(--muted)}
+.buren a{color:var(--primary-l);text-decoration:none;font-weight:600}
+.buren a:hover{text-decoration:underline}
+@media (max-width:700px){ .rekenhulp iframe{min-height:1000px} }
+
+/* =====================================================================
+   Huisstijl 2026: strak en zakelijk. Witte koppen, zwarte vette titels,
+   blauw als enige accent, rechte hoeken en kaarten in een raster met
+   gedeelde lijnen. Deze laag staat bewust onderaan en overschrijft de
+   oudere regels hierboven.
+   ===================================================================== */
+:root{
+  --primary:#1d5fae; --primary-l:#164c8f; --ink:#111418; --accent:#1d5fae; --accent-s:#e8f0fa;
+  --bg:#f5f8fc; --tint:#e8f0fa; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#6b737d;
+  --line:#d3d9e1; --rule:#22262c; --focus:#1d5fae; --navy:#0d2c57;
+}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-size:16px;color:var(--text)}
+h1,h2,h3,.logo,.p-box .amt{font-family:inherit;color:var(--ink);letter-spacing:-.02em}
+h2{font-weight:800;font-size:28px;line-height:1.2}
+h3{font-weight:700;font-size:17px;color:var(--ink)}
+.eyebrow{color:var(--primary);font-size:11.5px;letter-spacing:.1em;font-weight:700}
+.sub{font-size:15.5px}
+a{color:var(--primary)}
+
+/* knoppen: compact en recht */
+.btn{border-radius:2px;padding:10px 18px;font-size:14px;font-weight:600;background:var(--primary)}
+.btn:hover{background:var(--primary-l)}
+.btn.ghost{background:#fff;color:var(--ink)!important;border:1px solid var(--rule)}
+.btn.ghost:hover{background:var(--bg)}
+
+/* topbalk, navigatie en taalkiezer */
+.topbalk{background:#fff}
+.zoekvorm input{border-radius:2px}
+nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:19px}
+.logo span{color:var(--primary)}
+.nav-links a{color:var(--text);font-weight:500;font-size:14px}
+.nav-links a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
+.taalkiezer a,.taalkiezer span{border-radius:2px}
+.taalkiezer span[aria-current]{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+
+/* hero en paginakop: wit, met een lijn eronder */
+header.hero,header.pagehead{background:#fff;color:var(--text);border-bottom:1px solid var(--rule)}
+header.hero{padding:56px 0 60px}
+header.pagehead{padding:30px 0 44px}
+header.hero h1,header.pagehead h1{font-family:inherit;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+header.hero h1{font-size:48px;line-height:1.08;max-width:16ch}
+header.pagehead h1{font-size:40px;line-height:1.1;max-width:22ch}
+header.hero p,header.pagehead p{color:var(--text-l);font-size:16.5px}
+header.pagehead .eyebrow{color:var(--primary)}
+.crumbs{color:var(--muted);padding:0 0 22px;font-size:12.5px}
+.crumbs a{color:var(--primary)}
+.crumbs a:hover{color:var(--primary-l)}
+.hero-punten li{color:var(--text)}
+.hero-punten li::before{border-color:var(--primary)}
+.hero-cta .btn{background:var(--primary);color:#fff!important}
+.hero-cta .btn:hover{background:var(--primary-l)}
+.hero-cta .btn.ghost{background:#fff;color:var(--ink)!important;border:1px solid var(--rule)}
+.hero-cta .btn.ghost:hover{background:var(--bg)}
+.hero-kaart{border-radius:0;box-shadow:none;border:1px solid var(--line);background:var(--bg)}
+.hero-kaart h2{font-size:19px}
+
+/* secties: wit, gescheiden door een donkere lijn binnen de kolom */
+section{padding:60px 0}
+section.alt{background:#fff}
+main > section + section{padding-top:0}
+main > section + section > .wrap::before{content:"";display:block;border-top:1px solid var(--rule);margin-bottom:52px}
+section.rekenhulp + section > .wrap::before{margin-top:24px}
+
+/* rasterkaarten met gedeelde lijnen */
+.cards,.tegels,.chain,.price,.dlist,.cases{gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.card,.tegel,.step,.p-box,.dcard,.case{border:0;border-radius:0;border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);background:#fff}
+section.alt .step{background:#fff}
+.card{padding:24px}
+.card p,.card ul,.step p,.tegel span,.dcard p{font-size:14px}
+.tegel{padding:22px}
+.tegel:hover{transform:none;background:var(--bg);border-color:var(--rule)}
+.tegel b{color:var(--ink);font-size:16px}
+.tegel::after{color:var(--primary)}
+.step{padding:24px}
+.step .num{width:auto;height:auto;background:none;color:var(--primary);font-size:30px;font-weight:800;
+  letter-spacing:-.02em;justify-content:flex-start;margin-bottom:10px}
+.step .num::before{content:"0"}
+.dcard .kind,.case .tag{color:var(--primary)}
+.p-box .amt{font-weight:800}
+
+/* losse blokken */
+.tool,.acc-item,.infocard,.reviewblok,.tbl,.logo-set li,.logo-pauze,.ovbox,#cookie,#zoekuitvoer{border-radius:0}
+.tool{border-color:var(--rule)}
+.tool h3{color:var(--ink)}
+.note{background:var(--tint);border-left:3px solid var(--primary);border-radius:0;color:var(--text)}
+section.alt .note{background:var(--tint)}
+.tool-laden{background:var(--tint);border:0;border-left:3px solid var(--primary);border-radius:0}
+.rekenhulp iframe{border-radius:0;border-color:var(--rule)}
+.acc-item{border-color:var(--line)}
+.acc-head{color:var(--ink)}
+.acc-head .ic{color:var(--primary)}
+.i-knop[aria-expanded="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.tbl th{color:var(--ink)}
+.tarieven td.groep{background:var(--ink)}
+label{color:var(--ink)}
+input,textarea,select{border-radius:2px;border-color:#9aa3ae}
+.infocard{background:var(--tint)}
+.infocard dt,.case dt{color:var(--ink)}
+.buren a{color:var(--primary)}
+
+/* slotblok: vol blauw, gecentreerd */
+section.slot{background:var(--primary);text-align:center;padding:64px 0}
+main > section.slot > .wrap::before{display:none}
+main > section + section.slot{padding-top:64px}
+section.slot h2{color:#fff;font-size:36px;max-width:22ch;margin:0 auto 14px}
+section.slot p{color:#dce8f6;margin:0 auto 26px}
+section.slot .hero-cta,section.slot .row{justify-content:center}
+section.slot .btn{background:#fff;color:var(--primary)!important}
+section.slot .btn:hover{background:var(--tint)}
+section.slot .btn.ghost{background:transparent;color:#fff!important;border:1px solid rgba(255,255,255,.7)}
+
+/* footer */
+footer{background:var(--navy)}
+footer a:hover{color:#fff}
+.social a{border-radius:2px}
+.social a:hover{background:#fff;border-color:#fff;color:var(--navy)}
+
+@media (max-width:780px){
+  header.hero h1{font-size:34px}
+  header.pagehead h1{font-size:29px}
+  h2{font-size:24px}
+  section{padding:48px 0}
+  main > section + section > .wrap::before{margin-bottom:40px}
+  section.slot h2{font-size:28px}
+}
+@media (max-width:980px){
+  .nav-links a[aria-current="page"]{border-left-color:var(--primary)}
+}
+
+/* Op de rekentoolpagina's loopt alles in dezelfde brede kolom. */
+.toolspagina header.pagehead .wrap,.toolspagina footer .wrap{max-width:1280px}
+
+/* Rekentools als raster, net als de modulekaarten */
+.toolspagina section:has(> .wrap > .tool) > .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  align-content:start;padding-right:23px}
+.toolspagina section:has(> .wrap > .tool) > .wrap > :not(.tool){grid-column:1/-1}
+.toolspagina section:has(> .wrap > .tool) > .wrap::before{grid-column:1/-1}
+.toolspagina .tool{margin:0 -1px -1px 0;border:1px solid var(--rule);border-radius:0;padding:22px;
+  display:flex;flex-direction:column}
+.toolspagina .tool p{flex:1;font-size:14px}
+.toolspagina .tool .btn{align-self:flex-start}
+@media (max-width:900px){ .toolspagina section:has(> .wrap > .tool) > .wrap{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .toolspagina section:has(> .wrap > .tool) > .wrap{grid-template-columns:1fr} }
+
+/* Tabel regels nu en straks */
+.regels td.groep{background:var(--ink);color:#fff;font-weight:700;font-size:13px;letter-spacing:.04em;
+  text-transform:uppercase;padding:9px 14px}
+.regels tbody th{background:#fff;font-weight:600;color:var(--ink);font-size:15px;min-width:180px}
+@media (max-width:620px){
+  .tabelwrap .tbl.regels{min-width:0}
+  .regels thead{display:none}
+  .regels tr{display:block;border-bottom:1px solid var(--rule)}
+  .regels tbody th,.regels td{display:block;border:0;padding:4px 14px}
+  .regels tbody th{padding-top:14px;font-size:16px}
+  .regels td:last-child{padding-bottom:14px}
+  .regels td[data-label]::before{content:attr(data-label);display:block;font-size:11.5px;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .regels td.groep{padding:9px 14px}
+}
+
+/* Zekerheidslabels in het scenario */
+.zeker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:2px;white-space:nowrap}
+.zeker.b{background:var(--ink);color:#fff}
+.zeker.w{background:var(--primary);color:#fff}
+.zeker.m{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+
+/* Scenariokiezer */
+.sk-raster{display:grid;grid-template-columns:300px minmax(0,1fr);gap:36px;align-items:start}
+.sk-invoer{border:1px solid var(--rule);padding:22px;background:var(--bg);position:sticky;top:90px}
+.sk-invoer h2,.sk-titel{font-size:20px;margin-bottom:16px}
+.sk-invoer .field{margin-bottom:13px}
+.sk-invoer input,.sk-invoer select{padding:9px 11px;font-size:15px}
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.sk-kaart{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px;display:flex;flex-direction:column;background:#fff}
+.sk-kaart.gekozen{background:var(--tint);box-shadow:inset 0 3px 0 var(--primary)}
+.sk-kop{margin-bottom:10px}
+.sk-kop .zeker{font-size:14px;padding:5px 10px}
+.sk-uitleg{font-size:13px;color:var(--text-l);margin-bottom:14px;min-height:5.5em}
+.sk-cijfers{margin:0 0 14px}
+.sk-cijfers dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.sk-cijfers dd{font-size:16px;color:var(--ink);font-weight:600}
+.sk-cijfers dd.groot{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.sk-cijfers small{font-size:13px;font-weight:600;color:var(--text-l);margin-left:4px}
+.sk-signalen{margin:0 0 16px 18px;font-size:13.5px;color:var(--text);flex:1}
+.sk-signalen li{margin-bottom:6px}
+.sk-kaart .btn{align-self:flex-start}
+.sk-agenda{margin-top:36px;border:1px solid var(--rule);padding:24px}
+.sk-agenda h2{font-size:22px}
+.sk-agenda ol{margin:6px 0 0 20px}
+.sk-agenda li{margin-bottom:7px;font-size:15px}
+@media (max-width:1100px){ .sk-uitkomst{grid-template-columns:1fr} .sk-uitleg{min-height:0} }
+@media (max-width:860px){ .sk-raster{grid-template-columns:1fr} .sk-invoer{position:static} }
+@media print{ .sk-invoer,.sk-kaart .btn{display:none} }
+.sk-naar{display:none;margin-top:6px}
+@media (max-width:860px){ .sk-naar{display:block} }
+
+/* zelfstandige site: kop en voet */
+.site-kop{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
+.site-kop .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.site-kop .logo{font-weight:800;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.site-kop .logo span{color:var(--primary)}
+.site-nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+.site-nav a{color:var(--text);text-decoration:none;font-size:14.5px;font-weight:500;padding:4px 0}
+.site-nav a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
+.site-voet{background:var(--navy);color:#c9d6e6;padding:40px 0;font-size:14px}
+.site-voet a{color:#fff}
+.site-voet p{margin-bottom:10px;max-width:80ch}
+.toolspagina .wrap{max-width:1080px}
+@media (max-width:700px){ .site-nav{gap:2px 14px} .site-nav a{font-size:14px} }
+
+
+/* Verhuisscenario: eigen stijl, gescoped onder #vs */
+#vs{--vs-bg:var(--bg);--vs-surface:#fff;--vs-surface-2:var(--bg);--vs-line:var(--line);--vs-primary:var(--ink);--vs-accent:var(--primary);--vs-text:var(--text);--vs-muted:var(--text-l);--vs-muted-2:var(--muted);--vs-warn:#7a4a00;--vs-warn-bg:var(--tint);--vs-ok:#1c6b47;--vs-ok-bg:#e4f2eb;--vs-bad:#a03028;--vs-bad-bg:#faeae8;--vs-font-display:inherit;--vs-font-body:inherit}
+#vs .vs-wrap{max-width:1020px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+#vs header h1{font-family:var(--vs-font-display);font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 8px;color:var(--vs-primary);text-wrap:balance}
+#vs header p{margin:0;color:var(--vs-muted);max-width:64ch}
+#vs .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--vs-accent);font-weight:600;margin:0 0 10px}
+#vs .panel{background:var(--vs-surface);border:1px solid var(--vs-line);border-radius:10px;padding:20px}
+#vs .panel h2{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vs-primary);margin:0 0 4px}
+#vs .panel .sub{font-size:13px;color:var(--vs-muted-2);margin:0 0 16px;max-width:70ch}
+#vs .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+#vs .field{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
+#vs .field label{font-size:13px;font-weight:600;color:var(--vs-muted)}
+#vs .field .hint{font-size:12px;color:var(--vs-muted-2)}
+#vs input[type=text],#vs select{
+  font:inherit;font-size:16px;font-variant-numeric:tabular-nums;
+  background:var(--vs-surface-2);color:var(--vs-text);
+  border:1px solid var(--vs-line);border-radius:6px;padding:9px 11px;width:100%;min-width:0;
+}
+#vs input[type=text]:focus-visible,#vs select:focus-visible,#vs input[type=checkbox]:focus-visible{outline:2px solid var(--vs-accent);outline-offset:2px}
+#vs .check{display:flex;gap:9px;align-items:flex-start;margin-bottom:13px}
+#vs .check input{margin-top:4px;accent-color:var(--vs-primary);flex:0 0 auto}
+#vs .check label{font-size:14px;color:var(--vs-muted);font-weight:500}
+#vs .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--vs-line);border:1px solid var(--vs-line);border-radius:10px;overflow:hidden}
+#vs .tile{background:var(--vs-surface);padding:18px 20px;display:flex;flex-direction:column;gap:3px;min-width:0}
+#vs .tile .lab{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--vs-muted-2);font-weight:600}
+#vs .tile .val{font-family:var(--vs-font-display);font-size:clamp(25px,4.2vw,33px);line-height:1.15;color:var(--vs-primary);font-variant-numeric:tabular-nums}
+#vs .tile .note{font-size:13px;color:var(--vs-muted)}
+#vs .tile.flag .val{color:var(--vs-accent)}
+#vs .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+#vs .kv{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid var(--vs-line);font-size:14px;min-width:0}
+#vs .kv:last-child{border-bottom:0}
+#vs .kv span:first-child{color:var(--vs-muted)}
+#vs .kv span:last-child{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
+#vs .pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;border:1px solid;white-space:nowrap}
+#vs .pill.ok{background:var(--vs-ok-bg);border-color:var(--vs-ok);color:var(--vs-ok)}
+#vs .pill.bad{background:var(--vs-bad-bg);border-color:var(--vs-bad);color:var(--vs-bad)}
+#vs .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 auto}
+#vs .toets-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:16px}
+#vs .toets-head .zin{font-size:14px;color:var(--vs-muted);min-width:0}
+#vs .scen-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:20px}
+#vs .scen{border:1px solid var(--vs-line);border-left:3px solid var(--vs-accent);border-radius:8px;padding:15px 17px;min-width:0;display:flex;flex-direction:column;gap:8px}
+#vs .scen h4{margin:0;font-size:15px;font-weight:700;color:var(--vs-primary)}
+#vs .scen .letter{font-family:var(--vs-font-display);font-size:20px;color:var(--vs-accent);margin-right:7px}
+#vs .scen p{margin:0;font-size:13.5px;color:var(--vs-muted)}
+#vs .scen .cijfers{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;font-variant-numeric:tabular-nums;color:var(--vs-text);font-weight:600}
+#vs .chart-box{overflow-x:auto}
+#vs svg.chart{display:block;width:100%;height:auto;min-width:420px}
+#vs .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--vs-muted);margin-top:10px}
+#vs .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+#vs .table-box{overflow-x:auto;border:1px solid var(--vs-line);border-radius:8px}
+#vs table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px;font-variant-numeric:tabular-nums}
+#vs th,#vs td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--vs-line);white-space:nowrap}
+#vs th:first-child,#vs td:first-child{text-align:left;white-space:normal}
+#vs thead th{background:var(--vs-surface-2);color:var(--vs-primary);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+#vs tbody tr.mark td{background:var(--vs-surface-2);font-weight:600}
+#vs .risks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:18px}
+#vs .risk{border:1px solid var(--vs-line);border-radius:8px;padding:14px 16px;min-width:0}
+#vs .risk h4{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--vs-primary)}
+#vs .risk p{margin:0;font-size:13px;color:var(--vs-muted)}
+#vs .risk .uitkomst{display:block;margin-top:8px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--vs-accent)}
+#vs .flagbox{background:var(--vs-warn-bg);border:1px solid var(--vs-accent);border-left-width:4px;border-radius:8px;padding:16px 18px}
+#vs .flagbox h3{margin:0 0 8px;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vs-warn)}
+#vs .flagbox p{margin:0 0 8px;font-size:14px;color:var(--vs-muted)}
+#vs .flagbox p:last-child{margin-bottom:0}
+#vs .vs-voet{font-size:13px;color:var(--vs-muted-2);border-top:1px solid var(--vs-line);padding-top:16px}
+#vs .acties{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+#vs button.btn{font:inherit;font-size:15px;font-weight:600;padding:10px 18px;border-radius:8px;border:1px solid var(--vs-primary);background:var(--vs-primary);color:var(--vs-surface);cursor:pointer}
+#vs button.btn.ghost{background:transparent;color:var(--vs-primary)}
+#vs button.btn:hover{opacity:.9}
+#vs button.btn:focus-visible{outline:2px solid var(--vs-accent);outline-offset:2px}
+#vs .melding{font-size:13px;color:var(--vs-warn);background:var(--vs-warn-bg);border:1px solid var(--vs-accent);border-radius:6px;padding:8px 12px;max-width:52ch}
+#vs .tabs{display:flex;gap:4px;border-bottom:2px solid var(--vs-line);margin-bottom:-6px}
+#vs .tabs button{font:inherit;font-size:15px;font-weight:600;color:var(--vs-muted-2);background:none;border:0;border-bottom:3px solid transparent;padding:11px 18px;cursor:pointer;margin-bottom:-2px}
+#vs .tabs button[aria-selected="true"]{color:var(--vs-primary);border-bottom-color:var(--vs-accent)}
+#vs .tabs button:focus-visible{outline:2px solid var(--vs-accent);outline-offset:-2px}
+#vs .tabpaneel{display:flex;flex-direction:column;gap:24px}
+#vs .tabpaneel[hidden]{display:none}
+#vs .helpsec{background:var(--vs-surface);border:1px solid var(--vs-line);border-radius:10px;padding:22px}
+#vs .helpsec h3.kop{font-family:var(--vs-font-display);font-weight:400;font-size:clamp(21px,3.2vw,27px);line-height:1.18;color:var(--vs-primary);margin:0 0 10px;text-transform:none;letter-spacing:0}
+#vs .helpsec h3.kop .nr{color:var(--vs-accent);margin-right:12px;font-size:.82em}
+#vs .helpsec h4{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vs-primary);margin:20px 0 8px}
+#vs .helpsec p{margin:0 0 12px;max-width:66ch;color:var(--vs-muted);font-size:15px}
+#vs .helpsec p:last-child{margin-bottom:0}
+#vs .helpsec ol,#vs .helpsec ul{margin:0 0 12px;padding-left:20px;max-width:66ch;color:var(--vs-muted);font-size:15px}
+#vs .helpsec li{margin-bottom:8px}
+#vs .helpsec strong{color:var(--vs-primary)}
+#vs dl{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:1px;background:var(--vs-line);border:1px solid var(--vs-line);border-radius:8px;overflow:hidden;margin:0}
+#vs dt{background:var(--vs-surface-2);padding:10px 14px;font-weight:600;font-size:14px;color:var(--vs-primary);min-width:0}
+#vs dd{background:var(--vs-surface);padding:10px 14px;margin:0;font-size:14px;color:var(--vs-muted);min-width:0}
+@media (max-width:520px){
+#vs dl{grid-template-columns:1fr}
+#vs dt{padding-bottom:4px}
+#vs dd{padding-top:4px}
+}
+#vs .letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+#vs .ltrcard{border:1px solid var(--vs-line);border-left:3px solid var(--vs-accent);border-radius:8px;padding:12px 15px;min-width:0}
+#vs .ltrcard h5{margin:0 0 3px;font-size:14px;color:var(--vs-primary)}
+#vs .ltrcard h5 span{color:var(--vs-accent);font-family:var(--vs-font-display);font-size:17px;margin-right:8px}
+#vs .ltrcard p{margin:0;font-size:13px;color:var(--vs-muted)}
+#vs footer ul{margin:8px 0 0;padding-left:18px}
+#vs .vs-voet li{margin-bottom:4px}
+#vs section{padding:20px}
+#vs .tile .val,#vs .helpsec h3.kop,#vs .scen .letter,#vs .ltrcard h5 span{font-weight:800;letter-spacing:-.02em}
+#vs .panel,#vs .tile,#vs .scen,#vs .risk,#vs .table-box,#vs .tiles,#vs .flagbox,#vs .helpsec,#vs .ltrcard,#vs input[type=text],#vs select,#vs button.btn,#vs dl{border-radius:2px}
+#vs label{color:var(--vs-muted)}
+#vs .check input{width:auto;min-width:0}
+#vs .check label{display:inline;margin:0}
+#vs input[type=date]{width:100%;max-width:260px}
+#vs .vs-wrap{padding:0}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#website",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/",
+   "name": "Kan ik straks nog doorstromen of mijn hypotheek verlengen?",
+   "inLanguage": "nl",
+   "publisher": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site",
+   "name": "Hypotheek straks",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html#pagina",
+   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html",
+   "name": "Verhuisscenario: van aflossingsvrij naar annuïtair — Hypotheek straks",
+   "description": "Rekentool met tien scenario's bij verhuizen met een aflossingsvrije hypotheek: lastensprong, toets op leeftijd, draagkracht en jaaroverzicht.",
+   "inLanguage": "nl",
+   "datePublished": "2026-10-19",
+   "dateModified": "2026-10-19",
+   "isPartOf": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#website"
+   },
+   "publisher": {
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
+   },
+   "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Verhuisscenario: van aflossingsvrij naar annuïtair",
+      "item": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html"
+     }
+    ]
+   }
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/verhuisscenario.html#app",
+   "name": "Verhuisscenario",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Alle browsers",
+   "isAccessibleForFree": true,
+   "inLanguage": "nl",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+   },
+   "description": "Rekent tien scenario's door voor verhuizen met een aflossingsvrije hypotheek. Indicatie, geen advies."
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de hoofdinhoud</a>
+<header class="site-kop">
+  <div class="wrap">
+    <a href="index.html" class="logo">Hypotheek <span>straks</span></a>
+    <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Mijn scenario</a><a href="regels.html">Regels nu en straks</a><a href="scenario-2035.html">Scenario 2035</a><a href="europa.html">Europa</a><a href="verhuisscenario.html" aria-current="page">Verhuisscenario</a><a href="rekenhulpen.html">Rekenhulpen</a></nav>
+  </div>
+</header>
+
+<main id="main">
+
+<header class="pagehead">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> &rsaquo; Verhuisscenario</p>
+    <div class="eyebrow">Rekentool hypotheeklasten &middot; indicatie, geen advies</div>
+    <h1>Van aflossingsvrij naar annu&iuml;tair bij verhuizing</h1>
+    <p>Tien scenario&#39;s naast elkaar: blijven wonen, verhuizen, aflossingsvrij meenemen, funderingsherstel,
+       verduurzaming, wegvallend partnerinkomen, klimaatrisico en drie toezichtvarianten. Bedoeld voor het gesprek met uw
+       adviseur. Alle bedragen zijn indicatief.</p>
+  </div>
+</header>
+
+<section id="rekentool">
+  <div class="wrap">
+    <div id="vs">
+<div class="vs-wrap">
+<div class="tabs" role="tablist">
+  <button type="button" id="tab-btn-tool" role="tab" aria-selected="true" aria-controls="tab-tool">Rekentool</button>
+  <button type="button" id="tab-btn-help" role="tab" aria-selected="false" aria-controls="tab-help">Handleiding</button>
+</div>
+
+<div class="tabpaneel" id="tab-tool" role="tabpanel" aria-labelledby="tab-btn-tool">
+
+<div>
+  <div class="acties">
+    <button type="button" class="btn" id="btn-print">Afdrukken of opslaan als pdf</button>
+    <button type="button" class="btn ghost" id="btn-reset">Terug naar beginwaarden</button>
+  </div>
+  <p class="melding" id="print-melding" hidden style="margin-top:10px">Uw browser blokkeert het printvenster. Sta pop-ups toe voor deze pagina en probeer het opnieuw, of druk af met Ctrl+P.</p>
+</div>
+
+<section class="panel">
+  <h2>Uitgangspunten</h2>
+  <p class="sub">Pas de velden aan; alle scenario's rekenen direct mee.</p>
+  <div class="cols">
+    <div>
+      <div class="field">
+        <label for="hoofdsom">Huidige hypotheek</label>
+        <input type="text" id="hoofdsom" inputmode="numeric" value="300.000">
+      </div>
+      <div class="field">
+        <label for="vorm-nu">Aflosvorm huidige hypotheek</label>
+        <select id="vorm-nu">
+          <option value="io" selected>Aflossingsvrij</option>
+          <option value="annuity">Annuïtair</option>
+          <option value="linear">Lineair</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="restlooptijd">Resterende looptijd huidige hypotheek</label>
+        <input type="text" id="restlooptijd" inputmode="numeric" value="26">
+        <span class="hint">Jaren vanaf nu; telt mee bij annuïtair en lineair</span>
+      </div>
+      <div class="field">
+        <label for="rente-nu">Huidige rente</label>
+        <input type="text" id="rente-nu" inputmode="decimal" value="1,60">
+        <span class="hint">Procent per jaar, 10 jaar vast</span>
+      </div>
+      <div class="field">
+        <label for="eind-rvp">Einde rentevastperiode</label>
+        <input type="text" id="eind-rvp" inputmode="numeric" value="2032">
+      </div>
+      <div class="field">
+        <label for="waarde-huidig">Waarde huidige woning</label>
+        <input type="text" id="waarde-huidig" inputmode="numeric" value="350.000">
+      </div>
+      <div class="field">
+        <label for="geboortejaar">Geboortejaar klant</label>
+        <input type="text" id="geboortejaar" inputmode="numeric" value="1970">
+        <span class="hint" id="leeftijd-hint">&nbsp;</span>
+      </div>
+      <div class="field">
+        <label for="geboortejaar-partner">Geboortejaar partner</label>
+        <input type="text" id="geboortejaar-partner" inputmode="numeric" value="1973">
+        <span class="hint">Laat leeg als er geen partner is</span>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <label for="verhuisjaar">Verhuisjaar</label>
+        <input type="text" id="verhuisjaar" inputmode="numeric" value="2030">
+      </div>
+      <div class="field">
+        <label for="nieuw-bedrag">Nieuwe hypotheek</label>
+        <input type="text" id="nieuw-bedrag" inputmode="numeric" value="300.000">
+        <span class="hint">Annuïtair bij verhuizing</span>
+      </div>
+      <div class="field">
+        <label for="afvrij-deel">Waarvan aflossingsvrij</label>
+        <input type="text" id="afvrij-deel" inputmode="numeric" value="0">
+      </div>
+      <div class="field">
+        <label for="woningwaarde">Waarde nieuwe woning</label>
+        <input type="text" id="woningwaarde" inputmode="numeric" value="400.000">
+      </div>
+      <div class="field">
+        <label for="rente-nieuw">Rente nieuwe hypotheek</label>
+        <input type="text" id="rente-nieuw" inputmode="decimal" value="4,00">
+      </div>
+      <div class="field">
+        <label for="looptijd">Looptijd nieuwe hypotheek</label>
+        <select id="looptijd">
+          <option value="30" selected>30 jaar</option>
+          <option value="25">25 jaar</option>
+          <option value="20">20 jaar</option>
+          <option value="15">15 jaar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="vorm-nieuw">Aflosvorm nieuwe hypotheek</label>
+        <select id="vorm-nieuw">
+          <option value="annuity" selected>Annuïtair</option>
+          <option value="linear">Lineair</option>
+        </select>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="overnemen">
+        <label for="overnemen">Nieuwe hypotheek gelijkstellen aan de restschuld op het verhuismoment</label>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="meeneem">
+        <label for="meeneem">Rentemeeneemregeling: huidige rente loopt door tot einde rentevastperiode</label>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="aftrek-nu">
+        <label for="aftrek-nu">Huidige hypotheek met renteaftrek (box 1)</label>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="aftrek-nieuw">
+        <label for="aftrek-nieuw">Nieuwe hypotheek met renteaftrek (box 1)</label>
+      </div>
+      <div class="field" id="tarief-wrap" hidden>
+        <label for="tarief">Aftrektarief</label>
+        <input type="text" id="tarief" inputmode="decimal" value="37,56">
+        <span class="hint">Procent; in 2026 hoogstens 37,56%. Bij een lager inkomen het eigen marginale tarief.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Inkomen, norm en risico's</h2>
+  <p class="sub">Deze velden voeden de draagkrachttoets en de scenario's D tot en met G.</p>
+  <div class="cols">
+    <div>
+      <div class="field">
+        <label for="ink-klant">Bruto jaarinkomen klant</label>
+        <input type="text" id="ink-klant" inputmode="numeric" value="68.000">
+      </div>
+      <div class="field">
+        <label for="ink-partner">Bruto jaarinkomen partner</label>
+        <input type="text" id="ink-partner" inputmode="numeric" value="42.000">
+        <span class="hint">Op 0 bij één inkomen</span>
+      </div>
+      <div class="field">
+        <label for="ink-pensioen">Bruto inkomen samen na pensionering</label>
+        <input type="text" id="ink-pensioen" inputmode="numeric" value="55.000">
+        <span class="hint">Per jaar, inclusief AOW</span>
+      </div>
+      <div class="field">
+        <label for="aow-leeftijd">Pensioenleeftijd klant</label>
+        <input type="text" id="aow-leeftijd" inputmode="numeric" value="67">
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <label for="toetsleeftijd">Toetsleeftijd aflossingsvrij</label>
+        <input type="text" id="toetsleeftijd" inputmode="numeric" value="85">
+      </div>
+      <div class="field">
+        <label for="norm-pct">Maximaal deel van de woningwaarde</label>
+        <input type="text" id="norm-pct" inputmode="decimal" value="30,00">
+        <span class="hint">Procent op de toetsleeftijd</span>
+      </div>
+      <div class="field">
+        <label for="fundering">Funderingsherstel</label>
+        <input type="text" id="fundering" inputmode="numeric" value="45.000">
+        <span class="hint">Scenario D: meegefinancierd</span>
+      </div>
+      <div class="field">
+        <label for="verduurzaming">Verduurzaming</label>
+        <input type="text" id="verduurzaming" inputmode="numeric" value="25.000">
+        <span class="hint">Scenario E: meegefinancierd</span>
+      </div>
+      <div class="field">
+        <label for="besparing">Besparing energielasten</label>
+        <input type="text" id="besparing" inputmode="numeric" value="110">
+        <span class="hint">Per maand, hoort bij scenario E</span>
+      </div>
+      <div class="field">
+        <label for="waardecorrectie">Waardedaling klimaatrisico</label>
+        <input type="text" id="waardecorrectie" inputmode="decimal" value="15,00">
+        <span class="hint">Procent, scenario G</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Toezichtscenario's</h2>
+  <p class="sub">Gevoeligheidsanalyses op verwacht gedrag van geldverstrekkers onder ECB- en EBA-toezicht. Dit is geen vastgesteld beleid.</p>
+  <div class="cols">
+    <div>
+      <div class="field">
+        <label for="toets-h">H · Strengere toetsleeftijd</label>
+        <input type="text" id="toets-h" inputmode="numeric" value="75">
+        <span class="hint">Jaar waarop getoetst wordt in plaats van 85</span>
+      </div>
+      <div class="field">
+        <label for="norm-h">H · Strengere norm</label>
+        <input type="text" id="norm-h" inputmode="decimal" value="20,00">
+        <span class="hint">Procent van de woningwaarde</span>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <label for="opslag-i">I · Renteopslag risicobeprijzing</label>
+        <input type="text" id="opslag-i" inputmode="decimal" value="0,50">
+        <span class="hint">Procentpunt boven de nieuwe rente</span>
+      </div>
+      <div class="field">
+        <label for="opslag-k">K · Renteopslag laag energielabel</label>
+        <input type="text" id="opslag-k" inputmode="decimal" value="0,40">
+      </div>
+      <div class="field">
+        <label for="daling-k">K · Waardedruk laag label</label>
+        <input type="text" id="daling-k" inputmode="decimal" value="10,00">
+        <span class="hint">Procent waardedaling bij label F of G</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tiles">
+  <div class="tile"><span class="lab">Nu — netto per maand</span><span class="val" id="t-nu">–</span><span class="note" id="t-nu-note">aflossingsvrij</span></div>
+  <div class="tile"><span class="lab" id="t-na-lab">Na verhuizing — netto per maand</span><span class="val" id="t-na">–</span><span class="note" id="t-na-note">annuïtair</span></div>
+  <div class="tile flag"><span class="lab">Lastensprong</span><span class="val" id="t-delta">–</span><span class="note" id="t-delta-note">per maand</span></div>
+</div>
+
+<section class="panel">
+  <h2>Scenario's naast elkaar</h2>
+  <p class="sub">Restschuld en toets gelden op de toetsleeftijd van de oudste van beiden. Woonquote is de netto woonlast afgezet tegen het bruto inkomen dat in dat scenario beschikbaar is.</p>
+  <div class="table-box"><table id="scen-tabel">
+    <thead><tr><th>Scenario</th><th>Hypotheek</th><th>Netto p/m</th><th>Woonquote</th><th>Restschuld</th><th>Toets</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <div class="scen-cards" id="scen-cards"></div>
+</section>
+
+<section class="panel">
+  <h2>Restschuld op peildatum</h2>
+  <p class="sub">Leest beide scenario's af op een zelfgekozen datum.</p>
+  <div class="split">
+    <div>
+      <div class="field">
+        <label for="peildatum">Peildatum</label>
+        <input type="date" id="peildatum" value="2035-07-01">
+      </div>
+      <div class="kv"><span>Leeftijd klant op peildatum</span><span id="p-leeftijd">–</span></div>
+      <div class="kv"><span>Afgelost sinds nu — blijven wonen</span><span id="p-afgelost-a">–</span></div>
+    </div>
+    <div>
+      <div class="kv"><span>Restschuld blijven wonen (A)</span><span id="p-rest-a">–</span></div>
+      <div class="kv"><span>Netto maandlast op dat moment (A)</span><span id="p-last-a">–</span></div>
+      <div class="kv"><span>Restschuld na verhuizing (B)</span><span id="p-rest-b">–</span></div>
+      <div class="kv"><span>Netto maandlast op dat moment (B)</span><span id="p-last-b">–</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Toets op leeftijd — scenario B</h2>
+  <p class="sub">De hypotheek mag op de toetsleeftijd niet meer bedragen dan het opgegeven deel van de woningwaarde.</p>
+  <div class="toets-head">
+    <span class="pill ok" id="toets-pill">–</span>
+    <span class="zin" id="toets-zin">&nbsp;</span>
+  </div>
+  <div class="split">
+    <div>
+      <div class="kv"><span>Leeftijd bij verhuizing</span><span id="k-leeftijd">–</span></div>
+      <div class="kv"><span>Toetsmoment</span><span id="k-toetsjaar">–</span></div>
+      <div class="kv"><span>Restschuld op toetsmoment</span><span id="k-restschuld">–</span></div>
+    </div>
+    <div>
+      <div class="kv"><span>Norm</span><span id="k-norm">–</span></div>
+      <div class="kv"><span>Ruimte</span><span id="k-ruimte">–</span></div>
+      <div class="kv"><span>Maximaal aflossingsvrij nu</span><span id="k-maxav">–</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Draagkracht</h2>
+  <p class="sub">Indicatief. Geen vervanging van de financieringslasttabel; die bepaalt wat werkelijk verantwoord is.</p>
+  <div class="split">
+    <div>
+      <div class="kv"><span>Bruto maandlast na verhuizing</span><span id="q-last">–</span></div>
+      <div class="kv"><span>Woonquote nu</span><span id="q-nu">–</span></div>
+      <div class="kv"><span>Woonquote na verhuizing</span><span id="q-na">–</span></div>
+    </div>
+    <div>
+      <div class="kv"><span>Woonquote na pensionering</span><span id="q-pensioen">–</span></div>
+      <div class="kv"><span>Woonquote op alleen het inkomen van de klant</span><span id="q-alleen">–</span></div>
+      <div class="kv"><span>Jaren tussen pensionering en toetsleeftijd</span><span id="q-jaren">–</span></div>
+    </div>
+  </div>
+  <div class="risks">
+    <div class="risk">
+      <h4>Fundering</h4>
+      <p>Herstel kost doorgaans tienduizenden euro's en is zelden verzekerd. Vraag funderingsonderzoek op vóór de koop.</p>
+      <span class="uitkomst" id="r-fund">–</span>
+    </div>
+    <div class="risk">
+      <h4>Duurzaamheid</h4>
+      <p>Een laag label drukt de waarde en verhoogt de energielasten. Besparing is geen garantie en telt niet als inkomen.</p>
+      <span class="uitkomst" id="r-duur">–</span>
+    </div>
+    <div class="risk">
+      <h4>Echtscheiding</h4>
+      <p>Valt het tweede inkomen weg, dan moet de last alleen gedragen worden. Leg draagplicht en uitkoop vast.</p>
+      <span class="uitkomst" id="r-scheiding">–</span>
+    </div>
+    <div class="risk">
+      <h4>Klimaat</h4>
+      <p>Wateroverlast, droogte en hitte raken verzekerbaarheid en waarde. Toets locatie en polisvoorwaarden.</p>
+      <span class="uitkomst" id="r-klimaat">–</span>
+    </div>
+    <div class="risk">
+      <h4>Toezicht</h4>
+      <p>Geldverstrekkers scherpen onder ECB- en EBA-toezicht hun acceptatie en beprijzing aan. Reken met een strengere toets dan vandaag geldt.</p>
+      <span class="uitkomst" id="r-toezicht">–</span>
+    </div>
+    <div class="risk">
+      <h4>Blijven wonen</h4>
+      <p>Zonder verhuizing blijft de aflossingsvrije schuld staan tot ver na de pensioenleeftijd.</p>
+      <span class="uitkomst" id="r-blijven">–</span>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Opbouw eerste maand na verhuizing</h2>
+  <p class="sub" id="opbouw-sub">&nbsp;</p>
+  <div class="split">
+    <div>
+      <div class="kv"><span>Bruto maandlast</span><span id="o-bruto">–</span></div>
+      <div class="kv"><span>waarvan rente</span><span id="o-rente">–</span></div>
+      <div class="kv"><span>waarvan aflossing</span><span id="o-afl">–</span></div>
+      <div class="kv"><span>Fiscaal voordeel</span><span id="o-fiscaal">–</span></div>
+      <div class="kv"><span>Netto maandlast</span><span id="o-netto">–</span></div>
+    </div>
+    <div>
+      <div class="kv"><span>Hypotheek bij verhuizing</span><span id="o-start">–</span></div>
+      <div class="kv"><span>Restschuld na 10 jaar</span><span id="o-rest10">–</span></div>
+      <div class="kv"><span>Totale rente looptijd</span><span id="o-totrente">–</span></div>
+      <div class="kv"><span>Totale last looptijd</span><span id="o-totlast">–</span></div>
+      <div class="kv"><span>Extra last t.o.v. nu, eerste 5 jaar</span><span id="o-extra5">–</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Netto maandlast in de tijd</h2>
+  <p class="sub">Blijven wonen afgezet tegen verhuizen in het verhuisjaar.</p>
+  <div class="chart-box"><svg class="chart" id="chart-last" viewBox="0 0 660 280" role="img" aria-label="Verloop van de netto maandlast"></svg></div>
+  <div class="legend">
+    <span><i style="background:var(--accent)"></i>Verhuizen (B)</span>
+    <span><i style="background:var(--muted-2)"></i>Blijven wonen (A)</span>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Restschuld in de tijd</h2>
+  <p class="sub">Annuïtair aflossen brengt de schuld naar nul; aflossingsvrij blijft de schuld staan.</p>
+  <div class="chart-box"><svg class="chart" id="chart-schuld" viewBox="0 0 660 280" role="img" aria-label="Verloop van de restschuld"></svg></div>
+  <div class="legend">
+    <span><i style="background:var(--accent)"></i>Verhuizen (B)</span>
+    <span><i style="background:var(--muted-2)"></i>Blijven wonen (A)</span>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Jaaroverzicht scenario B</h2>
+  <p class="sub">Bedragen per kalenderjaar vanaf het verhuisjaar.</p>
+  <div class="table-box"><table id="tabel">
+    <thead><tr><th>Jaar</th><th>Leeftijd</th><th>Bruto p/m</th><th>Netto p/m</th><th>Rente p/j</th><th>Aflossing p/j</th><th>Restschuld</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<div class="flagbox">
+  <h3>Let op — fiscale en normatieve uitgangspunten</h3>
+  <p>De tool rekent standaard zonder renteaftrek, conform de opgegeven situatie. Een nieuwe eigenwoningschuld die ten minste annuïtair in 30 jaar wordt afgelost, geeft in beginsel juist wél recht op aftrek in box 1. Geen aftrek is alleen juist bij financiering in box 3, bij een woning die niet als eigen woning kwalificeert, of na afloop van de 30-jaarstermijn. Toets dit per klant en leg de onderbouwing vast.</p>
+  <p>De grens van 30% van de woningwaarde op 85 jaar is een eigen uitgangspunt, geen wettelijke norm. Geldverstrekkers hanteren uiteenlopende grenzen voor aflossingsvrij en voor leningen die doorlopen na de pensioendatum. Toets per aanbieder.</p>
+  <p>De woonquote is indicatief en vervangt de financieringslasttabel niet. Een scenario dat hier doorkomt, kan bij de werkelijke toets alsnog onhaalbaar zijn.</p>
+  <p>Bij wegvallen van het partnerinkomen door echtscheiding of overlijden geldt de last onverkort. Leg draagplicht, uitkoop en overlijdensrisicodekking expliciet vast in het dossier.</p>
+</div>
+
+<div class="vs-voet">
+  <strong>Rekenuitgangspunten</strong>
+  <ul>
+    <li>Rekenjaren starten op 1 januari; de verhuizing valt op 1 januari van het verhuisjaar.</li>
+    <li>Aflossingsvrij: maandlast is rente over de hoofdsom, geen aflossing. Annuïtair: gelijkblijvende bruto maandlast, herrekend bij renteherziening.</li>
+    <li>Scenario A rekent met de huidige rente tot einde rentevastperiode en daarna met de rente van de nieuwe hypotheek.</li>
+    <li>Restschuld op de toetsleeftijd is het aflossingsvrije deel plus het nog niet afgeloste annuïtaire deel.</li>
+    <li>De toets gebruikt de woningwaarde van nu, zonder waardeontwikkeling, behalve in scenario G met de opgegeven waardedaling.</li>
+    <li>Fiscaal voordeel is berekend over de betaalde rente tegen het ingevulde tarief, zonder eigenwoningforfait en zonder inkomensafhankelijke effecten.</li>
+    <li>Geen indexatie van inkomen of lasten, geen extra aflossingen, geen kosten koper of advieskosten meegerekend.</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="tabpaneel" id="tab-help" role="tabpanel" aria-labelledby="tab-btn-help" hidden>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">1</span>In vijf stappen</h3>
+  <ol>
+    <li><strong>Vul de huidige hypotheek in:</strong> bedrag, aflosvorm, rente en het einde van de rentevastperiode.</li>
+    <li><strong>Vul de nieuwe situatie in:</strong> verhuisjaar, hypotheekbedrag, rente, looptijd en de waarde van de nieuwe woning.</li>
+    <li><strong>Vul geboortejaren en inkomens in.</strong> Die bepalen het toetsmoment en de woonquote.</li>
+    <li><strong>Lees de drie cijfers bovenaan:</strong> wat de klant nu betaalt, wat hij straks betaalt en wat het verschil is.</li>
+    <li><strong>Loop de scenariotabel langs</strong> en bespreek de twee of drie die voor dit dossier relevant zijn.</li>
+  </ol>
+  <p>Er is geen rekenknop: elke wijziging rekent direct door. De knop bovenaan het eerste tabblad opent een printversie met de ingevulde uitgangspunten, de scenariotabel en het jaaroverzicht.</p>
+</section>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">2</span>De velden voor de huidige hypotheek</h3>
+  <dl>
+    <dt>Huidige hypotheek</dt><dd>De openstaande hoofdsom van vandaag.</dd>
+    <dt>Aflosvorm</dt><dd>Aflossingsvrij, annuïtair of lineair. Bij aflossingsvrij blijft de schuld staan tot de verhuizing; bij de andere twee daalt die, wat zichtbaar wordt bij de peildatum en bij de restschuld op het verhuismoment.</dd>
+    <dt>Resterende looptijd</dt><dd>Het aantal jaren dat de huidige hypotheek nog loopt. Telt alleen mee bij annuïtair en lineair.</dd>
+    <dt>Huidige rente</dt><dd>Het percentage dat nu geldt, bijvoorbeeld 1,60.</dd>
+    <dt>Einde rentevastperiode</dt><dd>Het jaar waarin de rente wordt herzien. Vanaf dat jaar rekent de tool met de rente van de nieuwe hypotheek, ook als de klant blijft wonen. Dit is vaak het echte kantelpunt in het gesprek.</dd>
+    <dt>Waarde huidige woning</dt><dd>Nodig voor de toets in scenario A, waarin de klant niet verhuist.</dd>
+    <dt>Geboortejaren</dt><dd>Van klant en partner. De toets loopt op de oudste van beiden. Laat het partnerveld leeg als er geen partner is.</dd>
+  </dl>
+</section>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">3</span>De velden voor de nieuwe situatie</h3>
+  <dl>
+    <dt>Verhuisjaar</dt><dd>Het jaar waarin de nieuwe hypotheek start, telkens per 1 januari.</dd>
+    <dt>Nieuwe hypotheek</dt><dd>Het bedrag van de nieuwe lening. Met het vinkje eronder kunt u die gelijkstellen aan de restschuld op het verhuismoment, handig als de klant hetzelfde bedrag meeneemt.</dd>
+    <dt>Waarvan aflossingsvrij</dt><dd>Het deel dat niet wordt afgelost. Dit deel telt volledig mee in de restschuld op het toetsmoment.</dd>
+    <dt>Waarde nieuwe woning</dt><dd>De basis voor de norm bij de toets op leeftijd.</dd>
+    <dt>Rente en looptijd</dt><dd>Het verwachte tarief en de looptijd van de nieuwe lening.</dd>
+    <dt>Aflosvorm</dt><dd>Annuïtair of lineair. Lineair geeft een hogere startlast en een lagere restschuld.</dd>
+    <dt>Rentemeeneemregeling</dt><dd>Aanvinken als de huidige rente meegaat naar de nieuwe woning tot het einde van de rentevastperiode. De maandlast springt dan pas bij de renteherziening omhoog.</dd>
+    <dt>Renteaftrek</dt><dd>Staat standaard uit voor beide hypotheken. Vink aan wat voor dit dossier geldt; het veld voor het aftrektarief verschijnt dan vanzelf.</dd>
+  </dl>
+</section>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">4</span>Inkomen, norm en risico's</h3>
+  <p>De inkomensvelden voeden de woonquote en de toets na pensionering. Het pensioeninkomen is het gezamenlijke bruto inkomen inclusief AOW; dat cijfer is belangrijker dan het lijkt, omdat de hypotheek bij een looptijd van dertig jaar ruim twintig jaar doorloopt na de pensioendatum.</p>
+  <p>De toetsleeftijd en het percentage vormen samen de vermogenstoets: de hypotheek mag op die leeftijd niet meer bedragen dan dat deel van de woningwaarde. Standaard staat dat op 85 jaar en 30%. De tool rekent ook terug hoeveel aflossingsvrij er binnen die norm past.</p>
+  <p>De bedragen voor funderingsherstel, verduurzaming en waardedaling voeden alleen hun eigen scenario. Zij veranderen niets aan de hoofdberekening, zodat scenario B altijd de schone vergelijkingsbasis blijft.</p>
+</section>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">5</span>De tien scenario's</h3>
+  <div class="letters">
+    <div class="ltrcard"><h5><span>A</span>Blijven wonen</h5><p>Geen verhuizing. Laat zien wat er gebeurt bij de renteherziening en hoeveel schuld er op de toetsleeftijd nog staat.</p></div>
+    <div class="ltrcard"><h5><span>B</span>Verhuizen</h5><p>De referentie waartegen alle andere scenario's worden afgezet.</p></div>
+    <div class="ltrcard"><h5><span>C</span>Maximaal aflossingsvrij</h5><p>Rekent terug hoeveel aflossingsvrij er precies binnen de norm past.</p></div>
+    <div class="ltrcard"><h5><span>D</span>Funderingsherstel</h5><p>Herstelkosten meegefinancierd in de nieuwe hypotheek.</p></div>
+    <div class="ltrcard"><h5><span>E</span>Verduurzaming</h5><p>Investering meegefinancierd, afgezet tegen de lagere energielasten.</p></div>
+    <div class="ltrcard"><h5><span>F</span>Partnerinkomen weg</h5><p>Dezelfde last, gedragen op alleen het inkomen van de klant.</p></div>
+    <div class="ltrcard"><h5><span>G</span>Klimaatrisico</h5><p>Waardedaling van de woning en het effect daarvan op de norm.</p></div>
+    <div class="ltrcard"><h5><span>H</span>Strengere norm</h5><p>Toets op een lagere leeftijd tegen een lager percentage.</p></div>
+    <div class="ltrcard"><h5><span>I</span>Risicobeprijzing</h5><p>Renteopslag bovenop het verwachte tarief.</p></div>
+    <div class="ltrcard"><h5><span>K</span>Laag energielabel</h5><p>Niet verduurzamen: opslag plus waardedruk. De tegenhanger van E.</p></div>
+  </div>
+  <h4>Hoe u ze leest</h4>
+  <p>De tabel toont per scenario het hypotheekbedrag, de netto maandlast, de woonquote, de restschuld op het toetsmoment en of dat binnen de norm valt. Onder de tabel staat elk scenario uitgeschreven met de bijbehorende cijfers, zodat u het in het gesprek kunt voorlezen zonder zelf te rekenen.</p>
+  <p>De scenario's D, E, G, I en K zijn geen alternatieven voor elkaar: zij kunnen zich tegelijk voordoen. Een woning met funderingsrisico in een droogtegevoelig gebied met label F valt onder drie scenario's tegelijk. Reken die stapeling dan handmatig door door de bedragen bij elkaar op te tellen in het veld voor de nieuwe hypotheek.</p>
+</section>
+
+<section class="helpsec">
+  <h3 class="kop"><span class="nr">6</span>Toets, peildatum en draagkracht</h3>
+  <p>Het blok <strong>Toets op leeftijd</strong> werkt scenario B volledig uit: het toetsmoment, de restschuld, de norm, de ruimte of het tekort, en hoeveel aflossingsvrij er maximaal past. De gekleurde markering geeft meteen aan of het scenario de norm haalt.</p>
+  <p>Het blok <strong>Restschuld op peildatum</strong> leest beide scenario's af op een datum die u zelf kiest. Handig voor een tussentijds gesprek, een aflosplan of de vraag wat er op een bepaald moment nog openstaat.</p>
+  <p>Het blok <strong>Draagkracht</strong> zet de last af tegen vier inkomenssituaties: nu, na verhuizing, na pensionering en op alleen het inkomen van de klant. De laatste twee zijn in de praktijk de kritieke, ook als de eerste twee ruim doorkomen.</p>
+</section>
+
+<div class="flagbox">
+  <h3>Let op bij gebruik in het klantgesprek</h3>
+  <ul style="margin:0;padding-left:20px">
+    <li>De woonquote is indicatief en vervangt de financieringslasttabel niet. Een scenario dat hier doorkomt, kan bij de werkelijke toets alsnog afvallen.</li>
+    <li>De norm van 30% op 85 jaar is een eigen uitgangspunt, geen wettelijke norm. Vraag de normen van de beoogde geldverstrekker op voordat u een scenario als haalbaar presenteert.</li>
+    <li>De scenario's H, I en K zijn gevoeligheidsanalyses op verwacht gedrag van geldverstrekkers, geen aangekondigd beleid. Bespreek ze als "wat gebeurt er als".</li>
+    <li>Staat de renteaftrek uit, toets dan of dat voor dit dossier juist is. Een annuïtair afgeloste eigenwoningschuld geeft in beginsel wél recht op aftrek in box 1. Leg de onderbouwing vast.</li>
+    <li>Druk de berekening af en voeg die bij het dossier, zodat vastligt met welke uitgangspunten het advies is opgesteld.</li>
+  </ul>
+</div>
+
+<div class="vs-voet">
+  De tool rekent zonder indexatie van inkomen of lasten, zonder extra aflossingen, zonder kosten koper en zonder eigenwoningforfait. Rekenjaren starten op 1 januari. Het is een gespreksinstrument, geen acceptatiesysteem.
+</div>
+
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-voet">
+  <div class="wrap">
+    <p><b>Kan ik straks nog doorstromen of mijn hypotheek verlengen?</b> Een onafhankelijke gesprekshulp over de
+       hypotheekregels van nu en straks, in Nederland en Europa.</p>
+    <p>Alles op deze site is een indicatie of een scenario, opgesteld in oktober 2026. Het is geen advies en geen
+       voorspelling, en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een erkend hypotheekadviseur.</p>
+    <p>Deze site gebruikt geen cookies en slaat niets op. Wat u invult, blijft in uw browser.</p>
+  </div>
+</footer>
+
+<script>
+
+(function(){
+  "use strict";
+  var STARTJAAR = 2026;
+
+  var euro0 = function(n){ return "€ " + Math.round(n).toLocaleString("nl-NL"); };
+  var euro2 = function(n){ return "€ " + n.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var pct = function(n){ return n.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}) + "%"; };
+  var pct1 = function(n){ return n.toLocaleString("nl-NL",{minimumFractionDigits:1,maximumFractionDigits:1}) + "%"; };
+
+  function parseNum(str){
+    if(str === null || str === undefined) return 0;
+    var s = String(str).replace(/\./g,"").replace(",",".").replace(/[^0-9.\-]/g,"");
+    var v = parseFloat(s);
+    return isFinite(v) ? v : 0;
+  }
+  function parseInt0(str){
+    var v = parseInt(String(str).replace(/[^0-9]/g,""),10);
+    return isFinite(v) ? v : 0;
+  }
+  function formatEuroInput(el){
+    var digits = el.value.replace(/[^0-9]/g,"");
+    if(digits === ""){ el.value = ""; return; }
+    el.value = parseInt(digits,10).toLocaleString("nl-NL");
+  }
+  function el(id){ return document.getElementById(id); }
+
+  function annuity(P, r, n){
+    if(n <= 0) return 0;
+    if(r === 0) return P / n;
+    return P * r / (1 - Math.pow(1 + r, -n));
+  }
+  function schedule(P, rates, n, type){
+    var bal = P, rows = [], pay = 0, prev = null, lin = n > 0 ? P / n : 0;
+    for(var m = 0; m < n; m++){
+      var r = rates[m] / 12;
+      if(type === "annuity" && r !== prev){ pay = annuity(bal, r, n - m); prev = r; }
+      var interest = bal * r;
+      var redemption;
+      if(type === "annuity") redemption = Math.max(pay - interest, 0);
+      else if(type === "linear") redemption = Math.min(lin, bal);
+      else redemption = 0;
+      var gross = interest + redemption;
+      bal = Math.max(bal - redemption, 0);
+      rows.push({gross:gross, interest:interest, redemption:redemption, balance:bal});
+    }
+    return rows;
+  }
+  var vormLabel = {io:"aflossingsvrij", annuity:"annuïtair", linear:"lineair"};
+  function buildRates(startJaar, n, renteVoor, renteNa, grensJaar){
+    var r = [];
+    for(var m = 0; m < n; m++){
+      var j = startJaar + Math.floor(m / 12);
+      r.push(j < grensJaar ? renteVoor : renteNa);
+    }
+    return r;
+  }
+
+  function readInputs(){
+    var verhuis = parseInt0(el("verhuisjaar").value) || 2030;
+    if(verhuis < STARTJAAR) verhuis = STARTJAAR;
+    return {
+      hoofdsom: parseNum(el("hoofdsom").value),
+      vormNu: el("vorm-nu").value,
+      restLooptijd: parseInt0(el("restlooptijd").value) || 26,
+      vormNieuw: el("vorm-nieuw").value,
+      overnemen: el("overnemen").checked,
+      peildatum: el("peildatum").value,
+      renteNu: parseNum(el("rente-nu").value) / 100,
+      eindRvp: parseInt0(el("eind-rvp").value) || 2032,
+      waardeHuidig: parseNum(el("waarde-huidig").value),
+      aftrekNu: el("aftrek-nu").checked,
+      verhuis: verhuis,
+      nieuwBedrag: parseNum(el("nieuw-bedrag").value),
+      afVrij: parseNum(el("afvrij-deel").value),
+      woningwaarde: parseNum(el("woningwaarde").value),
+      renteNieuw: parseNum(el("rente-nieuw").value) / 100,
+      looptijd: parseInt0(el("looptijd").value) || 30,
+      meeneem: el("meeneem").checked,
+      aftrekNieuw: el("aftrek-nieuw").checked,
+      tarief: parseNum(el("tarief").value) / 100,
+      geboortejaar: parseInt0(el("geboortejaar").value) || 1970,
+      geboortejaarPartner: parseInt0(el("geboortejaar-partner").value),
+      toetsleeftijd: parseInt0(el("toetsleeftijd").value) || 85,
+      normPct: parseNum(el("norm-pct").value) / 100,
+      inkKlant: parseNum(el("ink-klant").value),
+      inkPartner: parseNum(el("ink-partner").value),
+      inkPensioen: parseNum(el("ink-pensioen").value),
+      aowLeeftijd: parseInt0(el("aow-leeftijd").value) || 67,
+      fundering: parseNum(el("fundering").value),
+      verduurzaming: parseNum(el("verduurzaming").value),
+      besparing: parseNum(el("besparing").value),
+      waardecorrectie: parseNum(el("waardecorrectie").value) / 100,
+      toetsH: parseInt0(el("toets-h").value) || 75,
+      normH: parseNum(el("norm-h").value) / 100,
+      opslagI: parseNum(el("opslag-i").value) / 100,
+      opslagK: parseNum(el("opslag-k").value) / 100,
+      dalingK: parseNum(el("daling-k").value) / 100
+    };
+  }
+
+  // Rekent één scenario door en geeft lasten, restschuld op toetsmoment en de toetsuitslag.
+  function run(v, cfg){
+    var n = Math.max(cfg.looptijd, 1) * 12;
+    var rates = buildRates(cfg.start, n, v.renteNu, cfg.rente, cfg.grensJaar || 0);
+    var afVrij = Math.min(Math.max(cfg.afVrij, 0), cfg.bedrag);
+    var annDeel = cfg.bedrag - afVrij;
+    var sAnn = schedule(annDeel, rates, n, cfg.vorm || "annuity");
+    var sAv = schedule(afVrij, rates, n, "interestonly");
+    var rows = sAnn.map(function(r, i){
+      return {
+        gross: r.gross + sAv[i].gross,
+        interest: r.interest + sAv[i].interest,
+        redemption: r.redemption,
+        balance: r.balance + sAv[i].balance
+      };
+    });
+    var tarief = cfg.aftrek ? v.tarief : 0;
+    var netto = function(r){ return r.gross - r.interest * tarief; };
+
+    var toetsjaar = cfg.toetsjaar;
+    var mToets = (toetsjaar - cfg.start) * 12;
+    var f;
+    if(mToets <= 0) f = 1;
+    else if(mToets >= n) f = 0;
+    else f = annDeel > 0 ? sAnn[mToets - 1].balance / annDeel : 0;
+    var rest = mToets <= 0 ? cfg.bedrag : afVrij + annDeel * f;
+    var waarde = cfg.waarde * (1 - (cfg.waardedaling || 0));
+    var norm = waarde * (cfg.normPct || v.normPct);
+    var maxAV = f < 1 ? (norm - cfg.bedrag * f) / (1 - f) : (rest <= norm ? cfg.bedrag : 0);
+    maxAV = Math.min(Math.max(maxAV, 0), cfg.bedrag);
+
+    var besparing = cfg.besparing || 0;
+    var woonlast = netto(rows[0]) - besparing;
+    var laatsteRow = rows[Math.min(Math.max(mToets - 1, 0), rows.length - 1)];
+
+    return {
+      rows: rows, netto: netto, n: n,
+      bedrag: cfg.bedrag, afVrij: afVrij, annDeel: annDeel,
+      bruto: rows[0].gross, nettoStart: netto(rows[0]), woonlast: woonlast,
+      laterBruto: laatsteRow.gross, laterNetto: netto(laatsteRow),
+      rest: rest, norm: norm, waarde: waarde, ruimte: norm - rest,
+      haalt: rest <= norm + 0.5, maxAV: maxAV,
+      quote: cfg.inkomen > 0 ? woonlast * 12 / cfg.inkomen : 0,
+      inkomenLabel: cfg.inkomenLabel || ""
+    };
+  }
+
+  function svgEl(name, attrs){
+    var e = document.createElementNS("http://www.w3.org/2000/svg", name);
+    for(var k in attrs){ e.setAttribute(k, attrs[k]); }
+    return e;
+  }
+  function drawChart(node, series, yFormat){
+    while(node.firstChild) node.removeChild(node.firstChild);
+    var W = 660, H = 280, L = 74, R = 16, T = 18, B = 40;
+    var allX = [], allY = [];
+    series.forEach(function(s){ s.points.forEach(function(p){ allX.push(p.x); allY.push(p.y); }); });
+    if(!allX.length) return;
+    var minX = Math.min.apply(null, allX), maxX = Math.max.apply(null, allX);
+    var maxY = Math.max.apply(null, allY);
+    var step10 = Math.pow(10, Math.floor(Math.log(Math.max(maxY, 1)) / Math.LN10));
+    var top = Math.ceil(maxY / step10) * step10;
+    if(top === 0) top = step10;
+    if(maxX === minX) maxX = minX + 1;
+    var sx = function(x){ return L + (x - minX) / (maxX - minX) * (W - L - R); };
+    var sy = function(y){ return T + (1 - y / top) * (H - T - B); };
+    for(var i = 0; i <= 4; i++){
+      var val = top * i / 4, y = sy(val);
+      node.appendChild(svgEl("line",{x1:L,y1:y,x2:W-R,y2:y,stroke:"currentColor","stroke-width":1,opacity:.14}));
+      var tx = svgEl("text",{x:L-10,y:y+4,"text-anchor":"end","font-size":12,fill:"currentColor",opacity:.72});
+      tx.textContent = yFormat(val);
+      node.appendChild(tx);
+    }
+    var span = maxX - minX;
+    var stp = span <= 12 ? 2 : (span <= 24 ? 5 : 10);
+    for(var x = minX; x <= maxX; x += stp){
+      var la = svgEl("text",{x:sx(x),y:H-14,"text-anchor":"middle","font-size":12,fill:"currentColor",opacity:.72});
+      la.textContent = x;
+      node.appendChild(la);
+    }
+    node.appendChild(svgEl("line",{x1:L,y1:T,x2:L,y2:H-B,stroke:"currentColor","stroke-width":1,opacity:.3}));
+    node.appendChild(svgEl("line",{x1:L,y1:H-B,x2:W-R,y2:H-B,stroke:"currentColor","stroke-width":1,opacity:.3}));
+    series.forEach(function(s){
+      var d = s.points.map(function(p, i){ return (i ? "L" : "M") + sx(p.x).toFixed(1) + " " + sy(p.y).toFixed(1); }).join(" ");
+      var path = svgEl("path",{d:d,fill:"none",stroke:s.color,"stroke-width":s.width||2.5,"stroke-linejoin":"round","stroke-linecap":"round"});
+      if(s.dash) path.setAttribute("stroke-dasharray", s.dash);
+      node.appendChild(path);
+    });
+  }
+
+  function render(){
+    var v = readInputs();
+    el("tarief-wrap").hidden = !(v.aftrekNu || v.aftrekNieuw);
+
+    var heeftPartner = v.geboortejaarPartner > 1900;
+    var oudste = heeftPartner ? Math.min(v.geboortejaar, v.geboortejaarPartner) : v.geboortejaar;
+    var toetsjaar = oudste + v.toetsleeftijd;
+    var leeftijdVerhuis = v.verhuis - v.geboortejaar;
+    el("leeftijd-hint").textContent = "Nu " + (STARTJAAR - v.geboortejaar) + " jaar, bij verhuizing " + leeftijdVerhuis + " jaar";
+
+    var inkSamen = v.inkKlant + v.inkPartner;
+    var jarenA = v.vormNu === "io"
+      ? Math.max(toetsjaar - STARTJAAR, v.restLooptijd, 1)
+      : Math.max(v.restLooptijd, 1);
+    var A = run(v, {
+      start: STARTJAAR, bedrag: v.hoofdsom, afVrij: v.vormNu === "io" ? v.hoofdsom : 0,
+      vorm: v.vormNu === "io" ? "annuity" : v.vormNu, rente: v.renteNieuw,
+      grensJaar: v.eindRvp, looptijd: jarenA, aftrek: v.aftrekNu,
+      waarde: v.waardeHuidig, toetsjaar: toetsjaar, inkomen: inkSamen, inkomenLabel: "samen"
+    });
+
+    var mVerhuis = Math.max((v.verhuis - STARTJAAR) * 12, 0);
+    var restBijVerhuis = mVerhuis === 0 ? v.hoofdsom : A.rows[Math.min(mVerhuis - 1, A.rows.length - 1)].balance;
+    var nieuwBedrag = v.overnemen ? restBijVerhuis : v.nieuwBedrag;
+
+    var basis = {
+      start: v.verhuis, bedrag: nieuwBedrag, afVrij: v.afVrij, vorm: v.vormNieuw, rente: v.renteNieuw,
+      grensJaar: v.meeneem ? v.eindRvp : 0, looptijd: v.looptijd, aftrek: v.aftrekNieuw,
+      waarde: v.woningwaarde, toetsjaar: toetsjaar, inkomen: inkSamen, inkomenLabel: "samen"
+    };
+    function met(over){
+      var c = {};
+      for(var k in basis) c[k] = basis[k];
+      for(var k2 in over) c[k2] = over[k2];
+      return c;
+    }
+
+    var B = run(v, basis);
+    var C = run(v, met({afVrij: B.maxAV}));
+    var D = run(v, met({bedrag: nieuwBedrag + v.fundering}));
+    var E = run(v, met({bedrag: nieuwBedrag + v.verduurzaming, besparing: v.besparing}));
+    var F = run(v, met({inkomen: v.inkKlant, inkomenLabel: "alleen klant"}));
+    var G = run(v, met({waardedaling: v.waardecorrectie}));
+    var H = run(v, met({toetsjaar: oudste + v.toetsH, normPct: v.normH}));
+    var I = run(v, met({rente: v.renteNieuw + v.opslagI, grensJaar: 0}));
+    var K = run(v, met({rente: v.renteNieuw + v.opslagK, grensJaar: 0, waardedaling: v.dalingK}));
+
+    // kerncijfers
+    var refNu = A.rows[Math.min(Math.max((v.verhuis - STARTJAAR) * 12, 0), A.rows.length - 1)];
+    el("t-nu").textContent = euro0(A.nettoStart);
+    el("t-nu-note").textContent = vormLabel[v.vormNu] + " tegen " + pct(v.renteNu * 100) + (v.aftrekNu ? ", na aftrek" : ", zonder aftrek");
+    el("t-na-lab").textContent = "Vanaf " + v.verhuis + " — netto per maand";
+    el("t-na").textContent = euro0(B.nettoStart);
+    el("t-na-note").textContent = vormLabel[v.vormNieuw] + " " + v.looptijd + " jaar tegen " +
+      pct((v.meeneem && v.verhuis < v.eindRvp ? v.renteNu : v.renteNieuw) * 100) + (v.aftrekNieuw ? ", na aftrek" : ", zonder aftrek");
+    var delta = B.nettoStart - A.netto(refNu);
+    el("t-delta").textContent = (delta >= 0 ? "+ " : "– ") + euro0(Math.abs(delta));
+    el("t-delta-note").textContent = "per maand ten opzichte van " + v.verhuis + " zonder verhuizing";
+
+    // scenariotabel en kaarten
+    var scens = [
+      {ltr:"A", naam:"Blijven wonen", r:A, tekst:"De hypotheek van " + euro0(v.hoofdsom) + " loopt " + vormLabel[v.vormNu] +
+        " door. Tot " + v.eindRvp + " blijft de rente " + pct(v.renteNu * 100) + "; daarna geldt " + pct(v.renteNieuw * 100) +
+        ". Op " + v.verhuis + " staat nog " + euro0(restBijVerhuis) + " open, op " + toetsjaar + " nog " + euro0(A.rest) + "."},
+      {ltr:"B", naam:"Verhuizen", r:B, tekst:"Nieuwe hypotheek van " + euro0(nieuwBedrag) + ", " + vormLabel[v.vormNieuw] + " in " + v.looptijd +
+        " jaar" + (v.afVrij > 0 ? " waarvan " + euro0(v.afVrij) + " aflossingsvrij" : "") +
+        (v.overnemen ? ", gelijk aan de restschuld op het verhuismoment" : "") + ". De schuld daalt vanaf de eerste maand."},
+      {ltr:"C", naam:"Maximaal aflossingsvrij", r:C, tekst:"Binnen de norm van " + pct(v.normPct * 100) + " op " + v.toetsleeftijd +
+        " jaar past " + euro0(B.maxAV) + " aflossingsvrij. Dat drukt de maandlast met " + euro0(B.nettoStart - C.nettoStart) +
+        ", maar laat die schuld wel staan."},
+      {ltr:"D", naam:"Funderingsherstel", r:D, tekst:"Herstel van " + euro0(v.fundering) + " meegefinancierd brengt de hypotheek op " +
+        euro0(D.bedrag) + " en de last op " + euro0(D.nettoStart) + " per maand, oftewel " + euro0(D.nettoStart - B.nettoStart) + " meer dan scenario B."},
+      {ltr:"E", naam:"Verduurzaming", r:E, tekst:"Investering van " + euro0(v.verduurzaming) + " kost " + euro0(E.nettoStart - B.nettoStart) +
+        " extra hypotheeklast per maand tegenover " + euro0(v.besparing) + " lagere energielasten. Netto effect op de woonlast: " +
+        ((E.woonlast - B.woonlast) >= 0 ? "+ " : "– ") + euro0(Math.abs(E.woonlast - B.woonlast)) + " per maand."},
+      {ltr:"F", naam:"Wegvallend partnerinkomen", r:F, tekst:"Zelfde hypotheek als B, maar gedragen op het inkomen van de klant alleen (" +
+        euro0(v.inkKlant) + "). De woonquote loopt op van " + pct1(B.quote * 100) + " naar " + pct1(F.quote * 100) + "."},
+      {ltr:"G", naam:"Klimaatrisico", r:G, tekst:"Een waardedaling van " + pct(v.waardecorrectie * 100) + " brengt de woning op " +
+        euro0(G.waarde) + " en de norm op " + euro0(G.norm) + ". De restschuld verandert niet, de toetsruimte wel."},
+      {ltr:"H", naam:"Strengere acceptatienorm", r:H, tekst:"Toetst op " + v.toetsH + " jaar tegen " + pct(v.normH * 100) +
+        " van de woningwaarde, dus in " + (oudste + v.toetsH) + " tegen een norm van " + euro0(H.norm) + ". Zelfde lening als B, maar met " +
+        (H.haalt ? "een marge van " + euro0(H.ruimte) : "een tekort van " + euro0(-H.ruimte)) +
+        ". Aflossingsvrij kan dan nog " + euro0(H.maxAV) + " zijn."},
+      {ltr:"I", naam:"Risicobeprijzing", r:I, tekst:"Een opslag van " + pct(v.opslagI * 100) + " brengt de rente op " +
+        pct((v.renteNieuw + v.opslagI) * 100) + " en de last op " + euro0(I.nettoStart) + ", dus " + euro0(I.nettoStart - B.nettoStart) +
+        " per maand meer. De restschuld in " + toetsjaar + " stijgt naar " + euro0(I.rest) + " doordat er trager wordt afgelost."},
+      {ltr:"K", naam:"Laag energielabel", r:K, tekst:"Niet verduurzamen bij label F of G: opslag van " + pct(v.opslagK * 100) +
+        " en een waardedruk van " + pct(v.dalingK * 100) + ". De last wordt " + euro0(K.nettoStart) + " en de norm zakt naar " +
+        euro0(K.norm) + ". Dit is de tegenhanger van scenario E."}
+    ];
+
+    var tb = el("scen-tabel").querySelector("tbody");
+    tb.innerHTML = "";
+    var cards = el("scen-cards");
+    cards.innerHTML = "";
+    scens.forEach(function(s){
+      var tr = document.createElement("tr");
+      if(s.ltr === "B") tr.className = "mark";
+      tr.innerHTML = "<td>" + s.ltr + " · " + s.naam + "</td>" +
+        "<td>" + euro0(s.r.bedrag) + "</td>" +
+        "<td>" + euro0(s.r.woonlast) + "</td>" +
+        "<td>" + pct1(s.r.quote * 100) + "</td>" +
+        "<td>" + euro0(s.r.rest) + "</td>" +
+        "<td><span class='pill " + (s.r.haalt ? "ok" : "bad") + "'>" + (s.r.haalt ? "voldoet" : "te hoog") + "</span></td>";
+      tb.appendChild(tr);
+
+      var card = document.createElement("div");
+      card.className = "scen";
+      card.innerHTML = "<h4><span class='letter'>" + s.ltr + "</span>" + s.naam + "</h4>" +
+        "<p>" + s.tekst + "</p>" +
+        "<div class='cijfers'><span>" + euro0(s.r.woonlast) + " p/m</span><span>quote " + pct1(s.r.quote * 100) +
+        " (" + s.r.inkomenLabel + ")</span><span>rest " + euro0(s.r.rest) + "</span></div>" +
+        "<div><span class='pill " + (s.r.haalt ? "ok" : "bad") + "'>" +
+        (s.r.haalt ? "ruimte " + euro0(s.r.ruimte) : "tekort " + euro0(-s.r.ruimte)) + "</span></div>";
+      cards.appendChild(card);
+    });
+
+    // toets scenario B
+    el("k-leeftijd").textContent = leeftijdVerhuis + " jaar" + (heeftPartner ? " / partner " + (v.verhuis - v.geboortejaarPartner) + " jaar" : "");
+    el("k-toetsjaar").textContent = toetsjaar + " (" + v.toetsleeftijd + " jaar" + (heeftPartner ? ", oudste van beiden" : "") + ")";
+    el("k-restschuld").textContent = euro0(B.rest);
+    el("k-norm").textContent = euro0(B.norm) + " (" + pct(v.normPct * 100) + " van " + euro0(v.woningwaarde) + ")";
+    el("k-ruimte").textContent = (B.ruimte >= 0 ? "+ " : "– ") + euro0(Math.abs(B.ruimte));
+    el("k-maxav").textContent = euro0(B.maxAV);
+    var pill = el("toets-pill");
+    pill.className = "pill " + (B.haalt ? "ok" : "bad");
+    pill.textContent = B.haalt ? "Voldoet aan de norm" : "Voldoet niet aan de norm";
+    if(leeftijdVerhuis >= v.toetsleeftijd){
+      el("toets-zin").textContent = "De klant is op het verhuismoment al " + leeftijdVerhuis + " jaar; het toetsmoment ligt in het verleden.";
+    } else if(B.haalt){
+      el("toets-zin").textContent = "In " + toetsjaar + " resteert " + euro0(B.rest) + ". Er is ruimte voor maximaal " + euro0(B.maxAV) + " aflossingsvrij.";
+    } else {
+      el("toets-zin").textContent = "In " + toetsjaar + " resteert " + euro0(B.rest) + ", dat is " + euro0(-B.ruimte) +
+        " boven de norm. Aflossingsvrij kan tot " + euro0(B.maxAV) + ".";
+    }
+
+    // peildatum
+    var pd = v.peildatum ? new Date(v.peildatum + "T00:00:00") : null;
+    if(pd && !isNaN(pd.getTime())){
+      var pJaar = pd.getFullYear(), pMaand = pd.getMonth();
+      var mA = (pJaar - STARTJAAR) * 12 + pMaand;
+      var mB = (pJaar - v.verhuis) * 12 + pMaand;
+      var leesAf = function(res, maanden){
+        if(maanden < 0) return null;
+        if(maanden === 0) return {balance: res.bedrag, netto: res.nettoStart};
+        var i = Math.min(maanden - 1, res.rows.length - 1);
+        var j = Math.min(maanden, res.rows.length - 1);
+        return {balance: res.rows[i].balance, netto: res.netto(res.rows[j])};
+      };
+      var pA = leesAf(A, mA), pB = leesAf(B, mB);
+      el("p-leeftijd").textContent = (pJaar - v.geboortejaar) + " jaar";
+      el("p-rest-a").textContent = pA ? euro0(pA.balance) : "–";
+      el("p-last-a").textContent = pA ? euro0(pA.netto) : "–";
+      el("p-afgelost-a").textContent = pA ? euro0(v.hoofdsom - pA.balance) : "–";
+      el("p-rest-b").textContent = pB ? euro0(pB.balance) : "verhuizing nog niet geweest";
+      el("p-last-b").textContent = pB ? euro0(pB.netto) : "–";
+    }
+
+    // draagkracht
+    var pensioenjaar = v.geboortejaar + v.aowLeeftijd;
+    var mPens = Math.max((pensioenjaar - v.verhuis) * 12, 0);
+    var rowPens = B.rows[Math.min(mPens, B.rows.length - 1)];
+    el("q-last").textContent = euro2(B.bruto);
+    el("q-nu").textContent = inkSamen > 0 ? pct1(A.nettoStart * 12 / inkSamen * 100) : "–";
+    el("q-na").textContent = inkSamen > 0 ? pct1(B.quote * 100) : "–";
+    el("q-pensioen").textContent = v.inkPensioen > 0 && pensioenjaar < v.verhuis + v.looptijd
+      ? pct1(B.netto(rowPens) * 12 / v.inkPensioen * 100) + " vanaf " + pensioenjaar
+      : (v.inkPensioen > 0 ? "hypotheek is dan afgelost" : "–");
+    el("q-alleen").textContent = v.inkKlant > 0 ? pct1(F.quote * 100) : "–";
+    el("q-jaren").textContent = Math.max(toetsjaar - pensioenjaar, 0) + " jaar";
+
+    el("r-fund").textContent = "Meefinancieren: " + euro0(D.nettoStart - B.nettoStart) + " p/m extra, restschuld " + euro0(D.rest);
+    el("r-duur").textContent = "Netto woonlast " + ((E.woonlast - B.woonlast) >= 0 ? "+ " : "– ") + euro0(Math.abs(E.woonlast - B.woonlast)) + " p/m";
+    el("r-scheiding").textContent = "Woonquote op één inkomen: " + pct1(F.quote * 100);
+    el("r-klimaat").textContent = "Norm daalt naar " + euro0(G.norm) + ", " + (G.haalt ? "nog binnen de grens" : "tekort " + euro0(-G.ruimte));
+    el("r-blijven").textContent = "In " + toetsjaar + " staat " + euro0(A.rest) + " open, norm " + euro0(A.norm);
+    el("r-toezicht").textContent = "Toets op " + v.toetsH + " jaar: " + (H.haalt ? "ruimte " + euro0(H.ruimte) : "tekort " + euro0(-H.ruimte)) +
+      " · opslag " + pct(v.opslagI * 100) + ": " + euro0(I.nettoStart - B.nettoStart) + " p/m";
+
+    // opbouw eerste maand scenario B
+    el("opbouw-sub").textContent = "Januari " + v.verhuis + ", hypotheek van " + euro0(B.bedrag) + ".";
+    el("o-bruto").textContent = euro2(B.rows[0].gross);
+    el("o-rente").textContent = euro2(B.rows[0].interest);
+    el("o-afl").textContent = euro2(B.rows[0].redemption);
+    el("o-fiscaal").textContent = v.aftrekNieuw ? euro2(B.rows[0].interest * v.tarief) : "geen aftrek";
+    el("o-netto").textContent = euro2(B.nettoStart);
+    var totRente = 0, totLast = 0;
+    B.rows.forEach(function(r){ totRente += r.interest; totLast += B.netto(r); });
+    el("o-start").textContent = euro0(B.bedrag);
+    el("o-rest10").textContent = euro0(B.rows[Math.min(119, B.rows.length - 1)].balance);
+    el("o-totrente").textContent = euro0(totRente);
+    el("o-totlast").textContent = euro0(totLast);
+    var extra5 = 0, offset = (v.verhuis - STARTJAAR) * 12;
+    for(var e = 0; e < 60 && e < B.rows.length; e++){
+      var ref = A.rows[Math.min(offset + e, A.rows.length - 1)];
+      extra5 += B.netto(B.rows[e]) - A.netto(ref);
+    }
+    el("o-extra5").textContent = (extra5 >= 0 ? "+ " : "– ") + euro0(Math.abs(extra5));
+
+    // grafieken
+    var ptsB = [], ptsA = [], schuldB = [], schuldA = [];
+    var eindJaar = Math.max(v.verhuis + v.looptijd, toetsjaar);
+    for(var j = STARTJAAR; j <= eindJaar; j++){
+      var iaRaw = (j - STARTJAAR) * 12;
+      var binnenA = iaRaw <= A.rows.length - 1;
+      var ia = Math.min(iaRaw, A.rows.length - 1);
+      ptsA.push({x:j, y: binnenA ? A.netto(A.rows[ia]) : 0});
+      schuldA.push({x:j, y: binnenA ? A.rows[ia].balance : 0});
+      if(j < v.verhuis){
+        ptsB.push({x:j, y: binnenA ? A.netto(A.rows[ia]) : 0});
+        schuldB.push({x:j, y: binnenA ? A.rows[ia].balance : 0});
+      } else {
+        var ib = (j - v.verhuis) * 12;
+        if(ib <= B.rows.length - 1){
+          ptsB.push({x:j, y:B.netto(B.rows[ib])});
+          schuldB.push({x:j, y:B.rows[ib].balance});
+        } else {
+          ptsB.push({x:j, y:0});
+          schuldB.push({x:j, y:0});
+        }
+      }
+    }
+    var cs = getComputedStyle(document.documentElement);
+    var accent = cs.getPropertyValue("--primary").trim() || "#1d5fae";
+    var grijs = cs.getPropertyValue("--muted").trim() || "#6b737d";
+    drawChart(el("chart-last"), [
+      {points:ptsA, color:grijs, dash:"5 4", width:2},
+      {points:ptsB, color:accent}
+    ], function(y){ return "€ " + Math.round(y).toLocaleString("nl-NL"); });
+    drawChart(el("chart-schuld"), [
+      {points:schuldA, color:grijs, dash:"5 4", width:2},
+      {points:schuldB, color:accent}
+    ], function(y){ return "€ " + Math.round(y / 1000).toLocaleString("nl-NL") + "k"; });
+
+    // jaartabel scenario B
+    var tb2 = el("tabel").querySelector("tbody");
+    tb2.innerHTML = "";
+    for(var y2 = 0; y2 < v.looptijd; y2++){
+      var rente = 0, afl = 0, bruto = 0, netto = 0, saldo = 0, geteld = 0;
+      for(var mm = 0; mm < 12; mm++){
+        var r2 = B.rows[y2 * 12 + mm];
+        if(!r2) break;
+        rente += r2.interest; afl += r2.redemption; bruto += r2.gross; netto += B.netto(r2); saldo = r2.balance; geteld++;
+      }
+      if(!geteld) break;
+      var jaar = v.verhuis + y2;
+      var tr2 = document.createElement("tr");
+      if(jaar === toetsjaar || jaar === pensioenjaar || y2 === 0) tr2.className = "mark";
+      tr2.innerHTML = "<td>" + jaar + "</td><td>" + (jaar - v.geboortejaar) + "</td><td>" + euro0(bruto / geteld) + "</td><td>" +
+        euro0(netto / geteld) + "</td><td>" + euro0(rente) + "</td><td>" + euro0(afl) + "</td><td>" + euro0(saldo) + "</td>";
+      tb2.appendChild(tr2);
+    }
+  }
+
+  // printversie: opent een eigen venster, omdat window.print() binnen een iframe geblokkeerd wordt
+  var PRINTVELDEN = ["hoofdsom","vorm-nu","restlooptijd","rente-nu","eind-rvp","waarde-huidig","geboortejaar","geboortejaar-partner",
+    "verhuisjaar","nieuw-bedrag","afvrij-deel","woningwaarde","rente-nieuw","looptijd","vorm-nieuw","meeneem","overnemen",
+    "aftrek-nu","aftrek-nieuw","tarief","ink-klant","ink-partner","ink-pensioen","aow-leeftijd","toetsleeftijd","norm-pct",
+    "fundering","verduurzaming","besparing","waardecorrectie","toets-h","norm-h","opslag-i","opslag-k","daling-k"];
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function printDocument(){
+    var datum = new Date().toLocaleDateString("nl-NL",{day:"numeric",month:"long",year:"numeric"});
+    var rijen = PRINTVELDEN.map(function(id){
+      var e = el(id);
+      if(!e) return "";
+      var lab = document.querySelector('label[for="' + id + '"]');
+      if(!lab) return "";
+      var val;
+      if(e.type === "checkbox") val = e.checked ? "ja" : "nee";
+      else if(e.tagName === "SELECT") val = e.options[e.selectedIndex].text;
+      else val = e.value;
+      return "<tr><td>" + esc(lab.textContent) + "</td><td>" + esc(val) + "</td></tr>";
+    }).join("");
+
+    var kern = ["t-nu","t-na","t-delta"].map(function(id, i){
+      var labs = ["Netto per maand nu", "Netto per maand na verhuizing", "Lastensprong"];
+      return "<tr><td>" + labs[i] + "</td><td>" + esc(el(id).textContent) + "</td></tr>";
+    }).join("");
+
+    var blokken = "";
+    Array.prototype.forEach.call(document.querySelectorAll("#tab-tool section.panel"), function(s){
+      var kvs = s.querySelectorAll(".kv");
+      if(!kvs.length) return;
+      var kop = s.querySelector("h2");
+      var body = Array.prototype.map.call(kvs, function(kv){
+        var sp = kv.querySelectorAll("span");
+        return "<tr><td>" + esc(sp[0].textContent) + "</td><td>" + esc(sp[1].textContent) + "</td></tr>";
+      }).join("");
+      blokken += "<h2>" + esc(kop ? kop.textContent : "") + "</h2><table class='kv'>" + body + "</table>";
+    });
+
+    var scenTabel = el("scen-tabel").outerHTML;
+    var jaarTabel = el("tabel").outerHTML;
+
+    var html = "<!doctype html><html lang='nl'><head><meta charset='utf-8'>" +
+      "<title>Verhuisscenario " + esc(el("verhuisjaar").value) + "</title><style>" +
+      "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111;margin:28px;font-size:12px;line-height:1.5}" +
+      "h1{font-size:20px;margin:0 0 4px;color:#003057}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#003057;margin:22px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px}" +
+      ".datum{color:#666;margin:0 0 18px;font-size:12px}" +
+      "table{border-collapse:collapse;width:100%;margin-bottom:6px;font-variant-numeric:tabular-nums}" +
+      "td,th{border-bottom:1px solid #ddd;padding:4px 8px;text-align:right}" +
+      "td:first-child,th:first-child{text-align:left}" +
+      "thead th{background:#eee;font-size:11px;text-transform:uppercase;letter-spacing:.04em}" +
+      "table.kv td:first-child{color:#444;width:62%}table.kv td:last-child{font-weight:600}" +
+      ".pill{border:1px solid #999;border-radius:9px;padding:1px 7px;font-size:10px}.pill::before{content:''}" +
+      ".voet{margin-top:22px;border-top:1px solid #ccc;padding-top:10px;color:#555;font-size:11px}" +
+      "table,h2{break-inside:avoid}@page{margin:14mm}" +
+      "</style></head><body>" +
+      "<h1>Verhuisscenario " + esc(el("verhuisjaar").value) + "</h1>" +
+      "<p class='datum'>Berekening van " + datum + " · indicatief, geen aanbod</p>" +
+      "<h2>Kerncijfers</h2><table class='kv'>" + kern + "</table>" +
+      "<h2>Scenario's naast elkaar</h2>" + scenTabel +
+      blokken +
+      "<h2>Jaaroverzicht scenario B</h2>" + jaarTabel +
+      "<p class='voet'>Alle bedragen zijn indicatief en bedoeld voor het gesprek met de klant. De woonquote vervangt de financieringslasttabel niet. " +
+      "De scenario's H, I en K zijn gevoeligheidsanalyses op verwacht gedrag van geldverstrekkers, geen vastgesteld beleid. " +
+      "Rekent de berekening zonder renteaftrek, toets dan of dat uitgangspunt voor dit dossier juist is: een annuïtair afgeloste eigenwoningschuld geeft in beginsel wél recht op aftrek in box 1.</p>" +
+      "<h2>Ingevulde uitgangspunten</h2><table class='kv'>" + rijen + "</table>" +
+      "</body></html>";
+
+    var w = null;
+    try { w = window.open("", "_blank"); } catch(err) { w = null; }
+    if(!w){ el("print-melding").hidden = false; return; }
+    el("print-melding").hidden = true;
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    w.focus();
+    setTimeout(function(){ try { w.print(); } catch(err){} }, 500);
+  }
+
+  // tabbladen
+  function toonTab(naam){
+    var isHelp = naam === "help";
+    el("tab-tool").hidden = isHelp;
+    el("tab-help").hidden = !isHelp;
+    el("tab-btn-tool").setAttribute("aria-selected", isHelp ? "false" : "true");
+    el("tab-btn-help").setAttribute("aria-selected", isHelp ? "true" : "false");
+  }
+  el("tab-btn-tool").addEventListener("click", function(){ toonTab("tool"); });
+  el("tab-btn-help").addEventListener("click", function(){ toonTab("help"); });
+  if(location.hash === "#handleiding") toonTab("help");
+
+  el("btn-print").addEventListener("click", printDocument);
+  el("btn-reset").addEventListener("click", function(){ location.reload(); });
+
+  ["hoofdsom","nieuw-bedrag","afvrij-deel","woningwaarde","waarde-huidig","ink-klant","ink-partner","ink-pensioen","fundering","verduurzaming","besparing"].forEach(function(id){
+    el(id).addEventListener("input", function(){ formatEuroInput(this); render(); });
+  });
+  ["rente-nu","rente-nieuw","tarief","eind-rvp","verhuisjaar","geboortejaar","geboortejaar-partner","toetsleeftijd","norm-pct","aow-leeftijd","waardecorrectie","restlooptijd","peildatum","toets-h","norm-h","opslag-i","opslag-k","daling-k"].forEach(function(id){
+    el(id).addEventListener("input", render);
+  });
+  ["looptijd","aftrek-nu","aftrek-nieuw","meeneem","vorm-nu","vorm-nieuw","overnemen","peildatum"].forEach(function(id){
+    el(id).addEventListener("change", render);
+  });
+
+  render();
+})();
+
+</script>
+</body>
+</html>
