@@ -195,34 +195,46 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 /* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
 .sk-titel{padding-top:27px}
 .sk-invoer .field{margin-bottom:12px}
-.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.sk-kaart{border:1px solid var(--line);border-top:3px solid var(--line);padding:20px;display:flex;flex-direction:column;background:#fff}
+/* Drie kaarten met dezelfde rijen; subgrid houdt elke rij in de drie kaarten op gelijke hoogte. */
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
+.sk-kaart{display:grid;grid-row:span 15;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--line);
+  border-top:3px solid var(--line);padding:0 20px 20px;background:#fff;min-width:0}
 .sk-kaart.gekozen{background:var(--tint);border-color:#b9cbe3;border-top-color:var(--primary)}
-.sk-kop{margin-bottom:12px}
+.sk-lijst{display:contents}
+.sk-kop{padding:20px 0 4px}
 .sk-kop .zeker{font-size:14px;padding:4px 12px}
-.sk-uitleg{font-size:13px;color:var(--text-l);margin-bottom:16px;min-height:6.4em}
-.sk-cijfers{margin:0 0 16px;border-top:1px solid var(--line)}
-.sk-cijfers dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:12px}
-.sk-cijfers dd{font-size:16px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
-.sk-cijfers dd.groot{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
-.sk-cijfers small{font-size:13px;font-weight:600;color:var(--text-l);margin-left:4px}
-.sk-signalen{margin:0 0 20px 18px;font-size:13.5px;color:var(--text);flex:1}
+.sk-groep{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);
+  padding:16px 0 6px;border-bottom:1px solid var(--rule);align-self:end}
+.sk-rij{padding:8px 0;border-bottom:1px solid var(--line)}
+.sk-rij dt{font-size:12.5px;color:var(--muted);line-height:1.4}
+.sk-rij dd{font-size:15px;color:var(--ink);font-weight:600;line-height:1.35;font-variant-numeric:tabular-nums}
+.sk-rij.groot dd{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sk-rij small{font-size:12.5px;font-weight:600;color:var(--text-l);margin-left:4px;letter-spacing:0}
+.sk-signalen{margin:8px 0 16px 18px;font-size:13.5px;color:var(--text)}
 .sk-signalen li{margin-bottom:8px}
-.sk-kaart .btn{width:100%;margin-top:auto}
+.sk-kaart .btn{width:100%;align-self:end}
+@supports not (grid-template-rows:subgrid){ .sk-kaart{display:flex;flex-direction:column} .sk-groep{align-self:stretch} .sk-kaart .btn{margin-top:auto;align-self:stretch} }
+.sk-acties{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.sk-acties .hint{margin:0}
 .sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
 .sk-agenda h2{font-size:22px}
 .sk-agenda ol{margin:0 0 0 20px;max-width:var(--maat)}
 .sk-agenda li{margin-bottom:8px;font-size:15px}
 .sk-agenda .hero-cta{margin-top:24px}
 .sk-naar{display:none;margin-top:8px}
-@media (max-width:1100px){ .sk-uitkomst{grid-template-columns:1fr} .sk-uitleg{min-height:0} .sk-kaart .btn{width:auto;align-self:flex-start} }
+@media (max-width:1100px){
+  .sk-uitkomst{grid-template-columns:1fr;row-gap:16px}
+  .sk-kaart{display:flex;flex-direction:column}
+  .sk-groep{align-self:stretch}
+  .sk-kaart .btn{width:auto;align-self:flex-start;margin-top:8px}
+}
 @media (max-width:860px){
   .sk-raster{grid-template-columns:1fr}
   .sk-invoer{position:static}
   .sk-titel{padding-top:0}
   .sk-naar{display:block}
 }
-@media print{ .sk-invoer,.sk-kaart .btn{display:none} }
+@media print{ .sk-invoer,.sk-kaart .btn,.sk-acties{display:none} }
 
 /* ---- voet ---- */
 .site-voet{background:var(--navy);color:#c9d6e6;padding:48px 0;font-size:14px}
@@ -385,6 +397,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       <div>
         <h2 class="sk-titel" id="sk-uitkomst-titel">Drie scenario&#39;s voor uw situatie</h2>
         <div id="sk-uitkomst" class="sk-uitkomst" aria-live="polite"></div>
+        <div class="sk-acties">
+          <button type="button" class="btn ghost" data-print>Rapport printen of opslaan als pdf</button>
+          <p class="hint">Met uw invoer, de drie scenario&#39;s, grafieken en een tabel per jaar, de aandachtspunten en de gespreksagenda.</p>
+        </div>
       </div>
     </div>
 
@@ -392,7 +408,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       <h2>Uw gespreksagenda</h2>
       <ol id="sk-agenda"></ol>
       <div class="hero-cta">
-        <button type="button" class="btn" id="sk-print">Agenda printen of opslaan als pdf</button>
+        <button type="button" class="btn" data-print>Rapport printen of opslaan als pdf</button>
       </div>
     </div>
   </div>
@@ -446,11 +462,14 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   var NU = 2026, FORFAIT = 0.0035, TARIEF = 0.3756;
   var SCENARIO = {
     mild: { naam: "Mild", rente: 3.5, opslagAv: 0, aftrekTot: 9999, groei: 0.02, eenmalig: 0, grens85: 0.70, avMax: 0.30,
-      uitleg: "Rente bij verlengen 3,5%. Renteaftrek blijft zoals nu. Woningwaarde +2% per jaar. Grens op 85 jaar: 70% van de waarde (zoals Rabobank vanaf 2027)." },
+      uitleg: "Rente bij verlengen 3,5%. Renteaftrek blijft zoals nu. Woningwaarde +2% per jaar. Grens op 85 jaar: 70% van de waarde (zoals Rabobank vanaf 2027).",
+      tekst: { aftrek: "Blijft zoals nu", waarde: "+2% per jaar", grens: "70% van de waarde (zoals Rabobank)", av: "Hoogstens 30%, meestal tot €\u00a0150.000" } },
     strakker: { naam: "Strakker", rente: 5, opslagAv: 0.5, aftrekTot: 9999, groei: 0, eenmalig: 0, grens85: 0.50, avMax: 0.30,
-      uitleg: "Rente bij verlengen 5%, plus 0,5% opslag op aflossingsvrij door hogere kapitaaleisen. Aftrek blijft binnen de termijn van 30 jaar. Woningwaarde gelijk. Grens op 85 jaar: 50% (zoals ABN AMRO), marktbreed." },
+      uitleg: "Rente bij verlengen 5%, plus 0,5% opslag op aflossingsvrij door hogere kapitaaleisen. Aftrek blijft binnen de termijn van 30 jaar. Woningwaarde gelijk. Grens op 85 jaar: 50% (zoals ABN AMRO), marktbreed.",
+      tekst: { aftrek: "Blijft binnen de termijn van 30 jaar", waarde: "Gelijk", grens: "50% van de waarde (zoals ABN AMRO), bij alle banken", av: "Hoogstens 30%, meestal tot €\u00a0150.000" } },
     streng: { naam: "Streng", rente: 6, opslagAv: 0.75, aftrekTot: 2030, groei: 0, eenmalig: -0.15, grens85: 0, avMax: 0,
-      uitleg: "Rente bij verlengen 6%, plus 0,75% opslag op aflossingsvrij. Renteaftrek afgeschaft vanaf 2030. Woningwaarde 15% lager (regio, label of fundering). Op 85 jaar volledig afgelost; geen nieuw aflossingsvrij." }
+      uitleg: "Rente bij verlengen 6%, plus 0,75% opslag op aflossingsvrij. Renteaftrek afgeschaft vanaf 2030. Woningwaarde 15% lager (regio, label of fundering). Op 85 jaar volledig afgelost; geen nieuw aflossingsvrij.",
+      tekst: { aftrek: "Afgeschaft vanaf 2030", waarde: "15% lager (regio, label of fundering)", grens: "Volledig afgelost", av: "Niet meer mogelijk" } }
   };
   var gekozen = "strakker";
 
@@ -511,7 +530,9 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   function signalen(s, sc, r, sleutel) {
     var l = [];
     if (s.leeftijd >= 52 || r.leeftijdNa >= 52)
-      l.push("Uw verwachte pensioeninkomen telt mee bij een nieuwe hypotheek (Rabobank vanaf 15 jaar voor uw pensioen).");
+      l.push("Uw verwachte pensioeninkomen telt mee bij een nieuwe hypotheek: wettelijk vanaf 10 jaar voor de AOW-leeftijd, bij Rabobank vanaf maart 2027 al vanaf 15 jaar.");
+    if (s.av > 0 && sleutel !== "streng")
+      l.push("Alleen de rente verlengen verandert niets aan uw aflossingsvrije deel. De nieuwe grenzen gelden bij een nieuwe hypotheek, verhuizen, oversluiten of verhogen.");
     if (!r.aftrekNa && s.einde >= s.aftrekEinde)
       l.push("Uw aftrektermijn is in " + s.aftrekEinde + " voorbij; daarna krijgt u niets meer terug.");
     else if (!r.aftrekNa)
@@ -541,23 +562,45 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     return l;
   }
 
+  function pctKort(n) { return n.toLocaleString("nl-NL", { maximumFractionDigits: 2 }) + "%"; }
+
+  // vaste rijen per scenario, zodat de drie kaarten en het printoverzicht dezelfde opbouw hebben
+  function rijen(s, sc, r) {
+    return {
+      aannames: [
+        ["Rente bij verlengen", pctKort(sc.rente) + (sc.opslagAv ? " + " + pctKort(sc.opslagAv) + " opslag op aflossingsvrij" : "")],
+        ["Renteaftrek", sc.tekst.aftrek],
+        ["Woningwaarde", sc.tekst.waarde],
+        ["Schuld op 85 jaar", sc.tekst.grens],
+        ["Nieuw aflossingsvrij lenen", sc.tekst.av]
+      ],
+      uitkomst: [
+        ["Netto per maand nu", eur(r.nuNetto)],
+        ["Netto per maand na " + s.einde, eur(r.naNetto) + " <small>" + factor(r.naNetto, r.nuNetto) + "</small>", "groot"],
+        ["Bruto per maand na " + s.einde, eur(r.naBruto)],
+        ["Renteaftrek in " + s.einde, r.aftrekNa ? "Ja" : "Nee"],
+        ["Woningwaarde in " + s.einde, eur(r.woz) + " <small>schuld " + pct(r.ltv) + "</small>"]
+      ]
+    };
+  }
+  function lijst(items) {
+    return '<dl class="sk-lijst">' + items.map(function (x) {
+      return '<div class="sk-rij' + (x[2] ? " " + x[2] : "") + '"><dt>' + x[0] + "</dt><dd>" + x[1] + "</dd></div>";
+    }).join("") + "</dl>";
+  }
+
   function toon() {
     var s = lees();
     var uit = document.getElementById("sk-uitkomst");
     var html = "";
     ["mild", "strakker", "streng"].forEach(function (k) {
-      var sc = SCENARIO[k], r = reken(s, sc), sig = signalen(s, sc, r, k);
+      var sc = SCENARIO[k], r = reken(s, sc), sig = signalen(s, sc, r, k), rij = rijen(s, sc, r);
       html += '<div class="sk-kaart' + (k === gekozen ? " gekozen" : "") + '">' +
         '<div class="sk-kop"><span class="zeker ' + (k === "mild" ? "m" : k === "strakker" ? "w" : "b") + '">' + sc.naam + '</span></div>' +
-        '<p class="sk-uitleg">' + sc.uitleg + '</p>' +
-        '<dl class="sk-cijfers">' +
-        '<dt>Rentelast nu, netto per maand</dt><dd>' + eur(r.nuNetto) + '</dd>' +
-        '<dt>Na ' + s.einde + ', netto per maand</dt><dd class="groot">' + eur(r.naNetto) + ' <small>' + factor(r.naNetto, r.nuNetto) + '</small></dd>' +
-        '<dt>Bruto per maand na ' + s.einde + '</dt><dd>' + eur(r.naBruto) + '</dd>' +
-        '<dt>Renteaftrek in ' + s.einde + '</dt><dd>' + (r.aftrekNa ? "Ja" : "Nee") + '</dd>' +
-        '<dt>Woningwaarde in ' + s.einde + '</dt><dd>' + eur(r.woz) + ' <small>schuld ' + pct(r.ltv) + '</small></dd>' +
-        '</dl>' +
-        (sig.length ? '<ul class="sk-signalen">' + sig.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" : "") +
+        '<p class="sk-groep">Aannames</p>' + lijst(rij.aannames) +
+        '<p class="sk-groep">Uitkomst voor u</p>' + lijst(rij.uitkomst) +
+        '<div>' + (sig.length ? '<p class="sk-groep">Aandachtspunten</p><ul class="sk-signalen">' +
+          sig.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" : "") + "</div>" +
         '<button type="button" class="btn ' + (k === gekozen ? "" : "ghost") + '" data-kies="' + k + '" aria-pressed="' + (k === gekozen) + '">' +
         (k === gekozen ? "Dit scenario bespreken we" : "Dit scenario bespreken") + "</button></div>";
     });
@@ -596,16 +639,185 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   form.addEventListener("change", bijwerken);
   form.addEventListener("submit", function (e) { e.preventDefault(); toon(); });
 
+  // verloop per jaar, met dezelfde aannames als de kaarten
+  function verloop(s, sc) {
+    var tot = Math.min(NU + Math.max(1, 85 - s.leeftijd), NU + 50), jaren = [];
+    for (var y = NU; y <= tot; y++) {
+      var na = y >= s.einde;
+      var woz = s.woz * Math.pow(1 + sc.groei, y - NU) * (na ? 1 + sc.eenmalig : 1);
+      var brutoJaar = na ? (s.schuld - s.av) * sc.rente / 100 + s.av * (sc.rente + sc.opslagAv) / 100 : s.schuld * s.rente / 100;
+      var aftrek = y < s.aftrekEinde && (!na || y < sc.aftrekTot);
+      jaren.push({ jaar: y, leeftijd: s.leeftijd + (y - NU), netto: netto(brutoJaar, woz, aftrek) / 12,
+        bruto: brutoJaar / 12, woz: woz, ltv: woz ? s.schuld / woz * 100 : 0, aftrek: aftrek });
+    }
+    return jaren;
+  }
+
+  // lijngrafiek als inline SVG: trapjes per jaar, recessief raster, labels aan het eind van elke lijn
+  function rondeStap(max) {
+    var ruw = max / 4, macht = Math.pow(10, Math.floor(Math.log(ruw) / Math.LN10)), f = ruw / macht;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * macht;
+  }
+  function grafiek(o) {
+    var B = 680, H = 250, L = 64, R = 92, T = 14, O = 30, w = B - L - R, h = H - T - O;
+    var x0 = o.x[0], x1 = o.x[1], stapY = rondeStap(o.ymax || 1), ymax = Math.ceil((o.ymax || 1) / stapY) * stapY;
+    var X = function (v) { return L + (v - x0) / Math.max(1, x1 + 1 - x0) * w; };
+    var Y = function (v) { return T + h - v / ymax * h; };
+    var g = '<svg viewBox="0 0 ' + B + " " + H + '" width="100%" role="img" aria-label="' + o.titel + '" xmlns="http://www.w3.org/2000/svg" font-family="Arial,Helvetica,sans-serif">';
+    for (var i = 0; i * stapY <= ymax + 1e-9; i++) {
+      var v = stapY * i, yy = Y(v).toFixed(1);
+      g += '<line x1="' + L + '" x2="' + (L + w) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + (i ? "#e3e6ea" : "#9aa3ae") + '" stroke-width="1"/>' +
+        '<text x="' + (L - 6) + '" y="' + yy + '" dy="3.5" text-anchor="end" font-size="10" fill="#555">' + o.yfmt(v) + "</text>";
+    }
+    var stap = Math.max(1, Math.ceil((x1 - x0) / 8));
+    for (var j = x0; j <= x1; j += stap)
+      g += '<text x="' + X(j).toFixed(1) + '" y="' + (T + h + 16) + '" font-size="10" fill="#555">' + j + "</text>";
+    (o.markers || []).forEach(function (m) {
+      if (m.x < x0 || m.x > x1) return;
+      var xm = X(m.x).toFixed(1);
+      g += '<line x1="' + xm + '" x2="' + xm + '" y1="' + T + '" y2="' + (T + h) + '" stroke="#6b737d" stroke-width="1" stroke-dasharray="2 3"/>' +
+        '<text x="' + (+xm + 4) + '" y="' + (T + 10 + (m.rij || 0) * 12) + '" font-size="9.5" fill="#444">' + m.label + "</text>";
+    });
+    var eind = [];
+    o.lijnen.forEach(function (l) {
+      var d = "";
+      l.punten.forEach(function (p, k) {
+        var xa = X(p[0]), xb = X(p[0] + 1), yy = Y(p[1]);
+        d += (k ? "L" : "M") + xa.toFixed(1) + " " + yy.toFixed(1) + "H" + xb.toFixed(1);
+      });
+      g += '<path d="' + d + '" fill="none" stroke="' + l.kleur + '" stroke-width="' + (l.dik || 2) + '"' + (l.streep ? ' stroke-dasharray="' + l.streep + '"' : "") + ' stroke-linejoin="round"/>';
+      eind.push({ y: Y(l.punten[l.punten.length - 1][1]), naam: l.naam });
+    });
+    // eindlabels niet over elkaar
+    eind.sort(function (a, b) { return a.y - b.y; });
+    for (var e = 1; e < eind.length; e++) if (eind[e].y - eind[e - 1].y < 12) eind[e].y = eind[e - 1].y + 12;
+    eind.forEach(function (t) { g += '<text x="' + (L + w + 6) + '" y="' + t.y.toFixed(1) + '" dy="3.5" font-size="10" fill="#111">' + t.naam + "</text>"; });
+    return g + "</svg>";
+  }
+
   // printen via een nieuw venster (werkt ook als de pagina in een iframe staat)
-  document.getElementById("sk-print").addEventListener("click", function () {
-    var w = window.open("", "_blank");
-    if (!w) { alert("Uw browser blokkeert het printvenster. Sta pop-ups toe voor deze pagina."); return; }
-    var esc = function (t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; };
-    w.document.write('<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Gespreksagenda</title>' +
-      '<style>body{font-family:Arial,sans-serif;margin:32px;color:#111;line-height:1.5}h1{font-size:22px}li{margin-bottom:8px}p{color:#555;font-size:13px}</style></head><body>' +
-      "<h1>Gespreksagenda hypotheek</h1><ol>" + agendaItems().map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>" +
-      "<p>Indicatie op basis van uw eigen invoer en vereenvoudigde aannames. Geen advies. Hypotheek straks.</p></body></html>");
-    w.document.close(); w.focus(); w.print();
+  function keuzeTekst(id) { var el = document.getElementById(id); return el.options[el.selectedIndex].text; }
+  function rapport() {
+    var s = lees(), d = function (t) { return String(t).replace(/ ?<small>/g, " (").replace(/<\/small>/g, ")"); };
+    var esc = function (t) { var e = document.createElement("div"); e.textContent = t; return e.innerHTML; };
+    var sleutels = ["mild", "strakker", "streng"], data = {};
+    var KLEUR = { mild: "#7fa7d9", strakker: "#1d5fae", streng: "#0d2c57" }, STREEP = { mild: "6 4", strakker: "", streng: "" }, DIK = { mild: 2, strakker: 2, streng: 2.5 };
+    sleutels.forEach(function (k) {
+      var sc = SCENARIO[k], r = reken(s, sc);
+      data[k] = { sc: sc, r: r, rij: rijen(s, sc, r), sig: signalen(s, sc, r, k), jaren: verloop(s, sc) };
+    });
+    var G = data[gekozen], jaren = G.jaren, laatste = jaren[jaren.length - 1];
+    var invoer = [
+      ["Leeftijd (oudste aanvrager)", s.leeftijd + " jaar"], ["Hypotheekschuld nu", eur(s.schuld)],
+      ["Waarvan aflossingsvrij", eur(s.av)], ["WOZ-waarde nu", eur(s.woz)],
+      ["Huidige rente", pctKort(s.rente)], ["Einde rentevaste periode", s.einde],
+      ["Lening afgesloten in", s.start + " (renteaftrek tot " + s.aftrekEinde + ")"], ["Energielabel", keuzeTekst("sk-label")],
+      ["Fundering", keuzeTekst("sk-fundering")], ["Overstromingsgevoelig gebied", keuzeTekst("sk-water")],
+      ["Lasten bij overlijden", keuzeTekst("sk-overlijden")]
+    ];
+    var helft = Math.ceil(invoer.length / 2);
+    var invoerTabel = function (deel) {
+      return '<table class="invoer"><tbody>' + deel.map(function (x) { return "<tr><th>" + esc(x[0]) + "</th><td>" + esc(x[1]) + "</td></tr>"; }).join("") + "</tbody></table>";
+    };
+    var kop = "<tr><th></th>" + sleutels.map(function (k) {
+      return "<th" + (k === gekozen ? ' class="gekozen"' : "") + ">" + data[k].sc.naam + (k === gekozen ? " <small>(besproken)</small>" : "") + "</th>";
+    }).join("") + "</tr>";
+    var regels = function (soort, titel) {
+      return '<tr class="groep"><td colspan="4">' + titel + "</td></tr>" + data.mild.rij[soort].map(function (x, i) {
+        return "<tr><th>" + esc(x[0]) + "</th>" + sleutels.map(function (k) {
+          return "<td" + (k === gekozen ? ' class="gekozen"' : "") + ">" + esc(d(data[k].rij[soort][i][1])) + "</td>";
+        }).join("") + "</tr>";
+      }).join("");
+    };
+    var legenda = '<p class="legenda">' + sleutels.map(function (k) {
+      return '<span><svg width="26" height="8"><line x1="0" x2="26" y1="4" y2="4" stroke="' + KLEUR[k] + '" stroke-width="' + DIK[k] + '"' +
+        (STREEP[k] ? ' stroke-dasharray="' + STREEP[k] + '"' : "") + "/></svg> " + data[k].sc.naam + "</span>";
+    }).join("") + "</p>";
+    var ymaxNetto = Math.max.apply(null, sleutels.map(function (k) { return Math.max.apply(null, data[k].jaren.map(function (j) { return j.netto; })); }));
+    ymaxNetto = ymaxNetto * 1.08 || 100;
+    var ymaxLtv = Math.max(100, Math.max.apply(null, sleutels.map(function (k) { return Math.max.apply(null, data[k].jaren.map(function (j) { return j.ltv; })); })) * 1.08);
+    var markers = [{ x: s.einde, label: "einde rentevast " + s.einde }];
+    if (s.aftrekEinde > NU && s.aftrekEinde <= laatste.jaar && s.aftrekEinde !== s.einde) markers.push({ x: s.aftrekEinde, label: "einde aftrek " + s.aftrekEinde, rij: 1 });
+    var g1 = grafiek({ titel: "Netto maandlast per jaar", x: [NU, laatste.jaar], ymax: ymaxNetto, markers: markers,
+      yfmt: function (v) { return eur(v); },
+      lijnen: sleutels.map(function (k) { return { naam: data[k].sc.naam, kleur: KLEUR[k], streep: STREEP[k], dik: DIK[k], punten: data[k].jaren.map(function (j) { return [j.jaar, j.netto]; }) }; }) });
+    var g2 = grafiek({ titel: "Schuld als percentage van de woningwaarde", x: [NU, laatste.jaar], ymax: ymaxLtv,
+      markers: [{ x: s.einde, label: "einde rentevast " + s.einde }, { x: laatste.jaar, label: "u wordt " + laatste.leeftijd, rij: 1 }],
+      yfmt: function (v) { return Math.round(v) + "%"; },
+      lijnen: sleutels.map(function (k) { return { naam: data[k].sc.naam, kleur: KLEUR[k], streep: STREEP[k], dik: DIK[k], punten: data[k].jaren.map(function (j) { return [j.jaar, j.ltv]; }) }; }) });
+    var bijzonder = function (j) {
+      var t = [];
+      if (j.jaar === s.einde) t.push("einde rentevast");
+      if (j.jaar === s.aftrekEinde) t.push("einde aftrek");
+      if (j.leeftijd === 85) t.push("85 jaar");
+      return t.join(", ");
+    };
+    var tabelJaren = '<table class="jaren"><thead><tr><th>Jaar</th><th>Leeftijd</th>' +
+      sleutels.map(function (k) { return '<th class="getal' + (k === gekozen ? " gekozen" : "") + '">Netto p/m ' + data[k].sc.naam.toLowerCase() + "</th>"; }).join("") +
+      '<th class="getal">Woningwaarde*</th><th class="getal">Schuld/waarde*</th><th>Aftrek*</th><th>Moment</th></tr></thead><tbody>' +
+      jaren.map(function (j, i) {
+        var m = bijzonder(j);
+        return "<tr" + (m ? ' class="mark"' : "") + "><td>" + j.jaar + "</td><td>" + j.leeftijd + "</td>" +
+          sleutels.map(function (k) { return '<td class="getal' + (k === gekozen ? " gekozen" : "") + '">' + eur(data[k].jaren[i].netto) + "</td>"; }).join("") +
+          '<td class="getal">' + eur(j.woz) + '</td><td class="getal">' + pct(j.ltv) + "</td><td>" + (j.aftrek ? "ja" : "nee") + "</td><td>" + m + "</td></tr>";
+      }).join("") + "</tbody></table>";
+    var punten = sleutels.map(function (k) {
+      return '<div class="blok"><h3>' + data[k].sc.naam + "</h3><ul>" + data[k].sig.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
+    }).join("");
+    var tegels = [
+      ["Netto per maand nu", eur(G.r.nuNetto)],
+      ["Netto per maand na " + s.einde, eur(G.r.naNetto) + " <small>(" + factor(G.r.naNetto, G.r.nuNetto) + ")</small>"],
+      ["Schuld/waarde in " + laatste.jaar, pct(laatste.ltv) + " <small>(op " + laatste.leeftijd + " jaar)</small>"],
+      ["Schuld op 85 jaar", G.sc.grens85 ? "hoogstens " + Math.round(G.sc.grens85 * 100) + "% <small>van de waarde</small>" : "afgelost"]
+    ];
+    var vandaag = new Date().toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+    return '<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Rapport: uw hypotheek in drie scenario\'s</title><style>' +
+      "@page{size:A4;margin:15mm 14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;color:#111;font-size:10pt;line-height:1.45;margin:0 auto;max-width:182mm;padding:8mm 0}" +
+      "@media print{body{padding:0}}.kop{border-bottom:2.5pt solid #1d5fae;padding-bottom:6pt;margin-bottom:10pt}" +
+      ".merk{font-weight:bold;font-size:10pt;color:#1d5fae;letter-spacing:.02em}h1{font-size:18pt;margin:2pt 0;letter-spacing:-.01em}" +
+      ".datum{color:#555;margin:0;font-size:9pt}h2{font-size:12pt;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:1pt solid #111;break-after:avoid}" +
+      "h3{font-size:10pt;margin:6pt 0 2pt}.tegels{display:grid;grid-template-columns:repeat(4,1fr);gap:6pt;margin:8pt 0}" +
+      ".tegel{border:.75pt solid #c9d1db;border-top:2.5pt solid #1d5fae;padding:6pt 8pt}.tegel span{display:block;font-size:8pt;color:#555;text-transform:uppercase;letter-spacing:.04em}" +
+      ".tegel b{display:block;font-size:13pt;margin-top:2pt}.tegel small{font-size:8pt;font-weight:normal;color:#555}" +
+      "table{width:100%;border-collapse:collapse}tr{break-inside:avoid}th,td{text-align:left;vertical-align:top;padding:3.5pt 6pt;border-bottom:.5pt solid #c9d1db}" +
+      "thead th{border-bottom:1pt solid #111;font-size:9pt}tbody th{font-weight:normal;color:#444}.vergelijk tbody th{width:27%}" +
+      "td.gekozen,th.gekozen{background:#e8f0fa}tr.groep td{font-weight:bold;font-size:8.5pt;text-transform:uppercase;letter-spacing:.04em;padding-top:8pt;border-bottom:1pt solid #111;background:none}" +
+      ".tweekolom{display:grid;grid-template-columns:1fr 1fr;gap:0 14pt}.invoer th{width:52%}" +
+      ".figuur{break-inside:avoid;margin:6pt 0 10pt}.figuur h3{margin-bottom:0}.legenda{margin:2pt 0 0;font-size:9pt;color:#333}.legenda span{margin-right:14pt;white-space:nowrap}.legenda svg{vertical-align:middle}" +
+      ".jaren{font-size:8.5pt;break-inside:auto}.jaren td,.jaren th{padding:2pt 5pt}.jaren tr{break-inside:avoid}.getal{text-align:right;font-variant-numeric:tabular-nums}" +
+      "tr.mark td{font-weight:bold}.toel{font-size:8.5pt;color:#555;margin:4pt 0 0}.kolommen{columns:3;column-gap:14pt}.blok{break-inside:avoid}" +
+      "ul,ol{margin:2pt 0 6pt 15pt;padding:0}li{margin-bottom:3pt}.nieuwe-pagina{break-before:page}" +
+      ".voet{margin-top:14pt;padding-top:6pt;border-top:.5pt solid #c9d1db;color:#555;font-size:8.5pt}small{font-size:8pt;color:#555}</style></head><body>" +
+      '<div class="kop"><div class="merk">Hypotheek straks</div><h1>Uw hypotheek in drie scenario&#39;s</h1>' +
+      '<p class="datum">Rapport van ' + vandaag + " &middot; besproken scenario: <b>" + esc(G.sc.naam) + "</b> &middot; indicatie, geen advies</p></div>" +
+      '<div class="tegels">' + tegels.map(function (t) { return '<div class="tegel"><span>' + esc(t[0]) + "</span><b>" + t[1] + "</b></div>"; }).join("") + "</div>" +
+      '<h2>Uw situatie</h2><div class="tweekolom">' + invoerTabel(invoer.slice(0, helft)) + invoerTabel(invoer.slice(helft)) + "</div>" +
+      '<h2>De drie scenario&#39;s</h2><table class="vergelijk"><thead>' + kop + "</thead><tbody>" + regels("aannames", "Aannames") + regels("uitkomst", "Uitkomst voor u") + "</tbody></table>" +
+      '<h2 class="nieuwe-pagina">Verloop tot uw ' + laatste.leeftijd + "e</h2>" +
+      '<div class="figuur"><h3>Netto maandlast per jaar</h3>' + legenda + g1 + "</div>" +
+      '<div class="figuur"><h3>Schuld als percentage van de woningwaarde</h3>' + legenda + g2 +
+      '<p class="toel">De schuld blijft in deze berekening gelijk (geen aflossing); het percentage verandert door de woningwaarde in elk scenario.</p></div>' +
+      "<h2>Tabel per jaar</h2>" + tabelJaren +
+      '<p class="toel">* Woningwaarde, schuld/waarde en renteaftrek in het besproken scenario (' + esc(G.sc.naam) + "). Vetgedrukte jaren zijn een kantelmoment.</p>" +
+      '<h2>Aandachtspunten per scenario</h2><div class="kolommen">' + punten + "</div>" +
+      "<h2>Gespreksagenda (" + esc(G.sc.naam) + ")</h2><ol>" + agendaItems().map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>" +
+      "<h2>Zo is gerekend</h2><ul>" +
+      "<li>Rente over de huidige schuld, zonder aflossing. Tot het einde van de rentevaste periode met uw huidige rente, daarna met de scenariorente (en de opslag op het aflossingsvrije deel).</li>" +
+      "<li>Netto: aftrek tegen hoogstens 37,56% over de rente min het eigenwoningforfait (0,35% van de woningwaarde), zolang de aftrektermijn van 30 jaar loopt en het scenario aftrek toestaat.</li>" +
+      "<li>Woningwaarde: groei of daling volgens het scenario; in het strenge scenario een eenmalige daling bij het einde van de rentevaste periode.</li>" +
+      "<li>De scenario&#39;s zijn denkbeelden op basis van aankondigingen en adviezen van banken, toezichthouders en internationale organisaties (stand oktober 2026). Belasting over het forfait na afloop van de aftrek en de Wet Hillen tellen niet mee.</li></ul>" +
+      '<p class="voet">Indicatie op basis van uw eigen invoer en vereenvoudigde aannames. Het is geen advies en geen voorspelling; ' +
+      "u kunt er geen rechten aan ontlenen. Wat het voor u betekent, rekent een hypotheekadviseur met uw eigen gegevens voor u door. " +
+      "Bron: Hypotheek straks, jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/mijn-scenario.html</p></body></html>";
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-print]"), function (knop) {
+    knop.addEventListener("click", function () {
+      var w = window.open("", "_blank");
+      if (!w) { alert("Uw browser blokkeert het printvenster. Sta pop-ups toe voor deze pagina."); return; }
+      w.document.write(rapport());
+      w.document.close(); w.focus(); w.print();
+    });
   });
 
   vorige = JSON.stringify(lees());
