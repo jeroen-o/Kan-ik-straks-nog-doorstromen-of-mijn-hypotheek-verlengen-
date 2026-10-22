@@ -1,6 +1,8 @@
 # Kan ik straks nog doorstromen of mijn hypotheek verlengen?
 
-Onafhankelijke gesprekshulp over hypotheekregels **nu en straks**, in Nederland en Europa. Live op
+Gesprekshulp voor consumenten over hypotheekregels **nu en straks**, in Nederland en Europa. Een initiatief van de
+Nederlandse Vereniging van Hypothecair Planners (NVHP); huisstijl NVHP (navy `#234765`, lichtblauwe vlakken, logo in
+`nvhp-logo.png` en `nvhp-logo-wit.png`). Noem de site niet "onafhankelijk"; verwijs neutraal naar "een hypotheekadviseur". Live op
 https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/ (GitHub Pages vanaf `main`).
 
 Doel: een gesprek met de klant op gang brengen. De klant ziet wat er in Europa en in andere landen gebeurt, kiest
