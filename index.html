@@ -281,7 +281,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
    "description": "Vul uw situatie in en zie wat een mild, strakker of streng scenario betekent voor uw lasten, renteaftrek en mogelijkheden. Met gespreksagenda.",
    "inLanguage": "nl",
    "datePublished": "2026-10-19",
-   "dateModified": "2026-10-19",
+   "dateModified": "2026-10-22",
    "isPartOf": {
     "@type": "WebSite",
     "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
@@ -539,6 +539,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
                  weet: { mild: "", strakker: "Zoek uit wat er bij overlijden met de lasten gebeurt (polis, nabestaandenpensioen).", streng: "Zoek uit wat er bij overlijden met de lasten gebeurt; zonder dekking wegen banken het risico zwaar." },
                  alleen: { mild: "", strakker: "Alleenstaand: bij overlijden gaat de schuld naar de erfgenamen; met weinig overwaarde moet de woning verkocht worden.", streng: "Alleenstaand: de bank weegt mee of de schuld bij overlijden uit de verkoop kan worden afgelost." } };
     if (dood[s.overlijden] && dood[s.overlijden][sleutel]) l.push(dood[s.overlijden][sleutel]);
+    if (s.overlijden !== "alleen" && sleutel !== "mild")
+      l.push("Bij een scheiding moet een van u de hypotheek alleen kunnen dragen. Voor de minst verdienende partner is dat met de pensioentoets vaak lastig; laat het vooraf uitrekenen.");
+    if (sleutel === "streng" && (r.tekort85 > 0 || r.omzetten > 0))
+      l.push("Lukt het bij de bank niet, wees dan voorzichtig met constructies als verkopen en terughuren; die vallen vaak buiten het toezicht.");
     return l;
   }
 
