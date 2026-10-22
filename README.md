@@ -6,9 +6,9 @@ Live: https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek
 
 | Bestand | Inhoud |
 | --- | --- |
-| `index.html` | Gesprekshulp: eigen situatie in drie scenario's (mild, strakker, streng) met printbare gespreksagenda |
+| `mijn-scenario.html` | Gesprekshulp: eigen situatie in drie scenario's (mild, strakker, streng) met printbare gespreksagenda |
 | `regels.html` | Hypotheekregels nu en straks: bankbeleid, renteaftrek, Europa-vergelijking, feitencheck |
-| `scenario-2035.html` | Toekomstscenario met zekerheidslabels, stressscenario 2030–2035, rol van de ECB via kapitaal |
+| `index.html` | Homepage: toekomstscenario met zekerheidslabels, stressscenario 2030–2035, rol van de ECB via kapitaal |
 | `europa.html` | Europese beleidslijnen en wat andere landen al doen |
 | `verhuisscenario.html` | Rekentool: van aflossingsvrij naar annuïtair bij verhuizing, tien scenario's |
 | `rekenhulpen.html` | Vier rekenhulpen van Hypotheekbond, geladen na een klik |

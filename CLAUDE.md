@@ -26,9 +26,10 @@ https://demo-hypotheek-kantoor.nl/). Die site gaat over een fictief hypotheekadv
 ## Werkwijze
 
 - Elke pagina is één zelfstandig HTML-bestand: CSS en JavaScript inline, geen build-stap, geen externe scripts of
-  API's, geen cookies, geen `localStorage`. Pagina's: `index.html` (gesprekshulp), `regels.html`,
-  `scenario-2035.html`, `europa.html`, `verhuisscenario.html` (rekentool, eigen CSS gescoped onder `#vs`),
-  `rekenhulpen.html` (Hypotheekbond-tools die pas na een klik laden; de enige externe bron), plus `404.html`.
+  API's, geen cookies, geen `localStorage`. Pagina's: `index.html` (homepage: scenario 2035), `mijn-scenario.html`
+  (gesprekshulp), `regels.html`, `europa.html`, `verhuisscenario.html` (rekentool, eigen CSS gescoped onder `#vs`),
+  `rekenhulpen.html` (Hypotheekbond-tools die pas na een klik laden; de enige externe bron), plus `404.html`
+  en `scenario-2035.html` (alleen een doorverwijzing naar de homepage).
 - Printen via `window.open()` (werkt ook in een iframe, zoals Google Sites), nooit `window.print()` direct.
 - Nederlands, u-vorm, Nederlandse getalnotatie (`&euro;&nbsp;1.234,56`); euro-invoervelden met duizendtalpunten.
 - Bij nieuwe of gewijzigde pagina's: `sitemap.xml`, `llms.txt`, canonical, `og:*` en JSON-LD bijwerken.
