@@ -195,6 +195,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 /* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
 .sk-titel{padding-top:27px}
 .sk-invoer .field{margin-bottom:12px}
+.sk-invoer h3{font-size:15px;margin:20px 0 4px;padding-top:16px;border-top:1px solid var(--line)}
+.sk-invoer h3 + .hint{margin:0 0 12px}
 /* Drie kaarten met dezelfde rijen; subgrid houdt elke rij in de drie kaarten op gelijke hoogte. */
 .sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
 .sk-kaart{display:grid;grid-row:span 15;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--line);
@@ -343,7 +345,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <header class="site-kop">
   <div class="wrap">
     <a href="index.html" class="logo">Hypotheek <span>straks</span></a>
-    <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Scenario 2035</a><a href="mijn-scenario.html" aria-current="page">Uw scenario</a><a href="regels.html">Regels nu en straks</a><a href="europa.html">Europa</a><a href="verhuisscenario.html">Verhuisscenario</a><a href="rekenhulpen.html">Rekenhulpen</a></nav><script>/* Op een smal scherm schuift het menu naar de actieve pagina. */(function(){var a=document.querySelector(".site-nav [aria-current]");if(a){var n=a.parentNode;if(n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-24;}})();</script>
+    <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Scenario 2035</a><a href="mijn-scenario.html" aria-current="page">Uw scenario</a><a href="verhuisscenario.html">Uw verhuisscenario</a><a href="regels.html">Regels nu en straks</a><a href="europa.html">Europa</a><a href="rekenhulpen.html">Rekenhulpen</a></nav><script>/* Op een smal scherm schuift het menu naar de actieve pagina. */(function(){var a=document.querySelector(".site-nav [aria-current]");if(a){var n=a.parentNode;if(n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-24;}})();</script>
   </div>
 </header>
 
@@ -380,6 +382,9 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <div class="field"><label for="sk-start">Jaar waarin de lening is afgesloten</label>
           <input id="sk-start" type="number" inputmode="numeric" min="1970" max="2026" value="2004">
           <p class="hint">Bepaalt tot wanneer u renteaftrek heeft. Voor een lening van v&oacute;&oacute;r 2001 is dat tot 2031.</p></div>
+        <div class="field"><label for="sk-looptijd">Einde looptijd aflossingsvrij deel (jaar)</label>
+          <input id="sk-looptijd" type="number" inputmode="numeric" min="2026" max="2080" value="2034">
+          <p class="hint">Staat in uw hypotheekoverzicht; vaak 30 jaar na het afsluiten. Dit is iets anders dan het einde van de rentevaste periode.</p></div>
         <div class="field"><label for="sk-label">Energielabel</label>
           <select id="sk-label"><option value="ab">A of beter, of B</option><option value="cd" selected>C of D</option><option value="efg">E, F of G</option></select></div>
         <div class="field"><label for="sk-fundering">Fundering</label>
@@ -390,6 +395,15 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <div class="field"><label for="sk-overlijden">Kan de achterblijvende partner de lasten dragen bij overlijden?</label>
           <select id="sk-overlijden"><option value="ja">Ja, of de schuld wordt dan afgelost</option><option value="weet" selected>Weet ik niet</option><option value="nee">Nee</option><option value="alleen">Ik ben alleenstaand</option></select>
           <p class="hint">Bijvoorbeeld via een overlijdensrisicoverzekering of nabestaandenpensioen.</p></div>
+        <h3>Inkomen</h3>
+        <p class="hint">Mag leeg blijven. De gesprekshulp gebruikt inkomen alleen voor een grove indicatie, niet als
+          toets van wat u kunt lenen of dragen.</p>
+        <div class="field"><label for="sk-pensioen">Verwacht bruto inkomen na pensioen, samen (per jaar)</label>
+          <input id="sk-pensioen" type="text" inputmode="numeric" data-euro value="" placeholder="bijvoorbeeld 40.000">
+          <p class="hint">Inclusief AOW. Zie <a href="https://www.mijnpensioenoverzicht.nl" target="_blank" rel="noopener">mijnpensioenoverzicht.nl</a>.</p></div>
+        <div class="field"><label for="sk-partner">Bruto jaarinkomen van de minst verdienende partner</label>
+          <input id="sk-partner" type="text" inputmode="numeric" data-euro value="" placeholder="bijvoorbeeld 30.000">
+          <p class="hint">Voor het aandachtspunt bij een scheiding. Leeg laten als u alleenstaand bent.</p></div>
         <p class="hint">Uw gegevens blijven in uw browser. Er wordt niets opgeslagen of verstuurd.</p>
         <p class="sk-naar"><a href="#sk-uitkomst-titel" class="btn">Bekijk de drie scenario&#39;s</a></p>
       </form>
@@ -423,6 +437,11 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <li>We rekenen met de rente over uw huidige schuld, zonder aflossing. Zo ziet u het effect van de rente zelf.</li>
         <li>Netto: aftrek tegen hoogstens 37,56% over de rente min het eigenwoningforfait (0,35% van de WOZ-waarde),
           zolang uw aftrektermijn van 30 jaar loopt. Belasting over het forfait na afloop en de Wet Hillen tellen niet mee.</li>
+        <li>Bij het einde van de looptijd van het aflossingsvrije deel vergelijkt de gesprekshulp dat deel met de
+          woningwaarde in dat jaar en met de grens van 50% die ABN AMRO en ING nu bij herfinancieren hanteren.</li>
+        <li>Inkomen: de netto rente na de rentevaste periode als percentage van uw verwachte bruto inkomen na pensioen, en
+          de bruto rente als percentage van het inkomen van de minst verdienende partner. Dat is een grove indicatie
+          zonder aflossing en andere woonlasten, geen toets volgens de leennormen.</li>
         <li>De grens op 85 jaar vergelijkt uw aflossingsvrije deel met het percentage van de woningwaarde dat in het
           scenario is toegestaan. Dat speelt bij een nieuwe hypotheek, verhuizen of oversluiten.</li>
         <li>De drie scenario&#39;s zijn denkbeelden, gebaseerd op wat banken, toezichthouders en internationale
@@ -493,7 +512,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   function lees() {
     var s = {
       leeftijd: getal("sk-leeftijd"), schuld: getal("sk-schuld"), av: getal("sk-av"), woz: getal("sk-woz"),
-      rente: getal("sk-rente"), einde: getal("sk-einde"), start: getal("sk-start"),
+      rente: getal("sk-rente"), einde: getal("sk-einde"), start: getal("sk-start"), looptijd: getal("sk-looptijd"),
+      pensioen: getal("sk-pensioen"), partnerInk: getal("sk-partner"),
       label: keuze("sk-label"), fundering: keuze("sk-fundering"), water: keuze("sk-water"), overlijden: keuze("sk-overlijden")
     };
     if (s.av > s.schuld) s.av = s.schuld;
@@ -527,12 +547,31 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     };
   }
 
+  function wozIn(s, sc, jaar) {
+    return s.woz * Math.pow(1 + sc.groei, jaar - NU) * (jaar >= s.einde ? 1 + sc.eenmalig : 1);
+  }
   function signalen(s, sc, r, sleutel) {
     var l = [];
     if (s.leeftijd >= 52 || r.leeftijdNa >= 52)
       l.push("Uw verwachte pensioeninkomen telt mee bij een nieuwe hypotheek: wettelijk vanaf 10 jaar voor de AOW-leeftijd, bij Rabobank vanaf maart 2027 al vanaf 15 jaar.");
     if (s.av > 0 && sleutel !== "streng")
       l.push("Alleen de rente verlengen verandert niets aan uw aflossingsvrije deel. De nieuwe grenzen gelden bij een nieuwe hypotheek, verhuizen, oversluiten of verhogen.");
+    // einde looptijd van het aflossingsvrije deel
+    if (s.av > 0 && s.looptijd >= NU) {
+      var lt = s.looptijd, wl = wozIn(s, sc, lt), deel = wl ? s.av / wl * 100 : 0, boven = Math.max(0, s.av - 0.5 * wl);
+      var kop = "Uw aflossingsvrije deel loopt af in " + lt + " (u bent dan " + (s.leeftijd + lt - NU) + "), ongeveer " + pct(deel) + " van de woningwaarde in dit scenario.";
+      if (sleutel === "streng")
+        l.push(kop + " In dit scenario moet het dan volledig worden afgelost of omgezet: " + eur(s.av) + ".");
+      else
+        l.push(kop + " Bij ABN AMRO en ING kunt u nu nog herfinancieren tot 50%" + (lt < 2030 ? ", bij ASN Bank tot 1 januari 2030 ook" : "") +
+          (boven > 0 ? "; ongeveer " + eur(boven) + " daarboven moet dan aflossend worden." : "; dat past binnen die grens."));
+    }
+    // inkomen na pensioen (grove indicatie, geen toets)
+    if (s.pensioen > 0) {
+      var q = r.naNetto * 12 / s.pensioen * 100;
+      l.push("Na uw pensioen is alleen de netto rente in dit scenario al ongeveer " + pct(q) + " van uw verwachte bruto inkomen" +
+        (q >= 30 ? ". Dat is een groot deel; laat een hypotheekadviseur toetsen of dat met aflossing en andere woonlasten past." : "."));
+    }
     if (!r.aftrekNa && s.einde >= s.aftrekEinde)
       l.push("Uw aftrektermijn is in " + s.aftrekEinde + " voorbij; daarna krijgt u niets meer terug.");
     else if (!r.aftrekNa)
@@ -555,7 +594,12 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
                  weet: { mild: "", strakker: "Zoek uit wat er bij overlijden met de lasten gebeurt (polis, nabestaandenpensioen).", streng: "Zoek uit wat er bij overlijden met de lasten gebeurt; zonder dekking wegen banken het risico zwaar." },
                  alleen: { mild: "", strakker: "Alleenstaand: bij overlijden gaat de schuld naar de erfgenamen; met weinig overwaarde moet de woning verkocht worden.", streng: "Alleenstaand: de bank weegt mee of de schuld bij overlijden uit de verkoop kan worden afgelost." } };
     if (dood[s.overlijden] && dood[s.overlijden][sleutel]) l.push(dood[s.overlijden][sleutel]);
-    if (s.overlijden !== "alleen" && sleutel !== "mild")
+    if (s.overlijden !== "alleen" && s.partnerInk > 0) {
+      var qp = r.naBruto * 12 / s.partnerInk * 100;
+      if (sleutel !== "mild" || qp >= 30)
+        l.push("Bij een scheiding: de bruto rente na " + s.einde + " is ongeveer " + pct(qp) + " van het inkomen van de minst verdienende partner" +
+          (qp >= 30 ? ". De woning alleen houden wordt dan lastig zonder eigen geld of aflossen; laat het vooraf uitrekenen." : "."));
+    } else if (s.overlijden !== "alleen" && sleutel !== "mild")
       l.push("Bij een scheiding moet een van u de hypotheek alleen kunnen dragen. Voor de minst verdienende partner is dat met de pensioentoets vaak lastig; laat het vooraf uitrekenen.");
     if (sleutel === "streng" && (r.tekort85 > 0 || r.omzetten > 0))
       l.push("Lukt het bij de bank niet, wees dan voorzichtig met constructies als verkopen en terughuren; die vallen vaak buiten het toezicht.");
@@ -618,6 +662,9 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       "Rentelast nu " + eur(r.nuNetto) + " netto per maand; na " + s.einde + " " + eur(r.naNetto) + " (" + factor(r.naNetto, r.nuNetto) + ").",
       "Wat doen we vóór " + s.einde + ": verlengen, oversluiten, extra aflossen of verhuizen?"
     ].concat(sig);
+    items.push("Spaargeld en vermogen: kunt u een deel aflossen, nu of bij het einde van de looptijd?");
+    items.push("Wat gebeurt er met uw inkomen bij werkloosheid of arbeidsongeschiktheid?");
+    items.push("Andere schulden, zoals een studieschuld of een persoonlijke lening, tellen mee bij een nieuwe hypotheek.");
     items.push("Uw eigen situatie: pensioenoverzicht, einddatum van elk leningdeel en de polis van uw opstalverzekering meenemen.");
     return items;
   }
@@ -713,7 +760,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       ["Huidige rente", pctKort(s.rente)], ["Einde rentevaste periode", s.einde],
       ["Lening afgesloten in", s.start + " (renteaftrek tot " + s.aftrekEinde + ")"], ["Energielabel", keuzeTekst("sk-label")],
       ["Fundering", keuzeTekst("sk-fundering")], ["Overstromingsgevoelig gebied", keuzeTekst("sk-water")],
-      ["Lasten bij overlijden", keuzeTekst("sk-overlijden")]
+      ["Lasten bij overlijden", keuzeTekst("sk-overlijden")],
+      ["Einde looptijd aflossingsvrij deel", s.looptijd || "niet ingevuld"],
+      ["Inkomen na pensioen (bruto, samen)", s.pensioen ? eur(s.pensioen) : "niet ingevuld"],
+      ["Inkomen minst verdienende partner", s.partnerInk ? eur(s.partnerInk) : "niet ingevuld"]
     ];
     var helft = Math.ceil(invoer.length / 2);
     var invoerTabel = function (deel) {
