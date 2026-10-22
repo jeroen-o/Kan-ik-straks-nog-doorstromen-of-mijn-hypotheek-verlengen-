@@ -125,6 +125,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 .card ul{margin:8px 0 0 18px}
 .card li{margin-bottom:4px}
 .card :is(p,ul) .zeker{vertical-align:1px}
+.card .zeker-rij{margin:0 0 12px}
 
 /* ---- opvallend blok ---- */
 .note{background:var(--tint);border-left:3px solid var(--primary);padding:16px 24px;font-size:15px;color:var(--text);
@@ -280,7 +281,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
    "description": "Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.",
    "inLanguage": "nl",
    "datePublished": "2026-10-19",
-   "dateModified": "2026-10-19",
+   "dateModified": "2026-10-22",
    "isPartOf": {
     "@type": "WebSite",
     "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
@@ -318,7 +319,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
    "headline": "Hypotheekregels in Europa",
    "inLanguage": "nl",
    "datePublished": "2026-10-19",
-   "dateModified": "2026-10-19",
+   "dateModified": "2026-10-22",
    "author": {
     "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
    },
@@ -353,7 +354,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <header class="pagehead">
   <div class="wrap">
     <p class="crumbs"><a href="index.html">Home</a> &rsaquo; <a href="regels.html">Regels nu en straks</a> &rsaquo; Europa</p>
-    <div class="eyebrow">Europa &middot; stand 19 oktober 2026</div>
+    <div class="eyebrow">Europa &middot; stand 22 oktober 2026</div>
     <h1>Hypotheekregels in Europa</h1>
     <p>Wat in Nederland verandert, komt vaak uit Europa of is elders al gewoon. Hier leest u waar in Europa over
        gesproken wordt, wat andere landen al doen en wat dat voor uw hypotheek kan betekenen.</p>
@@ -364,42 +365,54 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   <div class="wrap">
     <div class="eyebrow">Waar wordt over gesproken</div>
     <h2>Zes Europese lijnen die uw hypotheek raken</h2>
+    <p class="sub">Bij elke lijn staat hoe zeker die is: <b>besloten</b> (staat vast in regels of toezicht), <b>waarschijnlijk</b> of <b>mogelijk</b> (voorstel, advies of discussie).</p>
     <div class="cards">
       <div class="card">
         <h3>Kapitaaleisen voor banken</h3>
-        <p>De ECB houdt toezicht op de grootbanken en bepaalt hoeveel kapitaal zij aanhouden. Door de Europese regels
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De ECB houdt toezicht op de grootbanken, keurt hun rekenmodellen goed en kan extra kapitaal eisen. Door de Europese regels
            (CRR3) mag het kapitaal uit eigen rekenmodellen niet te ver onder de standaardmethode komen; die ondergrens
            loopt op tot 2030. Een hypotheek met weinig overwaarde, lasten die na het pensioen niet te dragen zijn, een
            schuld die bij overlijden blijft staan, of een woning met een slecht label of klimaatrisico, kost de bank
-           meer kapitaal en u dus meer rente.</p>
+           meer kapitaal. Dat kan doorwerken in een hogere rente (waarschijnlijk).</p>
       </div>
       <div class="card">
         <h3>Betaalbaar, ook na uw pensioen</h3>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
         <p>De Europese richtsnoeren voor kredietverlening (EBA) vragen banken om te beoordelen of u kunt blijven betalen
-           als de looptijd tot na uw pensioen loopt, en om niet te lenen op de waarde van de woning alleen. Daaruit
-           volgen de pensioentoets en de grenzen op 85 jaar.</p>
+           als de looptijd tot na uw pensioen loopt, en om niet te lenen op de waarde van de woning alleen. Nederlandse
+           banken vullen dat onder meer in met een pensioentoets en grenzen op 85 jaar; dat is bankbeleid, geen
+           Europese regel.</p>
       </div>
       <div class="card">
         <h3>Klimaat in de waardering</h3>
-        <p>De ECB verwacht dat banken ligging en energie-effici&euml;ntie meewegen in de waarde van het onderpand. Uit
-           ECB-onderzoek blijkt dat banken in Europa al een hogere rente vragen bij fysiek klimaatrisico.</p>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De ECB verwacht sinds 2020 dat banken ligging en energie-effici&euml;ntie meewegen in de waarde van het
+           onderpand. Een ECB-werkdocument (2025) vindt dat banken gemiddeld al een kleine renteopslag lijken te vragen
+           bij fysiek klimaatrisico, met grote verschillen per bank. Dat is onderzoek, geen standpunt van de ECB.</p>
       </div>
       <div class="card">
         <h3>Zuiniger woningen</h3>
-        <p>De Europese gebouwenrichtlijn (EPBD IV) vraagt dat het energieverbruik van de woningvoorraad daalt, met
-           renovatiepaspoorten en een herzien energielabel. Een slecht label wordt daardoor steeds meer een
-           financieel risico.</p>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De Europese gebouwenrichtlijn (EPBD IV) vraagt dat het gemiddelde energieverbruik van de woningvoorraad
+           daalt: 16% in 2030 en 20 tot 22% in 2035 ten opzichte van 2020. Dat is een doel voor de hele voorraad, geen
+           plicht per woning. Er komen renovatiepaspoorten en een herzien energielabel. Een slecht label kan daardoor
+           steeds meer een financieel risico worden (waarschijnlijk).</p>
       </div>
       <div class="card">
         <h3>Betaalbaar wonen en groene hypotheken</h3>
-        <p>De Europese Commissie werkt aan een plan voor betaalbaar wonen. Daarin wordt ook een herziening van de
-           Europese hypotheekrichtlijn verwacht, onder meer om groene hypotheken te stimuleren. Een wetsvoorstel is er nog
-           niet.</p>
+        <p class="zeker-rij"><span class="zeker m">Mogelijk</span></p>
+        <p>De Europese Commissie presenteerde op 16 december 2025 haar eerste plan voor betaalbaar wonen. Een
+           herziening van de Europese hypotheekrichtlijn, onder meer om groene hypotheken te stimuleren, wordt besproken
+           maar is nog geen wetsvoorstel (stand oktober 2026). Die herziening is niet in een primaire bron van de
+           Commissie gecontroleerd.</p>
       </div>
       <div class="card">
         <h3>Renteaftrek afbouwen</h3>
-        <p>Het IMF adviseerde Nederland in mei 2026 de renteaftrek geleidelijk af te bouwen en de maximale lening te
-           verlagen naar 90% van de woningwaarde. Ook de OESO adviseert afbouw. Het zijn adviezen; Den Haag beslist.</p>
+        <p class="zeker-rij"><span class="zeker m">Mogelijk</span></p>
+        <p>De IMF-staf adviseerde Nederland op 13 mei 2026 de renteaftrek geleidelijk af te bouwen en de maximale lening
+           te verlagen naar 90% van de woningwaarde. Ook de OESO adviseerde in juli 2025 de aftrek te beperken. Het zijn
+           adviezen; Den Haag beslist.</p>
       </div>
     </div>
   </div>
@@ -416,10 +429,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <caption>Renteaftrek, aflossing en leengrenzen in een aantal Europese landen. Bronnen onderaan de pagina.</caption>
         <thead><tr><th scope="col">Land</th><th scope="col">Renteaftrek eigen woning</th><th scope="col">Aflossing en leengrenzen</th><th scope="col">Wat Nederland ervan kan leren</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; banken: aflossingsvrij tot 30%</td><td data-label="Wat Nederland ervan kan leren">&ndash;</td></tr>
-          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing, vaak v&oacute;&oacute;r ongeveer 75 jaar</td><td data-label="Wat Nederland ervan kan leren">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
-          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% sinds 1 april 2026; de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat Nederland ervan kan leren">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
-          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Nee, afgebouwd</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat Nederland ervan kan leren">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
+          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; grote banken: aflossingsvrij hoogstens 30% bij nieuwe hypotheken (sinds mei en juni 2026)</td><td data-label="Wat Nederland ervan kan leren">&ndash;</td></tr>
+          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing, vaak rond 75 jaar of binnen de statistische levensverwachting (bankbeleid)</td><td data-label="Wat Nederland ervan kan leren">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
+          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% bij aankoop sinds 1 april 2026 (bijlenen hoogstens 80%); de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat Nederland ervan kan leren">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
+          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Gewone aftrek afgebouwd; een tijdelijke belastingkorting op gestegen rente (Mortgage Interest Tax Credit) is verlengd tot en met 2026</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat Nederland ervan kan leren">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
           <tr><th scope="row">Belgi&euml;</th><td data-label="Renteaftrek eigen woning">Vlaanderen: geen woonbonus meer voor nieuwe leningen sinds 2020</td><td data-label="Aflossing en leengrenzen">De centrale bank stelt verwachtingen aan leningen met een hoge waarde; banken hanteren eigen leeftijdsbeleid</td><td data-label="Wat Nederland ervan kan leren">Afschaffen kan voor nieuwe leningen, met behoud voor bestaande</td></tr>
           <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Renteaftrek eigen woning">Nee, afgeschaft in 2000</td><td data-label="Aflossing en leengrenzen">Grote banken: meestal afgelost tussen 75 en 80 jaar; gespecialiseerde aanbieders gaan verder</td><td data-label="Wat Nederland ervan kan leren">Leeftijdsgrenzen zijn bankbeleid, maar wel marktstandaard</td></tr>
           <tr><th scope="row">Denemarken</th><td data-label="Renteaftrek eigen woning">Ja, tegen een lager tarief dan in Nederland</td><td data-label="Aflossing en leengrenzen">Uitgebreid systeem van hypotheekobligaties; aflossingsvrij is mogelijk maar aan voorwaarden gebonden</td><td data-label="Wat Nederland ervan kan leren">Aftrek kan blijven, maar met minder fiscaal voordeel</td></tr>
@@ -435,8 +448,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <h2>Wat dit voor uw situatie kan betekenen</h2>
     <div class="prose">
       <p>Nederland is in Europa een uitzondering: ruime renteaftrek, lenen tot de volle woningwaarde en een groot deel
-         aflossingsvrij. De richting elders is duidelijk: minder fiscaal voordeel, meer aflossen en grenzen op inkomen,
-         waarde en leeftijd. Hoe snel en hoe streng Nederland volgt, is onzeker. Daarom werkt deze site met drie scenario&#39;s.</p>
+         aflossingsvrij. In veel landen gaat de richting naar minder fiscaal voordeel, meer aflossen en grenzen op
+         inkomen, waarde en leeftijd (waarschijnlijk), al versoepelen sommige landen ook weer, zoals Zweden in 2026. Hoe snel en hoe streng Nederland volgt, is onzeker. Daarom werkt deze site met drie scenario&#39;s.</p>
     </div>
     <p><a href="index.html" class="btn">Bekijk uw situatie in drie scenario&#39;s</a></p>
   </div>
@@ -454,11 +467,18 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <li><a href="https://www.congress.gov/crs-product/R46429" target="_blank" rel="noopener">Congressional Research Service: mortgage interest deduction, internationale vergelijking</a></li>
         <li><a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2021/12/mortgage-finance-across-oecd-countries_3ea2ed89/f97d7fe0-en.pdf" target="_blank" rel="noopener">OESO: Mortgage finance across OECD countries</a></li>
         <li><a href="https://www.oecd.org/content/dam/oecd/en/data/datasets/affordable-housing-database/ph2-2-tax-relief-for-home-ownership.pdf" target="_blank" rel="noopener">OESO: Tax relief for home ownership</a></li>
+        <li><a href="https://housing.ec.europa.eu/european-affordable-housing-plan_en" target="_blank" rel="noopener">Europese Commissie: European Affordable Housing Plan (16 december 2025)</a></li>
+        <li><a href="https://www.pwc.ie/issues/budget/key-measures.html" target="_blank" rel="noopener">PwC: Budget 2026 Ierland, Mortgage Interest Tax Credit</a></li>
         <li><a href="https://housingnotprofit.org/statement-the-european-unions-affordable-housing-plan/" target="_blank" rel="noopener">European Action Coalition: over het Europese plan voor betaalbaar wonen</a></li>
         <li><a href="https://www.finance-watch.org/policy-portal/retail-inclusion/a-revised-mortgage-credit-directive/" target="_blank" rel="noopener">Finance Watch: een herziene hypotheekrichtlijn</a></li>
+        <li><a href="https://www.imf.org/en/news/articles/2026/05/13/mcs-051326-the-netherlands-staff-concluding-statement-for-the-2026-aiv-consultation-mission" target="_blank" rel="noopener">IMF: staff concluding statement Nederland, 13 mei 2026</a></li>
+        <li><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-netherlands-2025_2dd1f4aa-en.html" target="_blank" rel="noopener">OESO: Economic Survey Netherlands 2025 (juli 2025)</a></li>
+        <li><a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.202011finalguideonclimate-relatedandenvironmentalrisks~58213f6564.en.pdf" target="_blank" rel="noopener">ECB: Guide on climate-related and environmental risks (november 2020)</a></li>
+        <li><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3036~43450e2b8f.en.pdf" target="_blank" rel="noopener">ECB Working Paper 3036 (werkdocument, geen ECB-standpunt)</a></li>
         <li><a href="https://nltimes.nl/2026/05/16/imf-urges-netherlands-overhaul-rent-rules-ease-housing-crisis" target="_blank" rel="noopener">NL Times: IMF-advies over de Nederlandse woningmarkt</a></li>
         <li><a href="https://www.biallo.de/baufinanzierung/ratgeber/senioren/" target="_blank" rel="noopener">Biallo: Baufinanzierung f&uuml;r Senioren (Duitsland)</a></li>
         <li><a href="https://www.brightboxfs.co.uk/insights/maximum-age-mortgage-uk/" target="_blank" rel="noopener">Brightbox: maximum age for a mortgage in the UK</a></li>
+        <li>Niet in een primaire bron gecontroleerd: de beoogde herziening van de Europese hypotheekrichtlijn en de verwachtingen van de Belgische centrale bank.</li>
         <li>ECB, EBA en CRR3: zie de bronnen bij <a href="regels.html#bronnen">regels nu en straks</a>.</li>
       </ul>
     </div>

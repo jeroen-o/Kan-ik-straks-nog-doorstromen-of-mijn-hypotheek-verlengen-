@@ -125,6 +125,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 .card ul{margin:8px 0 0 18px}
 .card li{margin-bottom:4px}
 .card :is(p,ul) .zeker{vertical-align:1px}
+.card .zeker-rij{margin:0 0 12px}
 
 /* ---- opvallend blok ---- */
 .note{background:var(--tint);border-left:3px solid var(--primary);padding:16px 24px;font-size:15px;color:var(--text);
@@ -280,7 +281,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
    "description": "Aflossingsvrij max. 30%, grens op 85 jaar, renteaftrek 2027: wat verandert er bij Rabobank, ABN AMRO en de fiscus, en wat betekent dat voor verlengen?",
    "inLanguage": "nl",
    "datePublished": "2026-10-18",
-   "dateModified": "2026-10-18",
+   "dateModified": "2026-10-22",
    "isPartOf": {
     "@type": "WebSite",
     "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
@@ -632,8 +633,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <div class="eyebrow">Europa</div>
     <h2>Moet een hypotheek op uw 85e zijn afgelost, ook elders in Europa?</h2>
     <p class="sub">Een wettelijke leeftijdsgrens bestaat nergens in deze landen; het is bankbeleid. Wel verplicht de
-       Europese hypotheekrichtlijn elke kredietgever om te beoordelen of u de lening kunt blijven betalen, ook na uw
-       pensioen. In veel landen ligt de grens die banken hanteren lager dan in Nederland.</p>
+       Europese hypotheekrichtlijn elke kredietgever tot een kredietwaardigheidstoets; de EBA-richtsnoeren vragen daarbij
+       expliciet te kijken naar de periode na uw pensioen. In veel landen ligt de grens die banken hanteren lager dan in Nederland.</p>
     <div class="tabelwrap">
       <table class="tbl regels">
         <caption>Indicatief: gangbare bankpraktijk, geen wettelijke regels. Bronnen onderaan de pagina.</caption>
@@ -643,7 +644,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
           <tr><th scope="row">Duitsland</th><td data-label="Wettelijke grens">Nee; de bank moet beoordelen of u kunt terugbetalen</td><td data-label="Gangbare bankpraktijk">Vaak volledig afgelost rond 75 jaar of binnen de levensverwachting; sommige banken staan een kleine restschuld toe</td></tr>
           <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Wettelijke grens">Nee</td><td data-label="Gangbare bankpraktijk">Grote banken meestal 75 tot 80 jaar aan het eind van de looptijd; gespecialiseerde aanbieders tot 85 jaar of ouder</td></tr>
           <tr><th scope="row">Belgi&euml;</th><td data-label="Wettelijke grens">Nee</td><td data-label="Gangbare bankpraktijk">Strikt intern beleid per bank, gebaseerd op leeftijd en terugbetalingscapaciteit</td></tr>
-          <tr><th scope="row">Frankrijk en Spanje</th><td data-label="Wettelijke grens">Nee</td><td data-label="Gangbare bankpraktijk">Volgens oudere bronnen vaak afgelost tussen 75 en 80 jaar</td></tr>
+          <tr><th scope="row">Frankrijk</th><td data-label="Wettelijke grens">Nee</td><td data-label="Gangbare bankpraktijk">Banken eisen vrijwel altijd een overlijdensrisicoverzekering tot het einde van de looptijd. Daardoor ligt de eindleeftijd meestal tussen 70 en 80 jaar; tot 85 jaar kan in theorie, maar wordt zelden betaalbaar (bron over niet-ingezetenen)</td></tr>
+          <tr><th scope="row">Spanje</th><td data-label="Wettelijke grens">Nee</td><td data-label="Gangbare bankpraktijk">De meeste banken willen dat de hypotheek op 75 jaar is afgelost; de looptijd is hoogstens 40 jaar (bron over niet-ingezetenen)</td></tr>
         </tbody>
       </table>
     </div>
@@ -651,9 +653,9 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       <h3>Wat zeggen de ECB, de EBA en DNB?</h3>
       <ul>
         <li><b>Geen leeftijdsgrens, wel kapitaaleisen.</b> De Europese Centrale Bank (ECB) houdt direct toezicht op de
-          grootbanken, maar schrijft geen maximumleeftijd voor. Wel bepaalt zij hoeveel kapitaal een bank tegenover een
-          lening moet aanhouden. Riskantere leningen, zoals aflossingsvrij op hoge leeftijd met weinig overwaarde,
-          kosten meer kapitaal. Dat werkt door in de rente en in het aanbod. De Europese ondergrens voor eigen modellen
+          grootbanken, maar schrijft geen maximumleeftijd voor. Wel keurt zij de rekenmodellen goed waarmee een bank bepaalt
+          hoeveel kapitaal zij tegenover een lening aanhoudt, en kan zij extra kapitaal eisen. Riskantere leningen, zoals aflossingsvrij op hoge leeftijd met weinig overwaarde,
+          kosten meer kapitaal. Dat kan doorwerken in de rente en in het aanbod (waarschijnlijk). De Europese ondergrens voor eigen modellen
           (output floor) loopt op tot 72,5% in 2030; de Nederlandse ondergrens voor hypotheken vervalt op
           30 november 2026. Zie het <a href="scenario-2035.html#kapitaal">scenario 2035</a>.</li>
         <li><b>Wel: kunt u na uw pensioen blijven betalen?</b> De EBA-richtsnoeren, waar de ECB en DNB op toezien,
@@ -665,10 +667,12 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
           afhankelijkheid van de woningwaarde en de onzekere betaalbaarheid op latere leeftijd.</li>
         <li><b>Klimaat in de waardering.</b> De ECB verwacht dat banken bij het waarderen van woningen letten op de
           ligging en de energie-effici&euml;ntie. In de klimaatstresstest van 2022 rekende de ECB met
-          overstromingsschade aan onderpanden. Uit ECB-onderzoek blijkt dat banken in Europa al een hogere rente
-          vragen op hypotheken in gebieden met fysiek klimaatrisico.</li>
-        <li><b>Renteaftrek.</b> Het IMF adviseerde in mei 2026 om de hypotheekrenteaftrek geleidelijk af te bouwen en
-          de maximale lening te verlagen naar 90% van de woningwaarde. Ook de OESO adviseert afbouw. Dat zijn
+          overstromingsschade aan onderpanden. Een ECB-werkdocument (2025) vindt dat banken gemiddeld al een
+          kleine renteopslag lijken te vragen bij fysiek klimaatrisico, met grote verschillen per bank; dat is
+          onderzoek, geen standpunt van de ECB.</li>
+        <li><b>Renteaftrek.</b> De IMF-staf adviseerde op 13 mei 2026 om de hypotheekrenteaftrek geleidelijk af te bouwen
+          en de maximale lening te verlagen naar 90% van de woningwaarde. Ook de OESO adviseerde in juli 2025 de aftrek
+          te beperken. Dat zijn
           adviezen, geen besluiten.</li>
       </ul>
     </div>
@@ -767,10 +771,11 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <li>AFM: sectorbrief hypotheekaanbieders inzake vergoeding vervroegde aflossing, 18 april 2023</li>
         <li><a href="https://www.kcaf.nl/funderingsrisico-in-2026-wat-verandert-er-voor-makelaars-en-taxateurs/" target="_blank" rel="noopener">KCAF: funderingsrisico in 2026</a></li>
         <li><a href="https://www.rabobank.nl/over-ons/pers/persberichten/011549261/rabobank-en-obvion-passen-hypotheeknormen-aan-per-maart-2027" target="_blank" rel="noopener">Rabobank: Rabobank en Obvion passen hypotheeknormen aan per maart 2027</a></li>
+        <li><a href="https://www.rabobank.nl/over-ons/pers/persberichten/011549261/rabobank-en-obvion-passen-hypotheeknormen-aan-per-maart-2027" target="_blank" rel="noopener">Rabobank: persbericht, Rabobank en Obvion passen hypotheeknormen aan per maart 2027</a></li>
         <li><a href="https://www.rabobank.nl/particulieren/hypotheek/nieuw-beleid" target="_blank" rel="noopener">Rabobank: nieuw beleid voor het beoordelen van hypotheken vanaf maart 2027</a></li>
         <li><a href="https://www.hypotheker.nl/actueel/nieuwsberichten/2026/banken-scherpen-hypotheekregels-voor-50-plussers-aan-wat-verandert-er/" target="_blank" rel="noopener">De Hypotheker: banken scherpen hypotheekregels voor 50-plussers aan</a></li>
         <li>EBA: Richtsnoeren inzake de initi&euml;ring en monitoring van leningen (EBA/GL/2020/06), punten 97 en 104</li>
-        <li><a href="https://www.bankingsupervision.europa.eu/framework/legal-framework/public-consultations/pdf/climate-related_risks/ssm.202005_draft_guide_on_climate-related_and_environmental_risks.en.pdf" target="_blank" rel="noopener">ECB: Guide on climate-related and environmental risks</a></li>
+        <li><a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.202011finalguideonclimate-relatedandenvironmentalrisks~58213f6564.en.pdf" target="_blank" rel="noopener">ECB: Guide on climate-related and environmental risks (november 2020)</a></li>
         <li><a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.climate_stress_test_report.20220708~2e3cc0999f.en.pdf" target="_blank" rel="noopener">ECB: 2022 climate risk stress test</a></li>
         <li><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3036~43450e2b8f.en.pdf" target="_blank" rel="noopener">ECB Working Paper 3036: From flood to fire</a></li>
         <li><a href="https://www.dnb.nl/media/cvfhqws0/86281_2600115_dnb_brochure-fs-monitor_engels_web.pdf" target="_blank" rel="noopener">DNB/AFM: Monitor on mortgage lending standards</a></li>
@@ -778,10 +783,14 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <li><a href="https://finnius.com/en/three-key-takeaways-from-crd-vi-and-crr-iii/" target="_blank" rel="noopener">Finnius: CRD VI en CRR III (output floor)</a></li>
         <li><a href="https://probability.nl/wp-content/uploads/2025/02/CRR3-key-insights-into-the-real-estate-exposures-White-Paper-Probability-Partners.pdf" target="_blank" rel="noopener">Probability: CRR3 en vastgoedblootstellingen</a></li>
         <li><a href="https://www.dnb.nl/algemeen-nieuws/achtergrond-2023/vijf-vragen-over-de-gevolgen-van-overstromingen-op-de-financiele-sector/" target="_blank" rel="noopener">DNB: vijf vragen over de gevolgen van overstromingen op de financi&euml;le sector</a></li>
+        <li><a href="https://www.imf.org/en/news/articles/2026/05/13/mcs-051326-the-netherlands-staff-concluding-statement-for-the-2026-aiv-consultation-mission" target="_blank" rel="noopener">IMF: staff concluding statement Nederland, 13 mei 2026</a></li>
+        <li><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-netherlands-2025_2dd1f4aa-en.html" target="_blank" rel="noopener">OESO: Economic Survey Netherlands 2025 (juli 2025)</a></li>
         <li><a href="https://nltimes.nl/2026/05/16/imf-urges-netherlands-overhaul-rent-rules-ease-housing-crisis" target="_blank" rel="noopener">NL Times: IMF-advies over de Nederlandse woningmarkt, mei 2026</a></li>
         <li><a href="https://www.biallo.de/baufinanzierung/ratgeber/senioren/" target="_blank" rel="noopener">Biallo: Baufinanzierung f&uuml;r Senioren (Duitsland)</a></li>
         <li><a href="https://www.brightboxfs.co.uk/insights/maximum-age-mortgage-uk/" target="_blank" rel="noopener">Brightbox: maximum age for a mortgage in the UK (2026)</a></li>
-        <li><a href="https://www.simonconn.com/blog/different-countries-mortgages-for-over-60s/" target="_blank" rel="noopener">Simon Conn: mortgages for over-60s in different countries (Belgi&euml;, Frankrijk, Spanje)</a></li>
+        <li><a href="https://www.secondhome.nl/vakantiewoning-kopen/frankrijk/financieren/" target="_blank" rel="noopener">Second Home: een huis financieren in Frankrijk (leeftijdsgrenzen voor niet-ingezetenen; artikel zonder datum)</a></li>
+        <li><a href="https://www.secondhome.nl/vakantiewoning-kopen/spanje/financieren/" target="_blank" rel="noopener">Second Home: een huis financieren in Spanje (eindleeftijd 75 jaar bij de meeste banken; artikel zonder datum)</a></li>
+        <li><a href="https://www.simonconn.com/blog/different-countries-mortgages-for-over-60s/" target="_blank" rel="noopener">Simon Conn: mortgages for over-60s in different countries (Belgi&euml;)</a></li>
       </ul>
     </div>
     <div class="note">
