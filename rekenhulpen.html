@@ -195,34 +195,46 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 /* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
 .sk-titel{padding-top:27px}
 .sk-invoer .field{margin-bottom:12px}
-.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.sk-kaart{border:1px solid var(--line);border-top:3px solid var(--line);padding:20px;display:flex;flex-direction:column;background:#fff}
+/* Drie kaarten met dezelfde rijen; subgrid houdt elke rij in de drie kaarten op gelijke hoogte. */
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
+.sk-kaart{display:grid;grid-row:span 15;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--line);
+  border-top:3px solid var(--line);padding:0 20px 20px;background:#fff;min-width:0}
 .sk-kaart.gekozen{background:var(--tint);border-color:#b9cbe3;border-top-color:var(--primary)}
-.sk-kop{margin-bottom:12px}
+.sk-lijst{display:contents}
+.sk-kop{padding:20px 0 4px}
 .sk-kop .zeker{font-size:14px;padding:4px 12px}
-.sk-uitleg{font-size:13px;color:var(--text-l);margin-bottom:16px;min-height:6.4em}
-.sk-cijfers{margin:0 0 16px;border-top:1px solid var(--line)}
-.sk-cijfers dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:12px}
-.sk-cijfers dd{font-size:16px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
-.sk-cijfers dd.groot{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
-.sk-cijfers small{font-size:13px;font-weight:600;color:var(--text-l);margin-left:4px}
-.sk-signalen{margin:0 0 20px 18px;font-size:13.5px;color:var(--text);flex:1}
+.sk-groep{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);
+  padding:16px 0 6px;border-bottom:1px solid var(--rule);align-self:end}
+.sk-rij{padding:8px 0;border-bottom:1px solid var(--line)}
+.sk-rij dt{font-size:12.5px;color:var(--muted);line-height:1.4}
+.sk-rij dd{font-size:15px;color:var(--ink);font-weight:600;line-height:1.35;font-variant-numeric:tabular-nums}
+.sk-rij.groot dd{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sk-rij small{font-size:12.5px;font-weight:600;color:var(--text-l);margin-left:4px;letter-spacing:0}
+.sk-signalen{margin:8px 0 16px 18px;font-size:13.5px;color:var(--text)}
 .sk-signalen li{margin-bottom:8px}
-.sk-kaart .btn{width:100%;margin-top:auto}
+.sk-kaart .btn{width:100%;align-self:end}
+@supports not (grid-template-rows:subgrid){ .sk-kaart{display:flex;flex-direction:column} .sk-groep{align-self:stretch} .sk-kaart .btn{margin-top:auto;align-self:stretch} }
+.sk-acties{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.sk-acties .hint{margin:0}
 .sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
 .sk-agenda h2{font-size:22px}
 .sk-agenda ol{margin:0 0 0 20px;max-width:var(--maat)}
 .sk-agenda li{margin-bottom:8px;font-size:15px}
 .sk-agenda .hero-cta{margin-top:24px}
 .sk-naar{display:none;margin-top:8px}
-@media (max-width:1100px){ .sk-uitkomst{grid-template-columns:1fr} .sk-uitleg{min-height:0} .sk-kaart .btn{width:auto;align-self:flex-start} }
+@media (max-width:1100px){
+  .sk-uitkomst{grid-template-columns:1fr;row-gap:16px}
+  .sk-kaart{display:flex;flex-direction:column}
+  .sk-groep{align-self:stretch}
+  .sk-kaart .btn{width:auto;align-self:flex-start;margin-top:8px}
+}
 @media (max-width:860px){
   .sk-raster{grid-template-columns:1fr}
   .sk-invoer{position:static}
   .sk-titel{padding-top:0}
   .sk-naar{display:block}
 }
-@media print{ .sk-invoer,.sk-kaart .btn{display:none} }
+@media print{ .sk-invoer,.sk-kaart .btn,.sk-acties{display:none} }
 
 /* ---- voet ---- */
 .site-voet{background:var(--navy);color:#c9d6e6;padding:48px 0;font-size:14px}

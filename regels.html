@@ -195,34 +195,46 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 /* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
 .sk-titel{padding-top:27px}
 .sk-invoer .field{margin-bottom:12px}
-.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.sk-kaart{border:1px solid var(--line);border-top:3px solid var(--line);padding:20px;display:flex;flex-direction:column;background:#fff}
+/* Drie kaarten met dezelfde rijen; subgrid houdt elke rij in de drie kaarten op gelijke hoogte. */
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
+.sk-kaart{display:grid;grid-row:span 15;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--line);
+  border-top:3px solid var(--line);padding:0 20px 20px;background:#fff;min-width:0}
 .sk-kaart.gekozen{background:var(--tint);border-color:#b9cbe3;border-top-color:var(--primary)}
-.sk-kop{margin-bottom:12px}
+.sk-lijst{display:contents}
+.sk-kop{padding:20px 0 4px}
 .sk-kop .zeker{font-size:14px;padding:4px 12px}
-.sk-uitleg{font-size:13px;color:var(--text-l);margin-bottom:16px;min-height:6.4em}
-.sk-cijfers{margin:0 0 16px;border-top:1px solid var(--line)}
-.sk-cijfers dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:12px}
-.sk-cijfers dd{font-size:16px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
-.sk-cijfers dd.groot{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
-.sk-cijfers small{font-size:13px;font-weight:600;color:var(--text-l);margin-left:4px}
-.sk-signalen{margin:0 0 20px 18px;font-size:13.5px;color:var(--text);flex:1}
+.sk-groep{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);
+  padding:16px 0 6px;border-bottom:1px solid var(--rule);align-self:end}
+.sk-rij{padding:8px 0;border-bottom:1px solid var(--line)}
+.sk-rij dt{font-size:12.5px;color:var(--muted);line-height:1.4}
+.sk-rij dd{font-size:15px;color:var(--ink);font-weight:600;line-height:1.35;font-variant-numeric:tabular-nums}
+.sk-rij.groot dd{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sk-rij small{font-size:12.5px;font-weight:600;color:var(--text-l);margin-left:4px;letter-spacing:0}
+.sk-signalen{margin:8px 0 16px 18px;font-size:13.5px;color:var(--text)}
 .sk-signalen li{margin-bottom:8px}
-.sk-kaart .btn{width:100%;margin-top:auto}
+.sk-kaart .btn{width:100%;align-self:end}
+@supports not (grid-template-rows:subgrid){ .sk-kaart{display:flex;flex-direction:column} .sk-groep{align-self:stretch} .sk-kaart .btn{margin-top:auto;align-self:stretch} }
+.sk-acties{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.sk-acties .hint{margin:0}
 .sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
 .sk-agenda h2{font-size:22px}
 .sk-agenda ol{margin:0 0 0 20px;max-width:var(--maat)}
 .sk-agenda li{margin-bottom:8px;font-size:15px}
 .sk-agenda .hero-cta{margin-top:24px}
 .sk-naar{display:none;margin-top:8px}
-@media (max-width:1100px){ .sk-uitkomst{grid-template-columns:1fr} .sk-uitleg{min-height:0} .sk-kaart .btn{width:auto;align-self:flex-start} }
+@media (max-width:1100px){
+  .sk-uitkomst{grid-template-columns:1fr;row-gap:16px}
+  .sk-kaart{display:flex;flex-direction:column}
+  .sk-groep{align-self:stretch}
+  .sk-kaart .btn{width:auto;align-self:flex-start;margin-top:8px}
+}
 @media (max-width:860px){
   .sk-raster{grid-template-columns:1fr}
   .sk-invoer{position:static}
   .sk-titel{padding-top:0}
   .sk-naar{display:block}
 }
-@media print{ .sk-invoer,.sk-kaart .btn{display:none} }
+@media print{ .sk-invoer,.sk-kaart .btn,.sk-acties{display:none} }
 
 /* ---- voet ---- */
 .site-voet{background:var(--navy);color:#c9d6e6;padding:48px 0;font-size:14px}
@@ -330,7 +342,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
      "name": "Moet ik mijn aflossingsvrije hypotheek nu aanpassen?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Nee. Bij Rabobank en ABN AMRO verandert er niets zolang u uw hypotheek niet wijzigt. Een nieuwe rentevaste periode telt niet als wijziging."
+      "text": "Nee. Bij Rabobank, ABN AMRO, ING en ASN Bank verandert er niets zolang u uw hypotheek niet wijzigt. Een nieuwe rentevaste periode telt niet als wijziging."
      }
     },
     {
@@ -338,7 +350,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
      "name": "Wat gebeurt er als mijn aflossingsvrije hypotheek afloopt?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Dan moet de schuld worden afgelost of opnieuw gefinancierd. Bij ABN AMRO kan dat nog tot 50% van de woningwaarde aflossingsvrij; bij Rabobank en Obvion zoekt de bank samen met u naar een oplossing. Uw inkomen en leeftijd tellen mee."
+      "text": "Dan moet de schuld worden afgelost of opnieuw gefinancierd. Bij ABN AMRO en ING kan dat nog tot 50% van de woningwaarde aflossingsvrij; bij ASN Bank tot 50% als het leningdeel vóór 1 januari 2030 afloopt, daarna 30%; bij Rabobank en Obvion zoekt de bank samen met u naar een oplossing. Uw inkomen en leeftijd tellen mee."
      }
     },
     {
@@ -414,8 +426,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <p>Banken scherpen aflossingsvrij lenen aan, er komt een leeftijdsgrens en de belastingregels schuiven op. Hier
        ziet u per onderwerp wat er tot nu toe gold, wat er verandert en vanaf wanneer. Wat het voor u betekent, ziet u in
        <a href="mijn-scenario.html">uw hypotheek in drie scenario&#39;s</a>; wat elders geldt, bij
-       <a href="europa.html">hypotheekregels in Europa</a>. Met het nieuws van Rabobank
-       en ABN AMRO over aflossen, verlengen en pensioen, een vergelijking met andere Europese landen en een
+       <a href="europa.html">hypotheekregels in Europa</a>. Met het nieuws van Rabobank,
+       ABN AMRO, ING en ASN Bank over aflossen, verlengen en pensioen, een vergelijking met andere Europese landen en een
        feitencheck.</p>
   </div>
 </header>
@@ -435,7 +447,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
           <tr><th scope="row">Aflossingsvrij lenen bij Rabobank en Obvion</th><td data-label="Tot nu toe">Tot 50% van de woningwaarde</td><td data-label="Nu of straks">Tot 30% van de woningwaarde, met een maximum van &euro;&nbsp;150.000</td><td data-label="Vanaf">11 mei 2026</td></tr>
           <tr><th scope="row">Aflossingsvrij lenen bij ABN AMRO en Florius</th><td data-label="Tot nu toe">Tot 50% van de woningwaarde</td><td data-label="Nu of straks">Tot 30% van de woningwaarde. ABN AMRO: maximaal &euro;&nbsp;150.000 bij een woningwaarde tot &euro;&nbsp;1 miljoen, &euro;&nbsp;250.000 tot &euro;&nbsp;2 miljoen en &euro;&nbsp;500.000 daarboven. Florius: maximaal &euro;&nbsp;150.000</td><td data-label="Vanaf">1 juni 2026</td></tr>
           <tr><th scope="row">Aflossingsvrij lenen bij ING</th><td data-label="Tot nu toe">Tot 50% van de woningwaarde</td><td data-label="Nu of straks">Tot 30% van de woningwaarde, met een maximum van &euro;&nbsp;150.000 bij een woningwaarde tot &euro;&nbsp;1 miljoen, &euro;&nbsp;250.000 tot &euro;&nbsp;2 miljoen en &euro;&nbsp;500.000 daarboven. Geldt ook bij verhogen, een tweede hypotheek en omzetten naar aflossingsvrij</td><td data-label="Vanaf">23 juli 2026</td></tr>
-          <tr><th scope="row">Aflossingsvrij lenen bij ASN Bank</th><td data-label="Tot nu toe">Tot 50% van de woningwaarde</td><td data-label="Nu of straks">Tot 30% van de marktwaarde, zonder maximumbedrag; niet voor uitgaven als een auto of vakantie</td><td data-label="Vanaf">11 mei 2026</td></tr>
+          <tr><th scope="row">Aflossingsvrij lenen bij ASN Bank (ook SNS, RegioBank, BLG Wonen)</th><td data-label="Tot nu toe">Tot 50% van de woningwaarde</td><td data-label="Nu of straks">Tot 30% van de marktwaarde, zonder maximumbedrag; niet voor uitgaven als een auto of vakantie</td><td data-label="Vanaf">11 mei 2026</td></tr>
           <tr><th scope="row">Pensioeninkomen meetellen, Rabobank en Obvion</th><td data-label="Tot nu toe">Vanaf 10 jaar v&oacute;&oacute;r uw pensioen</td><td data-label="Nu of straks">Vanaf 15 jaar v&oacute;&oacute;r uw pensioen. Bij een AOW-leeftijd van 67 is dat vanaf uw 52e</td><td data-label="Vanaf">Maart 2027</td></tr>
           <tr><th scope="row">Schuld als u 85 wordt, ABN AMRO</th><td data-label="Tot nu toe">Geen aparte grens op 85 jaar</td><td data-label="Nu of straks">Hoogstens 50% van de woningwaarde als de oudste aanvrager 85 wordt. Niet voor de Overwaarde Hypotheek</td><td data-label="Vanaf">December 2026 (aangekondigd: 9 december)</td></tr>
           <tr><th scope="row">Schuld als u 85 wordt, Rabobank en Obvion</th><td data-label="Tot nu toe">Geen aparte grens op 85 jaar</td><td data-label="Nu of straks">Hoogstens 70% van de woningwaarde</td><td data-label="Vanaf">Maart 2027 (datum volgt)</td></tr>
@@ -536,6 +548,60 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
            nieuwe hypotheek, oversluiten, verhuizen en wijzigingen, maar niet voor de Overwaarde Hypotheek. Bestaande
            leningdelen blijven ongemoeid zolang looptijd en hypotheekvorm niet veranderen. Ook vraagt ABN AMRO vanaf
            9 december 2026 naar uw verwachte pensioeninkomen als u tijdens de looptijd met pensioen gaat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ing">
+  <div class="wrap">
+    <div class="eyebrow">Nieuws</div>
+    <h2>ING</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Vanaf 23 juli 2026: aflossingsvrij 30%</h3>
+        <p>Bij een nieuwe hypotheek mag het aflossingsvrije deel hoogstens 30% van de woningwaarde zijn, met een
+           maximum van &euro;&nbsp;150.000 dat meeloopt met de woningwaarde: &euro;&nbsp;250.000 vanaf
+           &euro;&nbsp;1 miljoen en &euro;&nbsp;500.000 vanaf &euro;&nbsp;2 miljoen. Dat geldt ook bij een verhoging,
+           een omzetting naar aflossingsvrij en een tweede hypotheek.</p>
+      </div>
+      <div class="card">
+        <h3>Bestaande klanten en verlengen</h3>
+        <p>Wie de hypotheek ongewijzigd voortzet, merkt niets. Wie verlengt, mag het huidige aflossingsvrije deel
+           houden, tot hoogstens 50% van de woningwaarde.</p>
+      </div>
+      <div class="card">
+        <h3>Scheiding of overlijden</h3>
+        <p>ING kijkt dan samen met de klant naar een passende oplossing. In veel gevallen kan het bestaande
+           aflossingsvrije deel blijven. ING neemt zelf contact op met klanten met een aflossingsvrije hypotheek om de
+           opties voor de lange termijn te bespreken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="asn-bank">
+  <div class="wrap">
+    <div class="eyebrow">Nieuws</div>
+    <h2>ASN Bank (ook SNS Bank, RegioBank en BLG Wonen)</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Vanaf 11 mei 2026: aflossingsvrij 30%</h3>
+        <p>Voor aanvragen vanaf 11 mei 2026 mag hoogstens 30% van de woningwaarde aflossingsvrij zijn, ongeacht de
+           hoogte van de hypotheek; er is geen maximumbedrag. Aflossingsvrij lenen voor bijvoorbeeld een auto of vakantie
+           kan niet meer.</p>
+      </div>
+      <div class="card">
+        <h3>Bestaande klanten en verlengen</h3>
+        <p>Er verandert niets tot het einde van de looptijd, ook niet na het verlengen van de rentevaste periode. Dat
+           geldt ook voor hypotheken van de voormalige merken SNS Bank, RegioBank en BLG Wonen. De grens van 30% gaat pas
+           gelden bij een wijziging, zoals een verhoging of een nieuwe financiering bij verhuizen.</p>
+      </div>
+      <div class="card">
+        <h3>Einde looptijd: overgangsregeling tot 2030</h3>
+        <p>Loopt een aflossingsvrij leningdeel af v&oacute;&oacute;r 1 januari 2030, dan mag u tot die datum opnieuw tot
+           50% aflossingsvrij lenen, zonder het aflossingsvrije deel te verhogen. Daarna geldt 30%. Bij scheiding of
+           overlijden kijkt de bank naar de individuele situatie.</p>
       </div>
     </div>
   </div>
@@ -790,11 +856,12 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <h2>Kort antwoord</h2>
     <div class="prose">
       <h3>Moet ik mijn aflossingsvrije hypotheek nu aanpassen?</h3>
-      <p>Nee. Bij Rabobank en ABN AMRO verandert er niets zolang u uw hypotheek niet wijzigt. Een nieuwe rentevaste
+      <p>Nee. Bij Rabobank, ABN AMRO, ING en ASN Bank verandert er niets zolang u uw hypotheek niet wijzigt. Een nieuwe rentevaste
          periode telt niet als wijziging.</p>
       <h3>Wat gebeurt er als mijn aflossingsvrije hypotheek afloopt?</h3>
-      <p>Dan moet de schuld worden afgelost of opnieuw gefinancierd. Bij ABN AMRO kan dat nog tot 50% van de
-         woningwaarde aflossingsvrij; bij Rabobank en Obvion zoekt de bank samen met u naar een oplossing. Uw inkomen
+      <p>Dan moet de schuld worden afgelost of opnieuw gefinancierd. Bij ABN AMRO en ING kan dat nog tot 50% van de
+         woningwaarde aflossingsvrij; bij ASN Bank tot 50% als het leningdeel v&oacute;&oacute;r 1 januari 2030 afloopt,
+         daarna 30%; bij Rabobank en Obvion zoekt de bank samen met u naar een oplossing. Uw inkomen
          en leeftijd tellen mee.</p>
       <h3>Wat is de grens op 85 jaar?</h3>
       <p>Banken kijken hoeveel schuld er over is als de oudste aanvrager 85 wordt. Bij ABN AMRO mag dat vanaf december
@@ -843,6 +910,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <li><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3036~43450e2b8f.en.pdf" target="_blank" rel="noopener">ECB Working Paper 3036: From flood to fire</a></li>
         <li><a href="https://www.dnb.nl/media/cvfhqws0/86281_2600115_dnb_brochure-fs-monitor_engels_web.pdf" target="_blank" rel="noopener">DNB/AFM: Monitor on mortgage lending standards</a></li>
         <li><a href="https://www.dnb.nl/en/sector-news/supervision-2026/q2/risk-weight-measure-on-bank-mortgage-loans-expires/" target="_blank" rel="noopener">DNB: risk weight measure on bank mortgage loans expires</a></li>
+        <li><a href="https://nieuws.ing.nl/nl-NL/266100-ing-past-acceptatiebeleid-aflossingsvrije-hypotheken-aan/" target="_blank" rel="noopener">ING: persbericht, ING past acceptatiebeleid aflossingsvrije hypotheken aan (per 23 juli 2026)</a></li>
+        <li><a href="https://newsroom.asnbank.nl/asn-bank-beperkt-aflossingsvrije-hypotheek-tot-30-procent-waarde-woning/" target="_blank" rel="noopener">ASN Bank: persbericht, ASN Bank beperkt aflossingsvrije hypotheek tot 30 procent waarde woning (24 februari 2026)</a></li>
         <li><a href="https://infinance.nl/artikel/ing-past-beleid-aflossingsvrije-hypotheek-aan/" target="_blank" rel="noopener">InFinance: ING past beleid aflossingsvrije hypotheek aan (per 23 juli 2026)</a></li>
         <li><a href="https://www.ing.nl/particulier/hypotheek/hypotheekvormen/aflossingsvrije-hypotheek" target="_blank" rel="noopener">ING: aflossingsvrije hypotheek (30% van de marktwaarde, maximumbedragen per woningwaarde)</a></li>
         <li><a href="https://www.ing.nl/particulier/hypotheek/jouw-hypotheek/mogelijkheden-aflossingsvrije-hypotheek" target="_blank" rel="noopener">ING: mogelijkheden met een aflossingsvrije hypotheek</a></li>
