@@ -595,6 +595,11 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         <input type="checkbox" id="aftrek-nu" checked>
         <label for="aftrek-nu">Ik heb renteaftrek op mijn huidige hypotheek</label>
       </div>
+      <div class="field">
+        <label for="start-nu">In welk jaar heeft u uw huidige lening afgesloten?</label>
+        <input type="text" id="start-nu" inputmode="numeric" value="2004" aria-describedby="start-nu-hint">
+        <span class="hint" id="start-nu-hint">Uw renteaftrek loopt 30 jaar; voor een lening van v&oacute;&oacute;r 2001 stopt die op 1 januari 2031. Een aflossingsvrije lening van v&oacute;&oacute;r 2013 kunt u bij verhuizen in de regel met aftrek meenemen (overgangsrecht).</span>
+      </div>
     </div>
   </div>
 </section>
@@ -616,7 +621,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       <div class="field">
         <label for="nieuw-bedrag">Hoeveel wilt u lenen?</label>
         <input type="text" id="nieuw-bedrag" inputmode="numeric" value="300.000" aria-describedby="nieuw-bedrag-hint">
-        <span class="hint" id="nieuw-bedrag-hint">Volgens de wet in principe hoogstens 100% van de woningwaarde, of 106% als u verduurzaamt.</span>
+        <span class="hint" id="nieuw-bedrag-hint">Volgens de wet in principe hoogstens 100% van de woningwaarde, of 106% als u verduurzaamt. Heeft u overwaarde op uw huidige woning, dan is over dat deel van de nieuwe lening geen rente aftrekbaar (bijleenregeling); de tool rekent daarmee.</span>
       </div>
       <div class="check">
         <input type="checkbox" id="overnemen">
@@ -929,7 +934,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <section class="panel" aria-labelledby="kop-grafiek1">
   <h2 id="kop-grafiek1">Netto maandlast in de tijd</h2>
   <p class="sub">Blijven wonen (A) naast verhuizen in het verhuisjaar (B).</p>
-  <div class="chart-box"><svg class="chart" id="chart-last" viewBox="0 0 660 280" role="img" aria-label="Verloop van de netto maandlast bij blijven wonen en bij verhuizen"></svg></div>
+  <div class="chart-box" tabindex="0" role="region" aria-label="Grafiek netto maandlast, horizontaal scrollbaar"><svg class="chart" id="chart-last" viewBox="0 0 660 280" role="img" aria-label="Verloop van de netto maandlast bij blijven wonen en bij verhuizen"></svg></div>
   <div class="legend">
     <span><i style="background:var(--primary)"></i>Verhuizen (B)</span>
     <span><i style="background:var(--muted)"></i>Blijven wonen (A), gestippeld</span>
@@ -939,7 +944,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <section class="panel" aria-labelledby="kop-grafiek2">
   <h2 id="kop-grafiek2">Schuld in de tijd</h2>
   <p class="sub">Aflossen brengt de schuld naar nul; een aflossingsvrij deel blijft staan, ook na het einde van de looptijd.</p>
-  <div class="chart-box"><svg class="chart" id="chart-schuld" viewBox="0 0 660 280" role="img" aria-label="Verloop van de schuld bij blijven wonen en bij verhuizen"></svg></div>
+  <div class="chart-box" tabindex="0" role="region" aria-label="Grafiek schuld, horizontaal scrollbaar"><svg class="chart" id="chart-schuld" viewBox="0 0 660 280" role="img" aria-label="Verloop van de schuld bij blijven wonen en bij verhuizen"></svg></div>
   <div class="legend">
     <span><i style="background:var(--primary)"></i>Verhuizen (B)</span>
     <span><i style="background:var(--muted)"></i>Blijven wonen (A), gestippeld</span>
@@ -979,8 +984,11 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <li>Rente meenemen: de huidige rente geldt tot het einde van de rentevaste periode voor het meegenomen bedrag; over het extra bedrag
       rekent de tool met de nieuwe rente (een gemiddelde rente, zoals veel banken doen).</li>
     <li>Renteaftrek: over de rente min het eigenwoningforfait (0,35% van de woningwaarde), tegen het tarief dat u invult. Bij de nieuwe
-      hypotheek alleen over het aflossende deel. De Wet Hillen, het einde van de aftrektermijn en een lager tarief na de AOW-leeftijd
-      tellen niet mee.</li>
+      hypotheek over het aflossende deel, plus een meegenomen aflossingsvrij deel van v&oacute;&oacute;r 2013 (overgangsrecht). Over
+      overwaarde die u niet meeneemt (waarde huidige woning min schuld bij verhuizing) is geen rente aftrekbaar (bijleenregeling,
+      zonder verkoopkosten en zonder de termijn van drie jaar). Bij blijven wonen stopt de aftrek na 30 jaar, of op 1 januari 2031 voor
+      een lening van v&oacute;&oacute;r 2001. De Wet Hillen, belasting over het forfait na afloop van de aftrek en een lager tarief na de
+      AOW-leeftijd tellen niet mee.</li>
     <li>De bankgrens op leeftijd gebruikt de woningwaarde van nu, zonder waardestijging; in scenario G en K met de daling die u invult.</li>
     <li>Na het einde van de looptijd blijft een aflossingsvrij deel staan; de tool rekent daarover door met dezelfde rente.</li>
     <li>Geen stijging van inkomen of lasten, geen extra aflossingen, geen kosten koper en geen advieskosten.</li>
@@ -1049,7 +1057,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <div class="flagbox">
   <h2>Bespreek het met een hypotheekadviseur</h2>
   <p>Deze tool helpt u het gesprek voor te bereiden. Een hypotheekadviseur rekent met uw eigen gegevens, de actuele regels van de bank en
-    de Nibud-normen. Of een adviseur een vergunning heeft of onder een vergunning werkt, ziet u in het register van de AFM.</p>
+    de Nibud-normen. Of een adviseur een vergunning heeft of onder een vergunning werkt, ziet u in het <a href="https://www.afm.nl/nl-nl/sector/registers" target="_blank" rel="noopener">register van de AFM</a>.</p>
 </div>
 
 </div>
@@ -1069,8 +1077,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
          Nederland en Europa. Deze site verkoopt geen producten en verwijst niet naar een bepaalde geldverstrekker.</p>
       <p>Alles op deze site is een indicatie of een scenario, stand 22 oktober 2026. Het is geen advies en geen voorspelling,
          en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een hypotheekadviseur; of een adviseur een
-         vergunning heeft of onder een vergunning werkt, ziet u in het register van de AFM.</p>
-      <p>Deze site gebruikt geen cookies en slaat niets op. Wat u in de rekentools invult, blijft in uw browser.</p>
+         vergunning heeft of onder een vergunning werkt, ziet u in het <a href="https://www.afm.nl/nl-nl/sector/registers" target="_blank" rel="noopener">register van de AFM</a>.</p>
+      <p>Deze site plaatst zelf geen cookies. Wat u invult in Uw scenario en Uw verhuisscenario, blijft in uw browser.
+         De rekenhulpen van Hypotheekbond werken anders: zie <a href="rekenhulpen.html">rekenhulpen</a>. De site wordt
+         gehost door GitHub (GitHub Pages); die verwerkt technische gegevens zoals uw IP-adres.</p>
     </div>
     <div class="voet-contact">
       <h2>Vragen of een correctie?</h2>
@@ -1087,14 +1097,14 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   "use strict";
   var STARTJAAR = 2026, FORFAIT = 0.0035;
 
-  var euro0 = function(n){ return "€ " + Math.round(n).toLocaleString("nl-NL"); };
-  var euro2 = function(n){ return "€ " + n.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var euro0 = function(n){ return "€\u00a0" + Math.round(n).toLocaleString("nl-NL"); };
+  var euro2 = function(n){ return "€\u00a0" + n.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}); };
   var pct = function(n){ return n.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}) + "%"; };
   var pct1 = function(n){ return n.toLocaleString("nl-NL",{minimumFractionDigits:1,maximumFractionDigits:1}) + "%"; };
 
   function parseNum(str){
     if(str === null || str === undefined) return 0;
-    var s = String(str).replace(/\./g,"").replace(",",".").replace(/[^0-9.\-]/g,"");
+    var s = String(str).split(",")[0].replace(/\./g,"").replace(/[^0-9\-]/g,"");
     var v = parseFloat(s);
     return isFinite(v) ? v : 0;
   }
@@ -1109,7 +1119,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     return isFinite(v) ? v : 0;
   }
   function formatEuroInput(el){
-    var digits = el.value.replace(/[^0-9]/g,"");
+    var digits = el.value.split(",")[0].replace(/[^0-9]/g,"");
     if(digits === ""){ el.value = ""; return; }
     el.value = parseInt(digits,10).toLocaleString("nl-NL");
   }
@@ -1152,11 +1162,14 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     if(verhuis < STARTJAAR) verhuis = STARTJAAR;
     return {
       verhuisIn: verhuisIn,
+      startNu: parseInt0(el("start-nu").value),
+      restIn: el("restlooptijd").value,
+      normIn: el("norm-pct").value.trim(),
       geboortejaarIn: parseInt0(el("geboortejaar").value),
       eindRvpIn: parseInt0(el("eind-rvp").value),
       hoofdsom: parseNum(el("hoofdsom").value),
       vormNu: el("vorm-nu").value,
-      restLooptijd: parseInt0(el("restlooptijd").value) || 26,
+      restLooptijd: Math.min(parseInt0(String(el("restlooptijd").value).split(",")[0].split(".")[0]) || 26, 40),
       vormNieuw: el("vorm-nieuw").value,
       overnemen: el("overnemen").checked,
       peildatum: el("peildatum").value,
@@ -1215,14 +1228,23 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         interest: r.interest + sAv[i].interest,
         interestAnn: r.interest,
         redemption: r.redemption,
-        balance: r.balance + sAv[i].balance
+        balance: r.balance + sAv[i].balance,
+        jaar: cfg.start + Math.floor(i / 12)
       };
     });
     var tarief = cfg.aftrek ? v.tarief : 0;
     var forfaitMaand = cfg.waarde * FORFAIT / 12;
     // Bij een nieuwe hypotheek is alleen de rente over het aflossende deel aftrekbaar (sinds 2013).
     // Het voordeel is de rente min het eigenwoningforfait, maal het tarief (niet onder nul).
-    var voordeel = function(r){ return Math.max((cfg.aftrekAlleenAflossend ? r.interestAnn : r.interest) - forfaitMaand, 0) * tarief; };
+    // Overgangsrecht: een meegenomen aflossingsvrij deel van vóór 2013 blijft (tot het oude bedrag) aftrekbaar.
+    var avRatio = afVrij > 0 ? Math.min(1, (cfg.avAftrekbaar || 0) / afVrij) : 0;
+    // Bijleenregeling: hoogstens dit deel van de lening is eigenwoningschuld.
+    var ewsRatio = cfg.maxEigenwoningschuld !== undefined && cfg.bedrag > 0 ? Math.min(1, Math.max(cfg.maxEigenwoningschuld, 0) / cfg.bedrag) : 1;
+    var voordeel = function(r){
+      if(cfg.aftrekTot && (r.jaar || 9999) >= cfg.aftrekTot) return 0;
+      var rente = cfg.aftrekAlleenAflossend ? r.interestAnn + (r.interest - r.interestAnn) * avRatio : r.interest;
+      return Math.max(rente * ewsRatio - forfaitMaand, 0) * tarief;
+    };
     var netto = function(r){ return r.gross - voordeel(r); };
 
     var toetsjaar = cfg.toetsjaar;
@@ -1233,7 +1255,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     else f = schedule(1, rates, n, cfg.vorm || "annuity")[mToets - 1].balance;
     var rest = mToets <= 0 ? cfg.bedrag : afVrij + annDeel * f;
     var waarde = cfg.waarde * (1 - (cfg.waardedaling || 0));
-    var norm = waarde * (cfg.normPct || v.normPct);
+    var norm = waarde * (cfg.normPct !== undefined ? cfg.normPct : v.normPct);
     var maxAVnorm = f < 1 ? (norm - cfg.bedrag * f) / (1 - f) : (rest <= norm ? cfg.bedrag : 0);
     maxAVnorm = Math.min(Math.max(maxAVnorm, 0), cfg.bedrag);
     // Bankgrens bij aanvang: een percentage van de woningwaarde, eventueel met een maximumbedrag.
@@ -1314,8 +1336,17 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       if(x[1] <= 0 || x[1] > 0.15) fouten[x[0]] = "Vul de rente in als percentage tussen 0 en 15, bijvoorbeeld 4,2.";
     });
     if(v.woningwaarde <= 0) fouten["woningwaarde"] = "Vul de waarde van de nieuwe woning in.";
+    if(v.hoofdsom <= 0) fouten["hoofdsom"] = "Vul uw huidige hypotheek in.";
+    else if(v.waardeHuidig > 0 && v.hoofdsom > 3 * v.waardeHuidig) fouten["hoofdsom"] = "De hypotheek is meer dan drie keer de woningwaarde. Klopt dit bedrag?";
+    if(v.waardeHuidig <= 0) fouten["waarde-huidig"] = "Vul de waarde van uw huidige woning in.";
+    var rl = String(v.restIn).trim();
+    if(!rl || !/^\d+$/.test(rl) || parseInt(rl, 10) < 1 || parseInt(rl, 10) > 40) fouten["restlooptijd"] = "Vul een heel aantal jaren in, tussen 1 en 40; nu rekent de tool met " + v.restLooptijd + " jaar.";
+    if(!v.normIn) fouten["norm-pct"] = "Vul een percentage in; leeg telt als 0%.";
+    if(v.tarief > 0.3756 + 0.00001) fouten["tarief"] = "In 2026 is het aftrektarief hoogstens 37,56%.";
+    if(!v.startNu) fouten["start-nu"] = "Vul het jaar in; zonder dit jaar rekent de tool bij blijven wonen zonder renteaftrek.";
+    else if(v.startNu > STARTJAAR || v.startNu < 1950) fouten["start-nu"] = "Vul een jaar in tussen 1950 en " + STARTJAAR + ".";
     if(v.afVrij > (v.overnemen ? Infinity : v.nieuwBedrag)) fouten["afvrij-deel"] = "Het aflossingsvrije deel is hoger dan wat u leent; de tool rekent met het hele bedrag.";
-    var ids = ["geboortejaar","verhuisjaar","eind-rvp","rente-nu","rente-nieuw","woningwaarde","afvrij-deel"];
+    var ids = ["hoofdsom","restlooptijd","waarde-huidig","start-nu","geboortejaar","verhuisjaar","eind-rvp","rente-nu","rente-nieuw","woningwaarde","afvrij-deel","tarief","norm-pct"];
     ids.forEach(function(id){
       var veld = el(id), fid = id + "-fout", m = el(fid);
       if(!m){ m = document.createElement("span"); m.id = fid; m.className = "hint fout"; veld.parentNode.appendChild(m); }
@@ -1350,6 +1381,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       start: STARTJAAR, bedrag: v.hoofdsom, afVrij: v.vormNu === "io" ? v.hoofdsom : 0,
       vorm: v.vormNu === "io" ? "annuity" : v.vormNu, rente: v.renteNieuw,
       grensJaar: v.eindRvp, looptijd: jarenA, aftrek: v.aftrekNu,
+      aftrekTot: !v.startNu ? STARTJAAR : v.startNu < 2001 ? 2031 : v.startNu + 30,
       waarde: v.waardeHuidig, toetsjaar: toetsjaar, inkomen: inkSamen, inkomenLabel: "samen"
     });
     var eindeA = STARTJAAR + v.restLooptijd;
@@ -1361,6 +1393,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     var basis = {
       start: v.verhuis, bedrag: nieuwBedrag, afVrij: v.afVrij, vorm: v.vormNieuw, rente: v.renteNieuw,
       grensJaar: v.meeneem ? v.eindRvp : 0, meeneemBedrag: v.meeneem ? restBijVerhuis : undefined, looptijd: v.looptijd, aftrek: v.aftrekNieuw,
+      avAftrekbaar: v.vormNu === "io" && v.startNu && v.startNu < 2013 ? v.hoofdsom : 0,
+      maxEigenwoningschuld: v.woningwaarde - Math.max(v.waardeHuidig - restBijVerhuis, 0),
       aftrekAlleenAflossend: true, bankregel: true,
       waarde: v.woningwaarde, toetsjaar: toetsjaar, inkomen: inkSamen, inkomenLabel: "samen"
     };
@@ -1402,8 +1436,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         ". In " + v.verhuis + " staat nog " + euro0(restBijVerhuis) + " open." +
         (v.vormNu === "io"
           ? " Aan het einde van de looptijd, in " + eindeA + ", moet u " + euro0(v.hoofdsom) + " aflossen of opnieuw financieren. " +
-            "ABN AMRO en ING doen dat nu nog tot 50% van de woningwaarde (" + euro0(v.waardeHuidig * 0.5) + "); " +
-            (v.hoofdsom <= v.waardeHuidig * 0.5 + 0.5 ? "uw schuld past daar binnen." : "uw schuld is hoger, het verschil moet u dan aflossen.") +
+            "Volgens het beleid van nu (stand 22 oktober 2026) herfinancieren ABN AMRO en ING tot 50% van de woningwaarde, als u door de toets komt; met de waarde van nu is dat " + euro0(v.waardeHuidig * 0.5) + ". " +
+            (v.hoofdsom <= v.waardeHuidig * 0.5 + 0.5 ? "Uw schuld past daar nu binnen." : "Uw schuld is hoger; met dat beleid zou u het verschil moeten aflossen.") +
             (eindeA < 2030 ? " Bij ASN Bank kan dat tot 1 januari 2030 ook tot 50%." : "")
           : " Er geldt geen nieuwe bankgrens zolang u niets verandert.")},
       {ltr:"B", naam:"Verhuizen", r:B, tekst:"Nieuwe hypotheek van " + euro0(nieuwBedrag) + ", " + vormLabel[v.vormNieuw] + " in " + v.looptijd +
@@ -1431,16 +1465,18 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         " van de woningwaarde toe, dus in " + (oudste + v.toetsH) + " hoogstens " + euro0(H.norm) + ". Dezelfde lening als in B, maar met " +
         (H.haalt ? "een marge van " + euro0(H.ruimte) : "een tekort van " + euro0(-H.ruimte)) +
         ". Aflossingsvrij kan dan nog " + euro0(H.maxAV) + " zijn."},
-      {ltr:"I", naam:"Extra rente voor risico", r:I, tekst:"Mogelijk: met " + pct(v.opslagI * 100) + " extra wordt de rente " +
+      {ltr:"I", naam:"Extra rente voor risico", r:I, tekst:"Mogelijk: met " + pct(v.opslagI * 100).replace("%", " procentpunt") + " extra wordt de rente " +
         pct((v.renteNieuw + v.opslagI) * 100) + " en de netto last " + euro0(I.nettoStart) + ", dus " + euro0(I.nettoStart - B.nettoStart) +
         " per maand meer." + (I.rest > B.rest + 0.5 ? " Uw schuld in " + toetsjaar + " is dan " + euro0(I.rest) + ", omdat u trager aflost." : "")},
-      {ltr:"K", naam:"Laag energielabel", r:K, tekst:"Mogelijk: u verduurzaamt niet en betaalt " + pct(v.opslagK * 100) +
+      {ltr:"K", naam:"Laag energielabel", r:K, tekst:"Mogelijk: u verduurzaamt niet en betaalt " + pct(v.opslagK * 100).replace("%", " procentpunt") +
         " extra rente, terwijl de woning " + pct(v.dalingK * 100) + " minder waard wordt. De netto last wordt " + euro0(K.nettoStart) + " en de bankgrens zakt naar " +
         euro0(K.norm) + ". Dit is de tegenhanger van scenario E."}
     ];
 
+    var kanttekening = nieuwBedrag > v.woningwaarde * 1.0 + 0.5 || inkSamen <= 0;
     function grensPil(s){
       if(s.nvt) return "<span class='pill nvt'>geen nieuwe toets</span>";
+      if(kanttekening) return "<span class='pill nvt'>" + (s.r.haalt ? "binnen de grens" : "boven de grens") + ", zie opmerking</span>";
       return "<span class='pill " + (s.r.haalt ? "ok" : "bad") + "'>" + (s.r.haalt ? "binnen de grens" : "boven de grens") + "</span>";
     }
     var tb = el("scen-tabel").querySelector("tbody");
@@ -1466,7 +1502,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         "<div class='cijfers'><span>" + euro0(s.r.woonlast) + " netto p/m</span>" +
         (s.r.quote !== null ? "<span>last / inkomen " + q + " (" + s.r.inkomenLabel + ")</span>" : "") +
         "<span>schuld op " + (s.ltr === "H" ? v.toetsH : v.toetsleeftijd) + " jaar " + euro0(s.r.rest) + "</span></div>" +
-        "<div>" + (s.nvt ? grensPil(s) : "<span class='pill " + (s.r.haalt ? "ok" : "bad") + "'>" +
+        "<div>" + (s.nvt || kanttekening ? grensPil(s) : "<span class='pill " + (s.r.haalt ? "ok" : "bad") + "'>" +
         (s.r.avTeHoog ? "aflossingsvrij boven de bankgrens" : s.r.haalt ? "binnen de grens, ruimte " + euro0(s.r.ruimte) : "boven de grens, tekort " + euro0(-s.r.ruimte)) + "</span>") + "</div>";
       cards.appendChild(card);
     });
@@ -1491,6 +1527,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     var lijst = el("toets-let");
     lijst.innerHTML = lt.map(function(t){ return "<li>" + esc(t) + "</li>"; }).join("");
     lijst.hidden = !lt.length;
+    if(lt.length){ pill.className = "pill nvt"; pill.textContent = (B.haalt ? "Binnen" : "Boven") + " de bankgrens op leeftijd, maar zie de opmerkingen"; }
     if(B.avTeHoog){
       el("toets-zin").textContent = "Het aflossingsvrije deel van " + euro0(B.afVrij) + " is hoger dan de bankgrens van " + euro0(B.bankMax) +
         " bij de start. Aflossingsvrij kan hier tot " + euro0(B.maxAV) + ".";
@@ -1513,6 +1550,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     }
     // peildatum
     var pd = v.peildatum ? new Date(v.peildatum + "T00:00:00") : null;
+    if(!pd || isNaN(pd.getTime())) ["p-leeftijd","p-rest-a","p-last-a","p-afgelost-a","p-rest-b","p-last-b"].forEach(function(id){ el(id).textContent = "–"; });
     if(pd && !isNaN(pd.getTime())){
       var pJaar = pd.getFullYear(), pMaand = pd.getMonth();
       var mA = (pJaar - STARTJAAR) * 12 + pMaand;
@@ -1632,7 +1670,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   }
 
   // printversie: opent een eigen venster, omdat window.print() binnen een iframe geblokkeerd wordt
-  var PRINTVELDEN = ["hoofdsom","vorm-nu","restlooptijd","rente-nu","eind-rvp","waarde-huidig","geboortejaar","geboortejaar-partner",
+  var PRINTVELDEN = ["hoofdsom","vorm-nu","restlooptijd","rente-nu","eind-rvp","waarde-huidig","start-nu","geboortejaar","geboortejaar-partner","peildatum",
     "verhuisjaar","nieuw-bedrag","afvrij-deel","woningwaarde","rente-nieuw","looptijd","vorm-nieuw","meeneem","overnemen",
     "aftrek-nu","aftrek-nieuw","tarief","ink-klant","ink-partner","ink-pensioen","aow-leeftijd","toetsleeftijd","norm-pct","max-av-pct","max-av-bedrag",
     "fundering","verduurzaming","besparing","waardecorrectie","toets-h","norm-h","opslag-i","opslag-k","daling-k"];
@@ -1669,7 +1707,13 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
         var sp = kv.querySelectorAll("span");
         return "<tr><td>" + esc(sp[0].textContent) + "</td><td>" + esc(sp[1].textContent) + "</td></tr>";
       }).join("");
-      blokken += "<h2>" + esc(kop ? kop.textContent : "") + "</h2><table class='kv'>" + body + "</table>";
+      blokken += "<h2>" + esc(kop ? kop.textContent : "") + "</h2>";
+      if(s.querySelector("#toets-pill")){
+        blokken += "<p><b>" + esc(el("toets-pill").textContent) + ".</b> " + esc(el("toets-zin").textContent) + "</p>";
+        if(!el("toets-let").hidden) blokken += "<ul class='let'>" + el("toets-let").innerHTML + "</ul>";
+      }
+      blokken += "<table class='kv'>" + body + "</table>";
+      if(s.querySelector(".toets-noot")) blokken += "<p>" + esc(s.querySelector(".toets-noot").textContent) + "</p>";
     });
 
     var scenTabel = el("scen-tabel").outerHTML;
@@ -1686,6 +1730,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       "thead th{background:#eee;font-size:11px;text-transform:uppercase;letter-spacing:.04em}" +
       "table.kv td:first-child{color:#444;width:62%}table.kv td:last-child{font-weight:600}" +
       ".pill{border:1px solid #999;border-radius:9px;padding:1px 7px;font-size:10px}.pill::before{content:''}" +
+      ".let{border-left:3px solid #a03028;padding:6px 6px 6px 24px;background:#faeae8}" +
       ".voet{margin-top:22px;border-top:1px solid #ccc;padding-top:10px;color:#555;font-size:11px}" +
       "table,h2{break-inside:avoid}@page{margin:14mm}" +
       "</style></head><body>" +
@@ -1693,6 +1738,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
       "<p class='datum'>Hypotheek straks (NVHP) · berekening van " + datum + " · indicatie, geen advies en geen offerte</p>" +
       "<h2>Kerncijfers</h2><table class='kv'>" + kern + "</table>" +
       "<h2>Scenario's naast elkaar</h2>" + scenTabel +
+      "<h2>De scenario's in woorden</h2>" + Array.prototype.map.call(document.querySelectorAll("#scen-cards .scen"), function(c){
+        return "<p><b>" + esc(c.querySelector("h3").textContent) + ".</b> " + esc(c.querySelector("p").textContent) + "</p>"; }).join("") +
       blokken +
       "<h2>Per jaar: scenario B</h2>" + jaarTabel +
       "<p class='voet'>Alle bedragen zijn een indicatie op basis van uw eigen invoer en vereenvoudigde aannames. Het is geen advies en geen offerte; u kunt er geen rechten aan ontlenen. " +
@@ -1749,7 +1796,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   ["hoofdsom","nieuw-bedrag","afvrij-deel","woningwaarde","waarde-huidig","ink-klant","ink-partner","ink-pensioen","fundering","verduurzaming","besparing","max-av-bedrag"].forEach(function(id){
     el(id).addEventListener("input", function(){ formatEuroInput(this); render(); });
   });
-  ["rente-nu","rente-nieuw","tarief","eind-rvp","verhuisjaar","geboortejaar","geboortejaar-partner","toetsleeftijd","norm-pct","max-av-pct","aow-leeftijd","waardecorrectie","restlooptijd","peildatum","toets-h","norm-h","opslag-i","opslag-k","daling-k"].forEach(function(id){
+  ["start-nu","rente-nu","rente-nieuw","tarief","eind-rvp","verhuisjaar","geboortejaar","geboortejaar-partner","toetsleeftijd","norm-pct","max-av-pct","aow-leeftijd","waardecorrectie","restlooptijd","peildatum","toets-h","norm-h","opslag-i","opslag-k","daling-k"].forEach(function(id){
     el(id).addEventListener("input", render);
   });
   ["looptijd","aftrek-nu","aftrek-nieuw","meeneem","vorm-nu","vorm-nieuw","overnemen","peildatum"].forEach(function(id){
