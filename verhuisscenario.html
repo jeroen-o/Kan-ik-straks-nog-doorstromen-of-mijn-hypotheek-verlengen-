@@ -29,7 +29,7 @@
   --primary:#234765; --primary-l:#2f5f86; --ink:#1d2329; --accent:#80c7a4; --rood:#b00038;
   --bg:#f4f9fc; --tint:#eef8fd; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#5f6870;
   --line:#d4e3ec; --rule:#234765; --focus:#2f5f86; --navy:#234765;
-  --kolom:1080px; --rand:24px; --maat:70ch; --kop-h:80px; --kop-totaal:var(--kop-h);
+  --kolom:1080px; --rand:24px; --maat:none; --kop-h:80px; --kop-totaal:var(--kop-h);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -286,11 +286,11 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 #vs{--vs-bg:var(--bg);--vs-surface:#fff;--vs-surface-2:var(--bg);--vs-line:var(--line);--vs-primary:var(--ink);--vs-accent:var(--primary);--vs-text:var(--text);--vs-muted:var(--text-l);--vs-muted-2:var(--muted);--vs-warn:#7a4a00;--vs-warn-bg:var(--tint);--vs-ok:#1c6b47;--vs-ok-bg:#e4f2eb;--vs-bad:#a03028;--vs-bad-bg:#faeae8;--vs-font-display:inherit;--vs-font-body:inherit}
 #vs .vs-wrap{max-width:1020px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
 #vs header h1{font-family:var(--vs-font-display);font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 8px;color:var(--vs-primary);text-wrap:balance}
-#vs header p{margin:0;color:var(--vs-muted);max-width:64ch}
+#vs header p{margin:0;color:var(--vs-muted);max-width:none}
 #vs .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--vs-accent);font-weight:600;margin:0 0 10px}
 #vs .panel{background:var(--vs-surface);border:1px solid var(--vs-line);border-radius:10px;padding:20px}
 #vs .panel h2{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vs-primary);margin:0 0 4px}
-#vs .panel .sub{font-size:13px;color:var(--vs-muted-2);margin:0 0 16px;max-width:70ch}
+#vs .panel .sub{font-size:13px;color:var(--vs-muted-2);margin:0 0 16px;max-width:none}
 #vs .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:20px}
 #vs .field{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
 #vs .field label{font-size:13px;font-weight:600;color:var(--vs-muted)}
@@ -322,7 +322,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 #vs .pill.nvt{background:#fff;border-color:var(--vs-line);color:var(--vs-muted)}
 #vs .let{margin:0 0 16px;padding:12px 16px 12px 32px;background:var(--vs-bad-bg);border-left:3px solid var(--vs-bad);font-size:14px;color:var(--vs-text)}
 #vs .let li{margin-bottom:4px}
-#vs .toets-noot{margin:16px 0 0;font-size:13.5px;color:var(--vs-muted);max-width:70ch}
+#vs .toets-noot{margin:16px 0 0;font-size:13.5px;color:var(--vs-muted);max-width:none}
 #vs .invoerfouten:empty{display:none}
 #vs .invoerfouten{padding:12px 16px;background:var(--vs-bad-bg);border-left:3px solid var(--vs-bad);font-size:14px;color:var(--vs-text)}
 #vs .invoerfouten ul{margin:4px 0 0;padding-left:18px}
@@ -374,9 +374,9 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 #vs .helpsec h2.kop{font-family:var(--vs-font-display);font-weight:400;font-size:clamp(21px,3.2vw,27px);line-height:1.18;color:var(--vs-primary);margin:0 0 10px;text-transform:none;letter-spacing:0}
 #vs .helpsec h2.kop .nr{color:var(--vs-accent);margin-right:12px;font-size:.82em}
 #vs .helpsec h4{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vs-primary);margin:20px 0 8px}
-#vs .helpsec p{margin:0 0 12px;max-width:66ch;color:var(--vs-muted);font-size:15px}
+#vs .helpsec p{margin:0 0 12px;max-width:none;color:var(--vs-muted);font-size:15px}
 #vs .helpsec p:last-child{margin-bottom:0}
-#vs .helpsec ol,#vs .helpsec ul{margin:0 0 12px;padding-left:20px;max-width:66ch;color:var(--vs-muted);font-size:15px}
+#vs .helpsec ol,#vs .helpsec ul{margin:0 0 12px;padding-left:20px;max-width:none;color:var(--vs-muted);font-size:15px}
 #vs .helpsec li{margin-bottom:8px}
 #vs .helpsec strong{color:var(--vs-primary)}
 #vs dl{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:1px;background:var(--vs-line);border:1px solid var(--vs-line);border-radius:8px;overflow:hidden;margin:0}
