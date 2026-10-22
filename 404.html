@@ -7,7 +7,7 @@
   --primary:#234765; --primary-l:#2f5f86; --ink:#1d2329; --accent:#80c7a4; --rood:#b00038;
   --bg:#f4f9fc; --tint:#eef8fd; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#5f6870;
   --line:#d4e3ec; --rule:#234765; --focus:#2f5f86; --navy:#234765;
-  --kolom:1080px; --rand:24px; --maat:70ch; --kop-h:80px; --kop-totaal:var(--kop-h);
+  --kolom:1080px; --rand:24px; --maat:none; --kop-h:80px; --kop-totaal:var(--kop-h);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -114,7 +114,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 
 /* ---- opvallend blok ---- */
 .note{background:var(--tint);border-left:3px solid var(--primary);padding:16px 24px;font-size:15px;color:var(--text);
-  max-width:var(--maat)}
+  max-width:none}
 .note p + p{margin-top:8px}
 
 /* ---- tabellen ---- */
@@ -276,8 +276,10 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
          Nederland en Europa. Deze site verkoopt geen producten en verwijst niet naar een bepaalde geldverstrekker.</p>
       <p>Alles op deze site is een indicatie of een scenario, stand 22 oktober 2026. Het is geen advies en geen voorspelling,
          en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een hypotheekadviseur; of een adviseur een
-         vergunning heeft of onder een vergunning werkt, ziet u in het register van de AFM.</p>
-      <p>Deze site gebruikt geen cookies en slaat niets op. Wat u in de rekentools invult, blijft in uw browser.</p>
+         vergunning heeft of onder een vergunning werkt, ziet u in het <a href="https://www.afm.nl/nl-nl/sector/registers" target="_blank" rel="noopener">register van de AFM</a>.</p>
+      <p>Deze site plaatst zelf geen cookies. Wat u invult in Uw scenario en Uw verhuisscenario, blijft in uw browser.
+         De rekenhulpen van Hypotheekbond werken anders: zie <a href="rekenhulpen.html">rekenhulpen</a>. De site wordt
+         gehost door GitHub (GitHub Pages); die verwerkt technische gegevens zoals uw IP-adres.</p>
     </div>
     <div class="voet-contact">
       <h2>Vragen of een correctie?</h2>
