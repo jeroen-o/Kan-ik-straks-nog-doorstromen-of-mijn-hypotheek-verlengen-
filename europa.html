@@ -10,7 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#1d5fae">
+<meta name="theme-color" content="#234765">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:site_name" content="Hypotheek straks">
@@ -25,15 +25,18 @@
    Eén laag: alles lijnt uit op de kolom van .wrap en op een vaste maatschaal (4, 8, 12, 16, 24, 32, 48, 64). */
 
 :root{
-  --primary:#1d5fae; --primary-l:#164c8f; --ink:#111418; --accent:#1d5fae;
-  --bg:#f5f8fc; --tint:#e8f0fa; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#6b737d;
-  --line:#d3d9e1; --rule:#22262c; --focus:#1d5fae; --navy:#0d2c57;
-  --kolom:1080px; --rand:24px; --maat:70ch; --kop-h:64px;
+  /* NVHP-huisstijl: navy, lichtblauwe vlakken, groen en rood alleen als accent zonder tekst */
+  --primary:#234765; --primary-l:#2f5f86; --ink:#1d2329; --accent:#80c7a4; --rood:#b00038;
+  --bg:#f4f9fc; --tint:#eef8fd; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#5f6870;
+  --line:#d4e3ec; --rule:#234765; --focus:#2f5f86; --navy:#234765;
+  --kolom:1080px; --rand:24px; --maat:70ch; --kop-h:80px; --kop-totaal:var(--kop-h);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 /* De kop blijft bovenaan staan; een anker moet daar onderuit komen. */
-:target,section[id],div[id].card,div[id].tool{scroll-margin-top:calc(var(--kop-h) + 16px)}
+/* Ankers en toetsenbordfocus komen onder de vaste kop uit, ook op mobiel. */
+html{scroll-padding-top:calc(var(--kop-totaal) + 16px)}
+:target,section[id],div[id].card,div[id].tool{scroll-margin-top:calc(var(--kop-totaal) + 16px)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none!important;animation:none!important}
@@ -82,17 +85,21 @@ h3{font-size:17px;font-weight:700;margin-bottom:8px}
 /* ---- kop van de site ---- */
 .site-kop{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
 .site-kop .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:var(--kop-h)}
-.logo{font-weight:800;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
-.logo span{color:var(--primary)}
+.logo{display:flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.logo img{display:block;height:56px;width:auto}
+.logo-naam{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--primary);line-height:1.2;
+  padding-left:14px;border-left:1px solid var(--line)}
+.logo-naam small{display:block;font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--muted)}
 .site-nav{display:flex;gap:24px}
 .site-nav a{display:flex;align-items:center;min-height:var(--kop-h);color:var(--text);text-decoration:none;
   font-size:14.5px;font-weight:500;white-space:nowrap;box-shadow:inset 0 -2px 0 transparent}
 .site-nav a:hover{color:var(--primary)}
 .site-nav a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
 @media (max-width:980px){
-  :root{--kop-h:52px}
+  :root{--kop-h:52px;--kop-totaal:108px}
   .site-kop .wrap{flex-direction:column;align-items:stretch;gap:0;padding-top:12px}
-  .site-kop .logo{line-height:28px}
+  .logo img{height:40px}
+  .logo-naam{font-size:15px}
   /* Op een smal scherm één regel die opzij schuift, zodat de kop laag blijft. */
   .site-nav{position:relative;gap:20px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--rand));padding:0 48px 0 var(--rand);
     -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
@@ -118,7 +125,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 
 /* ---- kaarten: een raster met vaste tussenruimte; een losse laatste kaart laat geen leeg vak achter ---- */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
+.card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
 .card h3{margin-bottom:8px}
 .card p,.card ul{font-size:14.5px;color:var(--text-l)}
 .card p + p{margin-top:8px}
@@ -141,7 +148,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 .tbl tbody th{font-weight:600;color:var(--ink)}
 .tbl tr:last-child td,.tbl tr:last-child th{border-bottom:none}
 .tbl td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
-.tbl td.groep{background:var(--ink);color:#fff;font-weight:700;font-size:12px;letter-spacing:.06em;
+.tbl td.groep{background:var(--primary);color:#fff;font-weight:700;font-size:12px;letter-spacing:.06em;
   text-transform:uppercase;padding:8px 16px}
 .regels tbody th{background:#fff;font-size:15px;min-width:180px}
 @media (max-width:620px){
@@ -163,7 +170,7 @@ main > section + section > .wrap::before{content:"";display:block;border-top:1px
 .zeker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;line-height:1.5;padding:2px 8px;
   border-radius:2px;white-space:nowrap}
 .zeker.b{background:var(--ink);color:#fff}
-.zeker.w{background:var(--primary);color:#fff}
+.zeker.w{background:#3e6f96;color:#fff}
 .zeker.m{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
 
 /* ---- formulieren ---- */
@@ -175,7 +182,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--primary)}
 input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-color:var(--primary)}
 
 /* ---- rekenhulpen van Hypotheekbond ---- */
-.tool{background:#fff;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
+.tool{background:#fff;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
 .tool h3{margin-bottom:4px}
 .tool > p{font-size:15px;color:var(--text-l);margin-bottom:16px;max-width:var(--maat)}
 .tool iframe{display:block;width:100%;min-height:820px;border:0}
@@ -189,7 +196,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 
 /* ---- scenariokiezer ---- */
 .sk-raster{display:grid;grid-template-columns:300px minmax(0,1fr);gap:32px;align-items:start}
-.sk-invoer{border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px;background:var(--bg);
+.sk-invoer{border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px;background:var(--bg);
   position:sticky;top:calc(var(--kop-h) + 24px)}
 .sk-invoer h2,.sk-titel{font-size:20px;margin-bottom:16px}
 /* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
@@ -218,7 +225,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 @supports not (grid-template-rows:subgrid){ .sk-kaart{display:flex;flex-direction:column} .sk-groep{align-self:stretch} .sk-kaart .btn{margin-top:auto;align-self:stretch} }
 .sk-acties{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
 .sk-acties .hint{margin:0}
-.sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--ink);padding:24px}
+.sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
 .sk-agenda h2{font-size:22px}
 .sk-agenda ol{margin:0 0 0 20px;max-width:var(--maat)}
 .sk-agenda li{margin-bottom:8px;font-size:15px}
@@ -239,11 +246,19 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 @media print{ .sk-invoer,.sk-kaart .btn,.sk-acties{display:none} }
 
 /* ---- voet ---- */
-.site-voet{background:var(--navy);color:#c9d6e6;padding:48px 0;font-size:14px}
+.site-voet{position:relative;overflow:hidden;background:var(--navy);color:#e3edf4;padding:48px 0 88px;font-size:14px}
+.site-voet::after{content:"";position:absolute;left:-15%;bottom:-150px;width:70%;height:210px;border-radius:50%;
+  background:#6aab95;opacity:.85;pointer-events:none}
+.site-voet .wrap{position:relative;z-index:1}
+.voet-raster{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px 56px}
+.voet-logo{display:block;width:160px;height:auto;margin-bottom:20px}
 .site-voet a{color:#fff}
 .site-voet p{margin-bottom:12px;max-width:var(--maat)}
 .site-voet p:last-child{margin-bottom:0}
 .site-voet b{color:#fff}
+.site-voet h2{font-size:16px;font-weight:700;color:#fff;letter-spacing:0;margin:0 0 10px}
+.voet-contact{text-align:right}
+@media (max-width:780px){ .voet-raster{grid-template-columns:1fr} .voet-contact{text-align:left} }
 
 /* ---- smalle schermen ---- */
 @media (max-width:780px){
@@ -284,8 +299,18 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
   {
    "@type": "Organization",
    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site",
-   "name": "Hypotheek straks",
-   "url": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+   "name": "Nederlandse Vereniging van Hypothecair Planners (NVHP)",
+   "alternateName": "NVHP",
+   "url": "https://www.hypothecairplanner.nl/",
+   "email": "info@hypothecairplanner.nl",
+   "telephone": "+31332542012",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "De Wel 14-16",
+    "postalCode": "3871 MV",
+    "addressLocality": "Hoevelaken",
+    "addressCountry": "NL"
+   }
   },
   {
    "@type": "WebPage",
@@ -297,8 +322,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
    "datePublished": "2026-10-19",
    "dateModified": "2026-10-22",
    "isPartOf": {
-    "@type": "WebSite",
-    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/"
+    "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#website"
    },
    "publisher": {
     "@id": "https://jeroen-o.github.io/Kan-ik-straks-nog-doorstromen-of-mijn-hypotheek-verlengen-/#site"
@@ -358,7 +382,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 <a class="skip" href="#main">Naar de hoofdinhoud</a>
 <header class="site-kop">
   <div class="wrap">
-    <a href="index.html" class="logo">Hypotheek <span>straks</span></a>
+    <a href="index.html" class="logo"><img src="nvhp-logo.png" alt="NVHP" width="88" height="56"><span class="logo-naam">Hypotheek straks<small>Regels nu en straks</small></span></a>
     <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Scenario 2035</a><a href="mijn-scenario.html">Uw scenario</a><a href="verhuisscenario.html">Uw verhuisscenario</a><a href="regels.html">Regels nu en straks</a><a href="europa.html" aria-current="page">Europa</a><a href="rekenhulpen.html">Rekenhulpen</a></nav><script>/* Op een smal scherm schuift het menu naar de actieve pagina. */(function(){var a=document.querySelector(".site-nav [aria-current]");if(a){var n=a.parentNode;if(n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-24;}})();</script>
   </div>
 </header>
@@ -383,7 +407,7 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <div class="cards">
       <div class="card">
         <h3>Kapitaaleisen voor banken</h3>
-        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span> regels; het effect op de rente is waarschijnlijk</p>
         <p>De ECB houdt toezicht op de grootbanken, keurt hun rekenmodellen goed en kan extra kapitaal eisen. Door de Europese regels
            (CRR3) mag het kapitaal uit eigen rekenmodellen niet te ver onder de standaardmethode komen; die ondergrens
            loopt op tot 2030. Een hypotheek met weinig overwaarde, lasten die na het pensioen niet te dragen zijn, een
@@ -441,15 +465,15 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <div class="tabelwrap">
       <table class="tbl regels">
         <caption>Renteaftrek, aflossing en leengrenzen in een aantal Europese landen. Bronnen onderaan de pagina.</caption>
-        <thead><tr><th scope="col">Land</th><th scope="col">Renteaftrek eigen woning</th><th scope="col">Aflossing en leengrenzen</th><th scope="col">Wat Nederland ervan kan leren</th></tr></thead>
+        <thead><tr><th scope="col">Land</th><th scope="col">Renteaftrek eigen woning</th><th scope="col">Aflossing en leengrenzen</th><th scope="col">Wat opvalt</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; grote banken: aflossingsvrij hoogstens 30% bij nieuwe hypotheken (sinds mei tot en met juli 2026)</td><td data-label="Wat Nederland ervan kan leren">&ndash;</td></tr>
-          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing binnen de statistische levensverwachting. Er is geen maximumleeftijd, maar vanaf ongeveer 60 jaar wordt goedkeuring lastiger (bankbeleid)</td><td data-label="Wat Nederland ervan kan leren">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
-          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% bij aankoop sinds 1 april 2026 (bijlenen hoogstens 80%); de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat Nederland ervan kan leren">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
-          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Gewone aftrek afgebouwd; een tijdelijke belastingkorting op gestegen rente (Mortgage Interest Tax Credit) is verlengd tot en met 2026</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat Nederland ervan kan leren">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
-          <tr><th scope="row">Belgi&euml;</th><td data-label="Renteaftrek eigen woning">Vlaanderen: geen woonbonus meer voor nieuwe leningen sinds 2020</td><td data-label="Aflossing en leengrenzen">De centrale bank stelt verwachtingen aan leningen met een hoge waarde; banken hanteren eigen leeftijdsbeleid</td><td data-label="Wat Nederland ervan kan leren">Afschaffen kan voor nieuwe leningen, met behoud voor bestaande</td></tr>
-          <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Renteaftrek eigen woning">Nee, afgeschaft in 2000</td><td data-label="Aflossing en leengrenzen">Grote banken: meestal afgelost tussen 75 en 80 jaar; gespecialiseerde aanbieders gaan verder</td><td data-label="Wat Nederland ervan kan leren">Leeftijdsgrenzen zijn bankbeleid, maar wel marktstandaard</td></tr>
-          <tr><th scope="row">Denemarken</th><td data-label="Renteaftrek eigen woning">Ja, lager dan in Nederland: ongeveer 33,6% over de eerste DKK 50.000 rente (alleenstaand) en 25,6% daarboven (2026)</td><td data-label="Aflossing en leengrenzen">Een hypotheekinstituut leent hoogstens 80% van de waarde, gefinancierd met obligaties; daarboven een duurdere banklening. Wettelijk minimaal 5% eigen geld. Aflossingsvrij hoogstens 10 jaar en tot 60% van de waarde</td><td data-label="Wat Nederland ervan kan leren">Aftrek kan blijven, maar met minder fiscaal voordeel</td></tr>
+          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; grote banken: aflossingsvrij hoogstens 30% bij nieuwe hypotheken (sinds mei tot en met juli 2026)</td><td data-label="Wat opvalt">&ndash;</td></tr>
+          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing binnen de statistische levensverwachting. Er is geen maximumleeftijd, maar vanaf ongeveer 60 jaar wordt goedkeuring lastiger (bankbeleid)</td><td data-label="Wat opvalt">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
+          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% bij aankoop sinds 1 april 2026 (bijlenen hoogstens 80%); de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat opvalt">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
+          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Gewone aftrek afgebouwd; een tijdelijke belastingkorting op gestegen rente (Mortgage Interest Tax Credit) is verlengd tot en met 2026</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat opvalt">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
+          <tr><th scope="row">Belgi&euml;</th><td data-label="Renteaftrek eigen woning">Vlaanderen: geen woonbonus meer voor nieuwe leningen sinds 2020</td><td data-label="Aflossing en leengrenzen">De centrale bank stelt verwachtingen aan leningen met een hoge waarde; banken hanteren eigen leeftijdsbeleid</td><td data-label="Wat opvalt">Afschaffen kan voor nieuwe leningen, met behoud voor bestaande</td></tr>
+          <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Renteaftrek eigen woning">Nee, afgeschaft in 2000</td><td data-label="Aflossing en leengrenzen">Grote banken: meestal afgelost tussen 75 en 80 jaar; gespecialiseerde aanbieders gaan verder</td><td data-label="Wat opvalt">Leeftijdsgrenzen zijn bankbeleid, maar wel marktstandaard</td></tr>
+          <tr><th scope="row">Denemarken</th><td data-label="Renteaftrek eigen woning">Ja, lager dan in Nederland: ongeveer 33,6% over de eerste DKK 50.000 rente (alleenstaand) en 25,6% daarboven (2026)</td><td data-label="Aflossing en leengrenzen">Een hypotheekinstituut leent hoogstens 80% van de waarde, gefinancierd met obligaties; daarboven een duurdere banklening. Wettelijk minimaal 5% eigen geld. Aflossingsvrij hoogstens 10 jaar en tot 60% van de waarde</td><td data-label="Wat opvalt">Aftrek kan blijven, maar met minder fiscaal voordeel</td></tr>
         </tbody>
       </table>
     </div>
@@ -474,6 +498,8 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
     <div class="eyebrow">Verantwoording</div>
     <h2>Bronnen</h2>
     <div class="prose">
+      <p>Voor de landen buiten Nederland zijn naast primaire bronnen ook secundaire bronnen gebruikt, zoals vakmedia en
+         sites van adviseurs en banken. Waar een gegeven niet in een primaire bron is gecontroleerd, staat dat erbij.</p>
       <ul>
         <li><a href="https://www.riksdagen.se/en/news/articles/2026/mar/4/new-mortgage-rules-to-reduce-thresholds-in-the_cmsfca551a0-b04d-4677-aa67-0aab4f002e56en/" target="_blank" rel="noopener">Riksdag: new mortgage rules (Zweden, 1 april 2026)</a></li>
         <li><a href="https://www.notar.se/en/blog/2026/new-mortgage-rules" target="_blank" rel="noopener">Notar: new mortgage rules from April 1, 2026</a></li>
@@ -509,12 +535,23 @@ input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-
 </main>
 
 <footer class="site-voet">
-  <div class="wrap">
-    <p><b>Kan ik straks nog doorstromen of mijn hypotheek verlengen?</b> Een onafhankelijke gesprekshulp over de
-       hypotheekregels van nu en straks, in Nederland en Europa.</p>
-    <p>Alles op deze site is een indicatie of een scenario, opgesteld in oktober 2026. Het is geen advies en geen
-       voorspelling, en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een erkend hypotheekadviseur.</p>
-    <p>Deze site gebruikt geen cookies en slaat niets op. Wat u invult, blijft in uw browser.</p>
+  <div class="wrap voet-raster">
+    <div>
+      <img class="voet-logo" src="nvhp-logo-wit.png" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners: voor een hypotheek die klopt" width="160" height="100">
+      <p><b>Hypotheek straks</b> is een initiatief van de Nederlandse Vereniging van Hypothecair Planners (NVHP), de
+         beroepsvereniging van Hypothecair Planners. Het is een gesprekshulp over de hypotheekregels van nu en straks, in
+         Nederland en Europa. Deze site verkoopt geen producten en verwijst niet naar een bepaalde geldverstrekker.</p>
+      <p>Alles op deze site is een indicatie of een scenario, stand 22 oktober 2026. Het is geen advies en geen voorspelling,
+         en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een hypotheekadviseur; of een adviseur een
+         vergunning heeft of onder een vergunning werkt, ziet u in het register van de AFM.</p>
+      <p>Deze site gebruikt geen cookies en slaat niets op. Wat u in de rekentools invult, blijft in uw browser.</p>
+    </div>
+    <div class="voet-contact">
+      <h2>Vragen of een correctie?</h2>
+      <p><a href="mailto:info@hypothecairplanner.nl">info@hypothecairplanner.nl</a><br>De Wel 14-16<br>3871 MV Hoevelaken<br>
+         <a href="tel:+31332542012">033&nbsp;&ndash;&nbsp;254&nbsp;20&nbsp;12</a></p>
+      <p><a href="https://www.hypothecairplanner.nl/" target="_blank" rel="noopener">hypothecairplanner.nl</a></p>
+    </div>
   </div>
 </footer>
 
